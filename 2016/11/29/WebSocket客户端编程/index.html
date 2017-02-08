@@ -1,0 +1,737 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WebSocket," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="通常，浏览器访问网页时，会向页面所在的服务器发送一个 HTTP 请求。Web 服务器确认请求并向浏览器发回响应。然而大多数情况下，当浏览器显示页面时实时信息已经过时了。幸运的是，随着 WebSocket 协议标准化，我们将向这一昔日窘况挥手告别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket客户端编程">
+<meta property="og:url" content="https://lfkid.github.io/2016/11/29/WebSocket客户端编程/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="通常，浏览器访问网页时，会向页面所在的服务器发送一个 HTTP 请求。Web 服务器确认请求并向浏览器发回响应。然而大多数情况下，当浏览器显示页面时实时信息已经过时了。幸运的是，随着 WebSocket 协议标准化，我们将向这一昔日窘况挥手告别。">
+<meta property="og:updated_time" content="2017-02-08T15:58:35.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket客户端编程">
+<meta name="twitter:description" content="通常，浏览器访问网页时，会向页面所在的服务器发送一个 HTTP 请求。Web 服务器确认请求并向浏览器发回响应。然而大多数情况下，当浏览器显示页面时实时信息已经过时了。幸运的是，随着 WebSocket 协议标准化，我们将向这一昔日窘况挥手告别。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> WebSocket客户端编程 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WebSocket客户端编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-29T17:08:36+08:00" content="2016-11-29">
+              2016-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通常，浏览器访问网页时，会向页面所在的服务器发送一个 HTTP 请求。Web 服务器确认请求并向浏览器发回响应。然而大多数情况下，当浏览器显示页面时实时信息已经过时了。幸运的是，随着 WebSocket 协议标准化，我们将向这一昔日窘况挥手告别。</p>
+<a id="more"></a>
+<h2 id="新建连接：实例化一个-WebSocket-对象"><a href="#新建连接：实例化一个-WebSocket-对象" class="headerlink" title="新建连接：实例化一个 WebSocket 对象"></a>新建连接：实例化一个 WebSocket 对象</h2><p>本文主要讲述客户端编程中 WebSocket 的使用，所以不涉及服务器端配置及编码，我们就假设服务器端一切都配置好了。</p>
+<p>为了建立一个到服务器端的连接，我们首先需要使用 WebSocket 构造函数实例化一个 WebSocket 对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://www.websocket.org'</span>);</div></pre></td></tr></table></figure>
+<h3 id="WebSocket-构造函数第一个参数"><a href="#WebSocket-构造函数第一个参数" class="headerlink" title="WebSocket 构造函数第一个参数"></a>WebSocket 构造函数第一个参数</h3><p>WebSocket 构造函数可接受两个参数，其中，第一个参数必须是以 <code>ws://</code> 或 <code>wss://</code> 开头的完全限定的 URL，如果 URL 有语法错误，调用构造函数时将会抛出异常。该参数是必须的，不可省略。</p>
+<p>这两种 URL 方案实际上是由 WebSocket 协议标准规定的，两者区别如下：</p>
+<ul>
+<li><code>ws</code>：传输流量未经加密</li>
+<li><code>wss</code>：在 <code>ws</code> 基础上使用传输层安全性 TLS（SSL）加密要传输的流量</li>
+</ul>
+<p>两种 URL 方案的主要区别类似 HTTP 和 HTTPS，其中 <code>wss</code> 安全性更高，推荐使用，不过需要服务器端和客户端双方均支持。</p>
+<h3 id="WebSocket-构造函数第二个参数"><a href="#WebSocket-构造函数第二个参数" class="headerlink" title="WebSocket 构造函数第二个参数"></a>WebSocket 构造函数第二个参数</h3><p>WebSocket 构造函数接受的第二个参数，并非必须的，其主要用于客户端和服务器端间的协议协商。</p>
+<p>协议协商对于确定 WebSocket 服务器支持的协议及版本很有用。当应用程序支持多个协议时，我们可以通过为 WebSocket 构造函数传入第二个参数，以使用协议协商选择与特定服务器通信的协议。</p>
+<p>该参数类型有两种可能的类型：</p>
+<ul>
+<li>String 类型，值为客户端和服务器端均能理解的协议</li>
+<li>Arrary 类型，包含一组客户端支持的协议（String 类型）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://echo.websocket.org'</span>, [<span class="string">'myProtocol1'</span>, <span class="string">'myProtocol2'</span>]);</div></pre></td></tr></table></figure>
+<h2 id="WebSocket-事件处理"><a href="#WebSocket-事件处理" class="headerlink" title="WebSocket 事件处理"></a>WebSocket 事件处理</h2><p>WebSocket 协议与 WebSocket API 均是事件驱动的，WebSocket 编程也遵循异步编程模式。只要 WebSocket 连接打开，应用程序就简单地监听事件。</p>
+<p>要开始监听事件，只要为 WebSocket 事件添加回调函数即可。可以使用 <code>addEventListener()</code> 方法，也可以采用直接为 WebSocket 对象绑定事件处理函数的方式。</p>
+<p>WebSocket 对象具有以下 4 个事件：</p>
+<h3 id="open-事件"><a href="#open-事件" class="headerlink" title="open 事件"></a>open 事件</h3><p>一旦服务器响应了 WebSocket 连接请求，<code>open</code> 事件触并建立一个连接，<code>open</code> 事件对应的回调函数是 <code>onopen()</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ws.open = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Connection open...'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 或者</span></div><div class="line">ws.addEventListener(<span class="string">'open'</span>, (event) =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Connection open...'</span>);</div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<p>到 <code>open</code> 事件触发时，服务器端与客户端之间的 WebSocket 协议握手已经完成，此时 WebSocket 已经准备好发送和接收数据。</p>
+<h3 id="message-事件"><a href="#message-事件" class="headerlink" title="message 事件"></a>message 事件</h3><p><code>message</code> 事件在接收到消息时触发，消息内容储存于事件对象 <code>event</code> 的 <code>data</code> 属性中，该事件回调函数是 <code>onmessage()</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ws.onmessage = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> event.data === <span class="string">'string'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`String message received: <span class="subst">$&#123;event.data&#125;</span>`</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`Other message received: <span class="subst">$&#123;event.data&#125;</span>`</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>除了普通文本，WebSocket 消息内容还可以是二进制数据，这种数据作为 <code>Blob</code> 消息或者 <code>ArraryBuffer</code> 消息处理。由于设置 WebSocket 消息二进制数据类型的应用程序会影响二进制消息，所以必须在读取数据之前决定用于客户端二进制数据的类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ws.binaryType = <span class="string">'blob'</span>;</div><div class="line"></div><div class="line">ws.onmessage = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (event.data <span class="keyword">instanceof</span> Blob) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`Blob message received: <span class="subst">$&#123;event.data&#125;</span>`</span>);</div><div class="line">        <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob(event.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是 Blob 消息 message 事件处理程序示例代码，下面展示一下 ArraryBuffer 消息类型的处理过程：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ws.binaryType = <span class="string">'arrarybuffer'</span>;</div><div class="line"></div><div class="line">ws.onmessage = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (event.data <span class="keyword">instanceof</span> ArraryBuffer) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`ArraryBuffer message received: <span class="subst">$&#123;event.data&#125;</span>`</span>);</div><div class="line">        <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(event.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="error-事件"><a href="#error-事件" class="headerlink" title="error 事件"></a>error 事件</h3><p><code>error</code> 事件在响应意外故障时触发，与该事件对应的回调函数是 <code>onerror()</code>。错误会导致 WebSocket 连接关闭。</p>
+<h3 id="close-事件"><a href="#close-事件" class="headerlink" title="close 事件"></a>close 事件</h3><p><code>close</code> 事件在 WebSocket 连接关闭时触发，对应的回调函数是 <code>onclose()</code>。一旦连接关闭，客户端和服务器端之间不能再继续收发消息。</p>
+<p><code>close</code> 事件对象有 3 个有用的属性：</p>
+<ul>
+<li><code>wasClean</code>：布尔值，表示连接是否顺利关闭。如果关闭连接是对来自服务器的一个 close 帧的响应，则该属性值为 <code>true</code>；如果是因为其他原因关闭连接，则该属性值为 <code>false</code></li>
+<li><code>code</code>：服务器发送的关闭连接握手状态码</li>
+<li><code>reason</code>：服务器发送的关闭连接握手状态</li>
+</ul>
+<h2 id="WebSocket-方法"><a href="#WebSocket-方法" class="headerlink" title="WebSocket 方法"></a>WebSocket 方法</h2><p>WebSocket API 为 WebSocket 对象提供了两个方法供我们调用。</p>
+<h3 id="send"><a href="#send" class="headerlink" title="send()"></a>send()</h3><p>使用 <code>send()</code> 方法可以从客户端向服务器端发送消息。当 WebSocket 在客户端与服务器端之间建立了全双工双向连接之后，才可以在连接打开时调用 <code>send()</code>方法。具体来说，我们应该在 <code>open</code> 事件触发之后，且在 <code>close</code> 事件触发之前调用 <code>send()</code> 发送消息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ws.open = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    ws.send(<span class="string">'Initial dat...'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>除了普通文本消息，WebSocket API 还允许使用该方法发送二进制数据。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> binaryBlob    = <span class="keyword">new</span> Blob(<span class="string">'blob contents'</span>);</div><div class="line"><span class="keyword">const</span> bianaryBuffer = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>]);</div><div class="line"></div><div class="line">ws.open = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    ws.send(binaryBlob);</div><div class="line">    ws.send(bianaryBuffer);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="close"><a href="#close" class="headerlink" title="close()"></a>close()</h3><p>通过使用 <code>close()</code> 方法，我们可以人为地手动关闭 WebSocket 连接或者终止连接尝试。如果连接已经关闭，那么该方法就什么都不做。</p>
+<p>可以向 <code>close()</code> 方法传递两个可选参数：</p>
+<ul>
+<li><code>code</code>：Number 类型，状态代码</li>
+<li><code>reason</code>：String 类型，文本字符串，传递一些关于关闭连接的信息</li>
+</ul>
+<p><strong>！！！注意：</strong> 这两个可选参数与 <code>close</code> 事件对象的属性值一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ws.onmessage = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    ws.clsoe(<span class="number">1000</span>, <span class="string">'message received'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="WebSocket-对象属性"><a href="#WebSocket-对象属性" class="headerlink" title="WebSocket 对象属性"></a>WebSocket 对象属性</h2><p>WebSocket API 提供了多个开发者可以访问的 WebSocket 对象的属性，这些属性都从某一方面反映了 WebSocket 连接的信息。s</p>
+<h3 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h3><p>WebSocket 对象的 <code>readyState</code> 属性表示当前 WebSocket 连接状态，属性值与连接状态的对应关系如下表所示。</p>
+<p>该属性是编程时最常使用的 WebSocket 对象属性，我们应该牢记其值所代表的 WebSocket 连接状态。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性常量</th>
+<th style="text-align:center">取值</th>
+<th style="text-align:center">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">WebSocket.CONNECTING</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">连接正在进行中，但还未建立</td>
+</tr>
+<tr>
+<td style="text-align:left">WebSocket.OPEN</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">连接已经建立</td>
+</tr>
+<tr>
+<td style="text-align:left">WebSocket.CLOSEING</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">连接正在进行关闭握手</td>
+</tr>
+<tr>
+<td style="text-align:left">WebSocket.CLOSED</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">连接已经关闭</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bufferedAmount"><a href="#bufferedAmount" class="headerlink" title="bufferedAmount"></a>bufferedAmount</h3><p>WebSocket 对象的 <code>bufferedAmount</code> 属性可以用检查已经进入发送队列，但是还未发送到服务器的字节数。</p>
+<p>值得注意的是，这个属性报告的值不包括协议组帧开销或者操作系统、网络硬件所进行的缓冲。</p>
+<h3 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h3><p>WebSocket 对象的 <code>protocol</code> 属性值为 WebSocket 打开连接握手期间，服务器端所选择的协议名。</p>
+<p><code>protocol</code> 属性在最初的握手完成之前为空，如果服务器没有选择客户端提供的某个协议，则该属性保持空值。</p>
+<h2 id="开发工具推荐"><a href="#开发工具推荐" class="headerlink" title="开发工具推荐"></a>开发工具推荐</h2><ul>
+<li>Chrome Developer Tools：监控网络流量，分析 HTTP 请求及响应头部</li>
+<li>Firefox Developer Tools：监控网络流量，分析 HTTP 请求及响应头部</li>
+<li>WireShark：抓取网络流量，详细分析网络协议帧、传送数据等</li>
+<li><a href="https://github.com/firebug/websocket-monitor/wiki" target="_blank" rel="external">websocket-monitor</a>：强烈推荐！！！Firefox 大法好。这是一个 Firefox Developer Tools 扩展，可以方便地监控 WebSocket 流量。也可以直接在 Firefox Add-ons 下载：<a href="https://addons.mozilla.org/en-US/firefox/addon/websocket-monitor/" target="_blank" rel="external">https://addons.mozilla.org/en-US/firefox/addon/websocket-monitor/</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebSocket/" rel="tag">#WebSocket</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/16/Hexo教程：（四）将本地Hexo站点部署到GitHubPages/" rel="next" title="Hexo教程：（四）将本地Hexo站点部署到GitHubPages">
+                <i class="fa fa-chevron-left"></i> Hexo教程：（四）将本地Hexo站点部署到GitHubPages
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/WebSocket协议/" rel="prev" title="WebSocket协议">
+                WebSocket协议 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建连接：实例化一个-WebSocket-对象"><span class="nav-number">1.</span> <span class="nav-text">新建连接：实例化一个 WebSocket 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket-构造函数第一个参数"><span class="nav-number">1.1.</span> <span class="nav-text">WebSocket 构造函数第一个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket-构造函数第二个参数"><span class="nav-number">1.2.</span> <span class="nav-text">WebSocket 构造函数第二个参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-事件处理"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#open-事件"><span class="nav-number">2.1.</span> <span class="nav-text">open 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#message-事件"><span class="nav-number">2.2.</span> <span class="nav-text">message 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error-事件"><span class="nav-number">2.3.</span> <span class="nav-text">error 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#close-事件"><span class="nav-number">2.4.</span> <span class="nav-text">close 事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-方法"><span class="nav-number">3.</span> <span class="nav-text">WebSocket 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#send"><span class="nav-number">3.1.</span> <span class="nav-text">send()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#close"><span class="nav-number">3.2.</span> <span class="nav-text">close()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-对象属性"><span class="nav-number">4.</span> <span class="nav-text">WebSocket 对象属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#readyState"><span class="nav-number">4.1.</span> <span class="nav-text">readyState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bufferedAmount"><span class="nav-number">4.2.</span> <span class="nav-text">bufferedAmount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#protocol"><span class="nav-number">4.3.</span> <span class="nav-text">protocol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具推荐"><span class="nav-number">5.</span> <span class="nav-text">开发工具推荐</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

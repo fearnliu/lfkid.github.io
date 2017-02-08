@@ -1,0 +1,674 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Hexo 所初始化的站点文件夹根目录下的 ._config.yml 文件声明了网站的配置信息，我们可以通过修改此文件的配置参数以个性化网站。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo教程：（二）Hexo站点配置">
+<meta property="og:url" content="https://lfkid.github.io/2016/11/16/Hexo教程：（二）Hexo站点配置/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="Hexo 所初始化的站点文件夹根目录下的 ._config.yml 文件声明了网站的配置信息，我们可以通过修改此文件的配置参数以个性化网站。">
+<meta property="og:image" content="https://lfkid.github.io/./snipaste20161116_222727.png">
+<meta property="og:updated_time" content="2017-02-08T15:45:47.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo教程：（二）Hexo站点配置">
+<meta name="twitter:description" content="Hexo 所初始化的站点文件夹根目录下的 ._config.yml 文件声明了网站的配置信息，我们可以通过修改此文件的配置参数以个性化网站。">
+<meta name="twitter:image" content="https://lfkid.github.io/./snipaste20161116_222727.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Hexo教程：（二）Hexo站点配置 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hexo教程：（二）Hexo站点配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T14:20:09+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Program</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Hexo 所初始化的站点文件夹根目录下的 <code>._config.yml</code> 文件声明了网站的配置信息，我们可以通过修改此文件的配置参数以个性化网站。</p>
+<a id="more"></a>
+<h2 id="配置文件-config-yml"><a href="#配置文件-config-yml" class="headerlink" title="配置文件_config.yml"></a>配置文件_config.yml</h2><p>Hexo 生成的网站的配置信息均保存在 <code>._config.yml</code> 文件中，该文件位于站点文件夹下的根目录下。</p>
+<p>我们可以通过修改 <code>._config.yml</code> 文件中的参数配置来自定义 Hexo 生成的静态站点。</p>
+<p>使用文本编辑器打开该文件，我们会发现其中有详尽的参数，这里只选取一部分具有代表性的参数配置进行介绍。详情戳这里 ⇨ <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">配置</a>。</p>
+<h3 id="网站相关"><a href="#网站相关" class="headerlink" title="网站相关"></a>网站相关</h3><ul>
+<li><code>title</code> ：网站标题</li>
+<li><code>subtitle</code> ：网站副标题</li>
+<li><code>description</code> ：网站描述</li>
+<li><code>author</code> ：作者名字</li>
+</ul>
+<h3 id="网址相关"><a href="#网址相关" class="headerlink" title="网址相关"></a>网址相关</h3><ul>
+<li><code>url</code> ：网址</li>
+<li><code>root</code> ：网站根目录</li>
+</ul>
+<h3 id="文章相关"><a href="#文章相关" class="headerlink" title="文章相关"></a>文章相关</h3><ul>
+<li><code>auto_spacing</code> ：在中文和英文之间加入空格，默认值为 false</li>
+<li><code>external_link</code> ：在新标签中打开链接，默认值为 true</li>
+<li><code>render_drafts</code> ：显示草稿，默认值为 false</li>
+<li><code>post_asset_folder</code> ：开启文章地资源管理文件夹，默认值为 false</li>
+<li><code>highlight</code> ：代码块的设置，包括有 <code>enable</code>、<code>line_number</code>、<code>auto_detect</code> 和 <code>tab_replace</code> 属性可设置。不过一般不用修改，大多数主题都默认是支持代码语法高亮等设置的。</li>
+</ul>
+<h3 id="分页相关"><a href="#分页相关" class="headerlink" title="分页相关"></a>分页相关</h3><ul>
+<li><code>per_page</code> ：每页显示的文章数，默认值为 10，值为 0 时会关闭分页功能</li>
+</ul>
+<h2 id="新建菜单页"><a href="#新建菜单页" class="headerlink" title="新建菜单页"></a>新建菜单页</h2><p>Hexo 生成的站点默认菜单也有限，如果我们想自定义添加菜单页该怎么操作呢？比如说，我们想新建一个名为 Abou 的菜单页。</p>
+<p>站点根目录下，命令行中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new page <span class="string">"about"</span></div></pre></td></tr></table></figure>
+<p>上面的命令生效以后，根目录下的 <code>source</code> 文件夹中会新增一个名为 <code>about</code> 的文件夹，里面有个 <code>index.md</code> 文档。我们将想要在 About 菜单页中显示的内容，按照博文格式写在这个文档里即可。</p>
+<p>然后，修改 <code>./themes/your-theme-name/_config.yml</code> 文件中的 <code>menu</code> 项，在下面添加一行 <code>About: /about</code> 即可。</p>
+<h2 id="示范"><a href="#示范" class="headerlink" title="示范"></a>示范</h2><p>下图是我修改了网站相关配置参数值之后的网站首页，可以很明显地看出与网站标题与副标题发生了变化。</p>
+<p><img src="./snipaste20161116_222727.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/16/Hexo教程：（一）安装及使用初体验/" rel="next" title="Hexo教程：（一）安装及使用初体验">
+                <i class="fa fa-chevron-left"></i> Hexo教程：（一）安装及使用初体验
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/16/Hexo教程：（三）使用Hexo写博客/" rel="prev" title="Hexo教程：（三）使用Hexo写博客">
+                Hexo教程：（三）使用Hexo写博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件-config-yml"><span class="nav-number">1.</span> <span class="nav-text">配置文件_config.yml</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网站相关"><span class="nav-number">1.1.</span> <span class="nav-text">网站相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网址相关"><span class="nav-number">1.2.</span> <span class="nav-text">网址相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章相关"><span class="nav-number">1.3.</span> <span class="nav-text">文章相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页相关"><span class="nav-number">1.4.</span> <span class="nav-text">分页相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建菜单页"><span class="nav-number">2.</span> <span class="nav-text">新建菜单页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示范"><span class="nav-number">3.</span> <span class="nav-text">示范</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

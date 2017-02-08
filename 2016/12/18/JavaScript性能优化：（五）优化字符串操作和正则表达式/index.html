@@ -1,0 +1,719 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="正则表达式,字符串,性能优化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="几乎所有的 JavaScript 程序都与字符串操作密切相关。一个典型的应用程序通常需要大量类似合并、分隔、重新排序、搜索、遍历等字符串操作。
+对于复杂的文本匹配，正则表达式是必不可少的，我们有必要学习如何编写高性能的正则表达式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript性能优化：（五）优化字符串操作和正则表达式">
+<meta property="og:url" content="https://lfkid.github.io/2016/12/18/JavaScript性能优化：（五）优化字符串操作和正则表达式/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="几乎所有的 JavaScript 程序都与字符串操作密切相关。一个典型的应用程序通常需要大量类似合并、分隔、重新排序、搜索、遍历等字符串操作。
+对于复杂的文本匹配，正则表达式是必不可少的，我们有必要学习如何编写高性能的正则表达式。">
+<meta property="og:updated_time" content="2017-02-08T15:44:53.505Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript性能优化：（五）优化字符串操作和正则表达式">
+<meta name="twitter:description" content="几乎所有的 JavaScript 程序都与字符串操作密切相关。一个典型的应用程序通常需要大量类似合并、分隔、重新排序、搜索、遍历等字符串操作。
+对于复杂的文本匹配，正则表达式是必不可少的，我们有必要学习如何编写高性能的正则表达式。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> JavaScript性能优化：（五）优化字符串操作和正则表达式 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript性能优化：（五）优化字符串操作和正则表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-18T14:00:41+08:00" content="2016-12-18">
+              2016-12-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>几乎所有的 JavaScript 程序都与字符串操作密切相关。一个典型的应用程序通常需要大量类似合并、分隔、重新排序、搜索、遍历等字符串操作。</p>
+<p>对于复杂的文本匹配，正则表达式是必不可少的，我们有必要学习如何编写高性能的正则表达式。</p>
+<a id="more"></a>
+<h2 id="合并字符串"><a href="#合并字符串" class="headerlink" title="合并字符串"></a>合并字符串</h2><p>拼接字符串是编程中最常见的操作了，我们先来总结一下 JavaScript 中连接字符串的方法：</p>
+<ul>
+<li><code>+</code></li>
+<li><code>+=</code></li>
+<li><code>Array.prototype.join()</code></li>
+<li><code>String.prototype.concat()</code></li>
+<li>ES6 新增的模板字符串</li>
+</ul>
+<p>当拼接少量较短字符串，以上这些方法速度都差不多。但随着需要连接的字符串的长度和数量的增加，一些方法开始展现出优势。</p>
+<h3 id="待连接字符串是变量"><a href="#待连接字符串是变量" class="headerlink" title="待连接字符串是变量"></a>待连接字符串是变量</h3><p>如果要拼接的字符串中有以变量形式存在的字符串，优先使用 ES6 中的模板字符串。</p>
+<p>将变量名包裹在 <code>${}</code> 中，然后使用反引号（<code>` </code>）包裹变量和普通字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">`<span class="subst">$&#123;username&#125;</span> is from <span class="subst">$&#123;country&#125;</span> .`</span></div></pre></td></tr></table></figure>
+<h3 id="和"><a href="#和" class="headerlink" title="+ 和 +="></a><code>+</code> 和 <code>+=</code></h3><p>我们首先必需弄明白一点，在 JavaScript 中字符串一经初始化值便是不可改变的。</p>
+<p>下面是一个拼接字符串的常见操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str += <span class="string">'one'</span> + <span class="string">'two'</span>;</div></pre></td></tr></table></figure>
+<p>上面代码在运行时，会历经以下四个步骤：</p>
+<ol>
+<li>在内存中创建一个临时字符串</li>
+<li>拼接后的字符串 <code>onetwo</code> 被赋值给该临时字符串</li>
+<li>临时字符串与 <code>str</code> 当前的值进行连接</li>
+<li>将上一步的拼接结构赋值给 <code>str</code></li>
+</ol>
+<p>为了避免产生临时字符串造成额外的性能开销，我们可以这样做：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str += <span class="string">'one'</span>;</div><div class="line">str += <span class="string">'two'</span>;</div></pre></td></tr></table></figure>
+<p>如果使用下面这种方式，我们能获得更显著的性能提升：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str = str + <span class="string">'one'</span> + <span class="string">'two'</span>;</div><div class="line"><span class="comment">// 等价于 str = ((str + 'one') + 'two');</span></div></pre></td></tr></table></figure>
+<p>注意，上面代码中如果赋值号右侧表达式中的 <code>str</code> 不是处在最左侧，那么将得不到优化效果，这与浏览器合并字符串时分配内存的方法有关。大多数浏览器都会尝试为表达式左侧的字符串分配更多的内存，然后简单地将第二个字符串拷贝至它的末尾。如果在一个循环中，基础字符串位于最左侧的位置，就可以避免重复拷贝一个逐渐变大的基础字符串。</p>
+<h3 id="合并数组项"><a href="#合并数组项" class="headerlink" title="合并数组项"></a>合并数组项</h3><p><code>Array.prototype.join()</code> 方法将数组中地所有元素合并成一个字符串，它接收一个参数作为每项之间的分隔符。如果传入参数为空字符，那么我们就可以使该方法将所有数组项连接为一个字符串。</p>
+<p>然而，现实情况是，在大多数浏览器中，数组项合并比其他字符串连接方法更慢。</p>
+<h3 id="String-prototype-concat"><a href="#String-prototype-concat" class="headerlink" title="String.prototype.concat()"></a><code>String.prototype.concat()</code></h3><p>包装类型 <code>String</code> 的原生方法 <code>String.prototype.concat()</code> 能够接受任意数量的参数，并将每一个参数附加到所调用的字符串上，这是最灵活的字符串合并方法。</p>
+<p>遗憾的是，在多数情况下，使用 <code>cancat()</code> 方法比使用简单的 <code>+</code> 和 <code>+=</code> 稍慢。</p>
+<p>总结：如果要合并的字符串中存在变量，那么使用模板字符串；否则，仅使用简单的 <code>+</code> 操作符合并字符串，并将基础字符串置于表达式最左侧。</p>
+<h2 id="正则表达式优化"><a href="#正则表达式优化" class="headerlink" title="正则表达式优化"></a>正则表达式优化</h2><h3 id="回溯失控"><a href="#回溯失控" class="headerlink" title="回溯失控"></a>回溯失控</h3><p>回溯失控的正则表达式可能会导致浏览器假死数秒甚至更长时间，为了避免出现回溯失控，编写正则表达式时可以考虑如下方案：</p>
+<ul>
+<li>尽可能具体化分隔符之间的字符串匹配模式</li>
+<li>使用预查和反向引用的模拟原子组</li>
+<li>保证正则表达式的两个部分不能对字符串的相同部分进行匹配</li>
+<li>尽可能保持正则表达式简洁易懂</li>
+</ul>
+<h3 id="提高正则表达式效率"><a href="#提高正则表达式效率" class="headerlink" title="提高正则表达式效率"></a>提高正则表达式效率</h3><ul>
+<li><p><strong>关注如何让匹配更快：</strong><br>正则表达式慢的原因是匹配失败的过程慢而不是匹配成功的过程慢</p>
+</li>
+<li><p><strong>以简短、必需的元字符开头：</strong><br>尽可能地避免以分组或分支或选择性元字符开头，这样会造成性能损失</p>
+</li>
+<li><p><strong>使用量词模式，使它们后面的元字符互斥：</strong><br>具体化匹配模式，避免出现字符与元字符相邻或子表达式能够重叠匹配的情况</p>
+</li>
+<li><p><strong>减少分支数量，缩小分支范围：</strong><br>字符集比分支更快；如果不可避免地使用分支，应将概率最大的分支放在靠前的位置</p>
+</li>
+<li><p><strong>尽量避免使用捕获分组：</strong><br>捕获组消耗时间和内存来记录反向引用，并使它保持最新</p>
+</li>
+<li><p><strong>只捕获需要的文本以减少处理：</strong><br>如果需要引用匹配，应该采取一切手段捕获那些片段，再使用反向引用来处理</p>
+</li>
+<li><p><strong>暴露必需的元字符：</strong><br>尽可能地让引擎判断那些元字符是必需的</p>
+</li>
+<li><p><strong>使用合适的量词：</strong><br>贪婪和惰性量词的匹配过程有较大区别，使用更合适的量词类似可以显著提升性能，尤其是在处理长字符时</p>
+</li>
+<li><p><strong>使用局部变量缓存正则表达式并重用</strong></p>
+</li>
+<li><p><strong>拆分复杂的正则表达式为简单片段：</strong> 避免在一个正则表达式中处理太多任务</p>
+</li>
+</ul>
+<h3 id="不使用正则表达式"><a href="#不使用正则表达式" class="headerlink" title="不使用正则表达式"></a>不使用正则表达式</h3><p>当仅仅是搜索某个字符串特定位置上的值时，我们没必要动用正则表达式，因为那样不但性能低下，反而可能会弄巧成拙。</p>
+<p>包装类型 String 拥有的 <code>charAt()</code>、<code>slice()</code>、<code>substr()</code>、<code>substring()</code>、<code>indexOf()</code> 和 <code>lastIndexOf()</code> 等原生方法都非常适合查找特定字符串的位置，或者判断它们是否存在。</p>
+<p>对字符串进行操作，在使用正则表达式之前，先考虑一下这些原生的 String 方法，它们有助于避免正则表达式带来的性能开销。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>《高性能JavaSript》，[美]Nicbolas C.Zakas 著，丁琛 译，电子工业出版社 2015</li>
+<li>《精通JavaSript开发》，[英]Den Odell 著，邝健威 厉海洋 译，人民邮电出版社 2015</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则表达式/" rel="tag">#正则表达式</a>
+          
+            <a href="/tags/字符串/" rel="tag">#字符串</a>
+          
+            <a href="/tags/性能优化/" rel="tag">#性能优化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/15/JavaScript性能优化：（四）程序流程控制/" rel="next" title="JavaScript性能优化：（四）程序流程控制">
+                <i class="fa fa-chevron-left"></i> JavaScript性能优化：（四）程序流程控制
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/18/JavaScript性能优化：（八）编程实践/" rel="prev" title="JavaScript性能优化：（八）编程实践">
+                JavaScript性能优化：（八）编程实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#合并字符串"><span class="nav-number">1.</span> <span class="nav-text">合并字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#待连接字符串是变量"><span class="nav-number">1.1.</span> <span class="nav-text">待连接字符串是变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和"><span class="nav-number">1.2.</span> <span class="nav-text">+ 和 +=</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并数组项"><span class="nav-number">1.3.</span> <span class="nav-text">合并数组项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-prototype-concat"><span class="nav-number">1.4.</span> <span class="nav-text">String.prototype.concat()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式优化"><span class="nav-number">2.</span> <span class="nav-text">正则表达式优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回溯失控"><span class="nav-number">2.1.</span> <span class="nav-text">回溯失控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提高正则表达式效率"><span class="nav-number">2.2.</span> <span class="nav-text">提高正则表达式效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用正则表达式"><span class="nav-number">2.3.</span> <span class="nav-text">不使用正则表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

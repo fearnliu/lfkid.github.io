@@ -1,0 +1,688 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="边框," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="多重边框是网页设计中常见的效果，通常我们有两种方式实现它。这两种使用纯 CSS 实现的多重边框各有优缺点，需要我们根据实际自行决定选用哪一种。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多重边框">
+<meta property="og:url" content="https://lfkid.github.io/2016/12/06/多重边框/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="多重边框是网页设计中常见的效果，通常我们有两种方式实现它。这两种使用纯 CSS 实现的多重边框各有优缺点，需要我们根据实际自行决定选用哪一种。">
+<meta property="og:updated_time" content="2017-02-08T15:46:20.187Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多重边框">
+<meta name="twitter:description" content="多重边框是网页设计中常见的效果，通常我们有两种方式实现它。这两种使用纯 CSS 实现的多重边框各有优缺点，需要我们根据实际自行决定选用哪一种。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 多重边框 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                多重边框
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-06T10:51:19+08:00" content="2016-12-06">
+              2016-12-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>多重边框是网页设计中常见的效果，通常我们有两种方式实现它。这两种使用纯 CSS 实现的多重边框各有优缺点，需要我们根据实际自行决定选用哪一种。</p>
+<a id="more"></a>
+<h2 id="box-shadow"><a href="#box-shadow" class="headerlink" title="box-shadow"></a>box-shadow</h2><p>CSS3 新引入了 <code>box-shadow</code> 属性，用于设置元素的阴影效果。其用法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">box-shadow</span>: <span class="selector-tag">inset</span> <span class="selector-tag">x</span> <span class="selector-tag">y</span> <span class="selector-tag">blur</span> <span class="selector-tag">spread</span> <span class="selector-tag">color</span>;</div></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li><code>inset</code> 为关键字值，用于设置元素的阴影类型为内阴影，可选，如果没有使用该关键字声明，则阴影类型为外阴影</li>
+<li><code>x</code> 为阴影的水平偏移值，向右为正偏移，可为负值，必需</li>
+<li><code>y</code> 为阴影的竖直偏移值，向下为正偏移，可为负值，必需</li>
+<li><code>blur</code> 为阴影的模糊程度，不可为负值，可选，单位同 CSS 长度单位</li>
+<li><code>spread</code> 为阴影向外延伸的长度，可为负值，可选，单位同 CSS  长度单位</li>
+<li><code>color</code> 为阴影颜色，必需</li>
+</ul>
+<p>另外，<code>box-shadow</code> 支持多重阴影，只需使用逗号分隔每一重阴影即可。</p>
+<p>如果将阴影的偏移量和模糊程度均设为 0，而给其一定的外延长度，那么我们就可以通过环绕元素的阴影来模拟多重边框，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.multiple-border1</span> &#123;</div><div class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">#655</span>,</div><div class="line">                <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span> deeppink;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div style="width: 100%;"><br>    <div style="margin: .2em auto 1.5em;
+                width: 300px;
+                height: 180px;
+                box-shadow: 0 0 0 10px #655,
+                            0 0 0 15px deeppink;"><br>    </div><br></div>
+
+
+<p>需要注意的地方是，<code>box-shadow</code> 产生的阴影效果是层层叠加的，除了第一层阴影，后续阴影的外延均是在之前阴影的基础上扩展的。例如上述代码中的第二层阴影，虽然其外延值是 15px，但实际阴影宽度应该为 15px-10px = 5px。</p>
+<p>这种方式在大多数时候多可以很好的工作，但有以下缺点：</p>
+<ul>
+<li>阴影的行为跟真的边框不完全一致，它不会影响布局，而且也不受 <code>box-sizing</code> 影响。解决方法是通过内外边距来模拟出表现为边框的阴影所需要占据的空间。</li>
+<li>阴影虽然在元素外围，但它们不会影响到鼠标事件。解决方法是使用 <code>inset</code> 关键字绘制为内阴影，并设置合适内边距容纳它。</li>
+</ul>
+<h2 id="outline-和-border"><a href="#outline-和-border" class="headerlink" title="outline 和 border"></a>outline 和 border</h2><p>第二种方法是使用 <code>outline</code> 产生描边来模拟边框，结合本来的 <code>border</code> 就可构成双层边框的效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.multiple-border2</span> &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">10px</span> solid <span class="number">#655</span>;</div><div class="line">    <span class="attribute">outline</span>: <span class="number">5px</span> solid deeppink;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div style="width: 100%;"><br>    <div style="margin: .2em auto 1.5em;
+                width: 300px;
+                height: 180px;
+                border: 10px solid #655;
+                outline: 5px solid deeppink;"><br>    </div><br></div>
+
+
+<p>这种方式虽然避免了第一种方式中阴影不占据元素盒模型宽高以及不影响实际布局的缺点，但其还是有以下不如人意的地方：</p>
+<ul>
+<li>只适用于双层边框的场景</li>
+<li>边框不一定贴合 <code>border-radius</code> 属性产生的圆角</li>
+<li>是具体生产环境而定，描边有可能不是矩形</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>《CSS揭秘》LEA VEROU 著，CSS魔法 译，人民邮电出版社</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/边框/" rel="tag">#边框</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/04/JavaScript性能优化：（一）优化脚本加载/" rel="next" title="JavaScript性能优化：（一）优化脚本加载">
+                <i class="fa fa-chevron-left"></i> JavaScript性能优化：（一）优化脚本加载
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/06/MySQL免安装版配置/" rel="prev" title="MySQL免安装版配置">
+                MySQL免安装版配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#box-shadow"><span class="nav-number">1.</span> <span class="nav-text">box-shadow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#outline-和-border"><span class="nav-number">2.</span> <span class="nav-text">outline 和 border</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

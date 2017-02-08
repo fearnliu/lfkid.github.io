@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Ajax," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="AJAX stands for Asynchronous JavaScript and XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with server-side scripts. It can send as well as receive information in a vari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript性能优化：（七）Ajax">
+<meta property="og:url" content="https://lfkid.github.io/2016/12/23/JavaScript性能优化：（七）Ajax/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="AJAX stands for Asynchronous JavaScript and XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with server-side scripts. It can send as well as receive information in a vari">
+<meta property="og:updated_time" content="2017-02-08T15:51:35.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript性能优化：（七）Ajax">
+<meta name="twitter:description" content="AJAX stands for Asynchronous JavaScript and XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with server-side scripts. It can send as well as receive information in a vari">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> JavaScript性能优化：（七）Ajax | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript性能优化：（七）Ajax
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-23T12:55:49+08:00" content="2016-12-23">
+              2016-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>AJAX stands for Asynchronous JavaScript and XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with server-side scripts. It can send as well as receive information in a variety of formats, including JSON, XML, HTML, and even text files. AJAX’s most appealing characteristic, however, is its “asynchronous” nature, which means it can do all of this without having to refresh the page. This lets you update portions of a page based upon user events.</p>
+<a id="more"></a>
+<h2 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h2><h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><p>常见的使用 XMLHttpRequest 技术请求数据的方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> req = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"></div><div class="line">req.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line">req.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">req.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">req.send();</div></pre></td></tr></table></figure>
+<p>尽管 XHR 提供了高级的控制，但还是有一些缺点：无法使用 XHR 技术从不同源获取数据。</p>
+<h3 id="动态脚本注入"><a href="#动态脚本注入" class="headerlink" title="动态脚本注入"></a>动态脚本注入</h3><p>这种技术克服了 XHR 的最大限制：能跨域请求数据。本质上，这种技术是个 Hack。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> scriptElement = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">scriptElement = <span class="string">'http://'</span>;</div><div class="line"><span class="built_in">document</span>.head.appendChild(scriptElement);</div></pre></td></tr></table></figure>
+<p>但是与 XHR 相比，动态脚本注入提供的控制是有限的：</p>
+<ul>
+<li>不能设置请求的头部信息</li>
+<li>参数传递只能使用 GET 方式，而不是 POST 方式</li>
+<li>不能设置请求的超时处理或重试</li>
+<li>失败了也不一定知道</li>
+<li>必须等待所有数据都已返回，才可以访问它们</li>
+<li>不能访问请求的头信息，也不能把整个响应消息作为字符串来处理</li>
+</ul>
+<p>特别重要的一点是，响应消息作为脚本标签的源代码，它必须是可执行的 JavaScript 代码。我们不能使用纯 XML、纯 JSON 或其他任何格式的数据，无论哪种格式，都必须封装在一个回调函数中。</p>
+<p>尽管限制很多，但是这项技术的速度却非常快。</p>
+<p>使用这种技术时，必须注意我们所请求的 JavaScript 代码内容是否完全在自己控制之中。JavaScript 没有任何权限和访问控制的概念，使用动态脚本注入技术添加到页面中的任何代码都可以完全控制整个页面，既是是引自外部的代码也不例外。</p>
+<h3 id="Multipart-XHR"><a href="#Multipart-XHR" class="headerlink" title="Multipart XHR"></a>Multipart XHR</h3><p>MXHR 允许客户端只用一个 HTTP 请求就可以从服务器端向客户端传送多个资源。它通过在服务器端将资源（CSS 文件、HTML 片段、JavaScript 代码或 base64 编码的图片）打包成一个由双方约定的字符串分割的长字符串送到客户端。然后使用 JavaScript 处理这个长字符串，并根据它的 <code>mime-type</code> 类型和传入的其他“头信息”解析出每个资源。</p>
+<p>例如，客户端请求图片资源，服务器使用 base64 将图片编码为字符串然后传递给客户端，当客户端收到后可以使用如下 JavaScript 代码进行处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">splitImages</span>(<span class="params">imageString</span>) </span>&#123;</div><div class="line">    <span class="comment">// 假设服务器端编码的图片之间只用一个简单的 Unicode 编码的字符 1 连接</span></div><div class="line">    <span class="keyword">let</span> imageData    = imageString.split(<span class="string">'\u0001'</span>);</div><div class="line">    <span class="keyword">let</span> imageElement = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</div><div class="line">    <span class="keyword">let</span> imageNode    = <span class="literal">null</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = imageData.length; i &lt; len; i++) &#123;</div><div class="line">        imageNode = imageElement.cloneNode(<span class="literal">true</span>);</div><div class="line">        imageNode.src = <span class="string">`data:image/jpeg;base64,<span class="subst">$&#123;imageData[i]&#125;</span>`</span>;</div><div class="line">        <span class="built_in">document</span>.body.appendChild(imageNode);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码中函数将连接后的字符串按一定格式分解为几段。每一段用来创建一个图片元素，然后将图片元素插入到页面中。图片不是由 base64 字符串转换为二进制，而是使用 <code>data:URL</code> 的方式创建，并指定 <code>mime-types</code> 为 <code>images/jpeg</code>。</p>
+<p>这种方式也可以扩展到其他资源类型。JavaScript 文件、CSS 文件、HTML 片段以及多种类型的图片都能合并成一次响应。任何数据类型都可以被 JavaScript 作为字符串发送。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleImageData</span>(<span class="params">data, mimeType</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</div><div class="line">    img.src = <span class="string">`data:<span class="subst">$&#123;mimeType&#125;</span>;base64<span class="subst">$&#123;data&#125;</span>`</span>;</div><div class="line">    <span class="keyword">return</span> img;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleCSS</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> style = <span class="built_in">document</span>.createElement(<span class="string">'style'</span>);</div><div class="line">    <span class="keyword">const</span> node  = <span class="built_in">document</span>.createTextNode(data);</div><div class="line"></div><div class="line">    style.appendChild(node);</div><div class="line">    <span class="built_in">document</span>.head.appendChild(style);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleJavaScript</span>(<span class="params">data</span>) </span>&#123;   <span class="comment">// 不建议</span></div><div class="line">    <span class="built_in">eval</span>(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于 MXHR 响应消息的体积越来越大，因此我们有必要在每个资源收到时就立刻处理，而不是等到整个响应消息全部接收完成再进行处理。这可以通过监听 <code>readyState === 3</code> 的状态，使用定时器按一定时间间隔检查响应来实现。</p>
+<p>MXHR 技术有个最大的缺点，以这种方式获得的资源不能被浏览器缓存。</p>
+<h2 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h2><h3 id="XMLHttpRequest-1"><a href="#XMLHttpRequest-1" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><p>XHR 技术同样可用于把数据传回服务器·</p>
+<h3 id="Beacons-信标"><a href="#Beacons-信标" class="headerlink" title="Beacons(信标)"></a>Beacons(信标)</h3><p>这项技术非常类似动态脚本注入。使用 JavaScript 创建一个新的 Image 对象，并把 <code>src</code> 属性设置为服务器上脚本的 URL。该 URL 包含了我们要通过 GET 传回的键值对数据。注意，我们并不会创建 <code>img</code> 元素或把它插入 DOM 树中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> url = <span class="string">'/status_tracker.php'</span>;</div><div class="line"><span class="keyword">const</span> params = [</div><div class="line">    <span class="string">'step=2'</span>,</div><div class="line">    <span class="string">'time=134152526190'</span></div><div class="line">];</div><div class="line"></div><div class="line">(<span class="keyword">new</span> Image()).src = <span class="string">`<span class="subst">$&#123;url&#125;</span>?<span class="subst">$&#123;params.join(<span class="string">'&amp;'</span>)&#125;</span>`</span>;</div></pre></td></tr></table></figure>
+<p>服务器会接收数据并保存下来，它无须向客户端发送任何回馈信息，因此没有图片会实际显示出来。这是给服务器回传信息最有效的方式。它的性能开销开销很小，而且服务器的错误完全不会影响到客户端。</p>
+<p>图片信标很简单，但也意味着它能做的事情是有限的。我们无法发送 POST 数据，而使用 GET 方法 URL 的长度有最大上限，所以我们可以发送的数据长度被限制得相当小。</p>
+<p>我们可以接收服务器返回的数据，但仅限于非常少得几种方式：</p>
+<ul>
+<li>监听 Image 对象的 <code>load</code> 事件</li>
+<li>检查返回图片的宽高，利用这些数字通知服务器的状态</li>
+</ul>
+<p>信标是向服务器回传数据最快且最有效的方式，服务器根本不需要发送任何响应正文，因此我们也无需担心客户端下载数据。唯一的缺点就是能接收到的响应内心是有限的。</p>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><p>常见的用于数据传输的数据格式有 XML、XPath、JSON、JSONP、HTML 和自定义格式等，通常来说数据格式越轻量级越好，JSON 和字符串分隔的自定义格式是最好的。如果数据集很大并对解析时间有要求，那么将从以下两种格式中做出选择：</p>
+<ul>
+<li>JSONP数据：使用动态脚本注入获取。它把数据当作可执行 JavaScript 而不是字符串，解析速度极快。能够跨域使用，但涉及敏感数据时不应使用它</li>
+<li>字符分隔的自定义数据格式：使用 XHR 或者动态脚本注入获取，使用 <code>split()</code> 解析。这项技术解析大数据集比 JSONP 略快，而且通常文件尺寸更小</li>
+</ul>
+<h2 id="缓存数据"><a href="#缓存数据" class="headerlink" title="缓存数据"></a>缓存数据</h2><p>最快的 Ajax 请求就是没有请求。有两种主要方法可避免发送不必要的请求：</p>
+<ul>
+<li>服务端，设置 HTTP 头信息以确保响应数据被浏览器缓存</li>
+<li>客户端，把获取到的信息存储到本地，从而避免再次请求</li>
+</ul>
+<p>第一种技术使用最简单而且好维护，而第二种则给予开发人员最大的控制权。</p>
+<h3 id="设置-HTTP-头信息"><a href="#设置-HTTP-头信息" class="headerlink" title="设置 HTTP 头信息"></a>设置 HTTP 头信息</h3><p>如果希望 Ajax 响应能够被浏览器缓存，那么必须使用 GET 方式发出请求。但这还不够，还必须在响应中发送正确的 HTTP 头信息。Expires 头信息会告诉浏览器应该缓存响应多久。它的值是一个日期，过期之后，对该 URL 的任何请求都不再从缓存中获取，而是会重新访问服务器。一个典型的 <code>Expires</code> 头信息如下：</p>
+<pre><code>Expires: Mon, 28 Jul 2014 23:30:00 GMT
+</code></pre><p>这种特殊的 <code>Expires</code> 头信息告诉浏览器缓存此响应到 2014 年 7 月。</p>
+<h3 id="本地数据存储"><a href="#本地数据存储" class="headerlink" title="本地数据存储"></a>本地数据存储</h3><p>直接把从服务器接收到的数据储存起来。我们可以把响应文本保存到一个对象中，以 URL 为键值作为索引。</p>
+<p>总的来说，设置一个 <code>Expires</code> 头信息是更好的方案。它实现起来比较容易，而且其缓存内容能够跨页面和跨会话。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ajax/" rel="tag">#Ajax</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/22/WebWorker/" rel="next" title="Web Worker">
+                <i class="fa fa-chevron-left"></i> Web Worker
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#请求数据"><span class="nav-number">1.</span> <span class="nav-text">请求数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-number">1.1.</span> <span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态脚本注入"><span class="nav-number">1.2.</span> <span class="nav-text">动态脚本注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multipart-XHR"><span class="nav-number">1.3.</span> <span class="nav-text">Multipart XHR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送数据"><span class="nav-number">2.</span> <span class="nav-text">发送数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest-1"><span class="nav-number">2.1.</span> <span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beacons-信标"><span class="nav-number">2.2.</span> <span class="nav-text">Beacons(信标)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据格式"><span class="nav-number">3.</span> <span class="nav-text">数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存数据"><span class="nav-number">4.</span> <span class="nav-text">缓存数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-HTTP-头信息"><span class="nav-number">4.1.</span> <span class="nav-text">设置 HTTP 头信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地数据存储"><span class="nav-number">4.2.</span> <span class="nav-text">本地数据存储</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

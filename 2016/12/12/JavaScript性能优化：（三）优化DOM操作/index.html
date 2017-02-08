@@ -1,0 +1,695 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="性能优化,DOM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="导致大多数网站和应用程序出现性能问题的一个最大因素是低效率的 DOM 操作。浏览器的 JavaScript 引擎独立于其渲染引擎，通过浏览器获取对页面 DOM 元素的引用要涉及从一个引擎跳转到另一个引擎，浏览器则充当了二者之间的媒介。为了提高性能，我们需要减少这种跳转出现的次数。本文记述了一些常用的技巧，以帮助提升 DOM 操作性能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript性能优化：（三）优化DOM操作">
+<meta property="og:url" content="https://lfkid.github.io/2016/12/12/JavaScript性能优化：（三）优化DOM操作/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="导致大多数网站和应用程序出现性能问题的一个最大因素是低效率的 DOM 操作。浏览器的 JavaScript 引擎独立于其渲染引擎，通过浏览器获取对页面 DOM 元素的引用要涉及从一个引擎跳转到另一个引擎，浏览器则充当了二者之间的媒介。为了提高性能，我们需要减少这种跳转出现的次数。本文记述了一些常用的技巧，以帮助提升 DOM 操作性能。">
+<meta property="og:updated_time" content="2017-02-08T16:01:05.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript性能优化：（三）优化DOM操作">
+<meta name="twitter:description" content="导致大多数网站和应用程序出现性能问题的一个最大因素是低效率的 DOM 操作。浏览器的 JavaScript 引擎独立于其渲染引擎，通过浏览器获取对页面 DOM 元素的引用要涉及从一个引擎跳转到另一个引擎，浏览器则充当了二者之间的媒介。为了提高性能，我们需要减少这种跳转出现的次数。本文记述了一些常用的技巧，以帮助提升 DOM 操作性能。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> JavaScript性能优化：（三）优化DOM操作 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript性能优化：（三）优化DOM操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-12T22:11:23+08:00" content="2016-12-12">
+              2016-12-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>导致大多数网站和应用程序出现性能问题的一个最大因素是低效率的 DOM 操作。浏览器的 JavaScript 引擎独立于其渲染引擎，通过浏览器获取对页面 DOM 元素的引用要涉及从一个引擎跳转到另一个引擎，浏览器则充当了二者之间的媒介。为了提高性能，我们需要减少这种跳转出现的次数。本文记述了一些常用的技巧，以帮助提升 DOM 操作性能。</p>
+<a id="more"></a>
+<h2 id="使用新的选择器API"><a href="#使用新的选择器API" class="headerlink" title="使用新的选择器API"></a>使用新的选择器API</h2><p>大多数最新版本的现代浏览器都实现了 Selectors API 标准，该标准的核心是两个方法：<code>querySelector()</code> 和 <code>querySelectorAll()</code>。</p>
+<p>二者均接受一个 String 类型的 CSS 选择器，不同的是，前者返回与之匹配的第一个元素，而后者则返回一个包含了所有匹配节点的 NodeList 实例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> elem1 = <span class="built_in">document</span>.querySelector(<span class="string">'#idName'</span>);</div><div class="line"><span class="keyword">const</span> elem2 = <span class="built_in">document</span>.querySelector(<span class="string">'.className'</span>);</div></pre></td></tr></table></figure>
+<h2 id="减少对-DOM-的访问"><a href="#减少对-DOM-的访问" class="headerlink" title="减少对 DOM 的访问"></a>减少对 DOM 的访问</h2><h3 id="使用局部变量缓存-DOM-元素"><a href="#使用局部变量缓存-DOM-元素" class="headerlink" title="使用局部变量缓存 DOM 元素"></a>使用局部变量缓存 DOM 元素</h3><p>下面是一段示范代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.querySelector(<span class="string">'header'</span>);</div><div class="line"><span class="keyword">const</span> nav    = <span class="built_in">document</span>.querySelector(<span class="string">'nav'</span>);</div></pre></td></tr></table></figure>
+<h3 id="引用共同的祖先元素"><a href="#引用共同的祖先元素" class="headerlink" title="引用共同的祖先元素"></a>引用共同的祖先元素</h3><p>如果需要访问的一些元素均位于同一父元素之下，那么我们可以只获取对该父元素的引用，并从该引用中获取它的各项子元素的引用。</p>
+<p>需要注意的是，我们不能贪心，不要通过获取某一公共祖先元素的引用从而实现对多个 DOM 元素的访问，因为祖先元素与这些实际要访问的元素间的层级越多，那么所需的内存占用也越多，而且也会增加 JavaScript 深入 DOM 树查找实际需要访问元素的时间，这势必会对应用程序产生负面的性能影响。所以最佳实践，是综合考量需要处理的 DOM 元素数目以及最近的共同祖先元素离它们自身之间有多少层。</p>
+<p>下面是一个简单示范：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.querySelector(<span class="string">'header'</span>);</div><div class="line"><span class="keyword">const</span> h1     = header.querySelector(<span class="string">'h1'</span>);</div><div class="line"><span class="keyword">const</span> div    = header.querySelector(<span class="string">'div'</span>);</div></pre></td></tr></table></figure>
+<p>如果只是通过共同父元素来获取对各个子元素的引用，我们还可以使用 DOM 元素的 <code>children</code> 属性。当然了，这种方法只适用于需要处理的 DOM 元素有一个共同的父元素的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.querySelector(<span class="string">'header'</span>).children;</div><div class="line"></div><div class="line"><span class="keyword">const</span> h1  = header[<span class="number">0</span>];</div><div class="line"><span class="keyword">const</span> div = header[<span class="number">1</span>];</div></pre></td></tr></table></figure>
+<h3 id="利用相邻元素"><a href="#利用相邻元素" class="headerlink" title="利用相邻元素"></a>利用相邻元素</h3><p>如果需要访问的一些元素正好是同一元素的相邻元素，那么我们可以只获取对该元素的引用，然后使用 <code>previousElementSibling</code> 和 <code>nextElementSibling</code> 来获取其相邻元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>);</div><div class="line"><span class="comment">// 我们没有使用 Node.previousSibling，是因为我们只需要 HTML 元素节点，而不需要文本节点和注释节点</span></div><div class="line"><span class="comment">// 使用 Node.previousSibling 还需要我们手动过滤文本节点和注释节点，没有此种方式效率高</span></div><div class="line"><span class="keyword">const</span> previousElem = div.previousElementSibling;</div><div class="line"><span class="keyword">const</span> nextElem     = div.nextElementSibling;</div></pre></td></tr></table></figure>
+<h2 id="克隆已有节点"><a href="#克隆已有节点" class="headerlink" title="克隆已有节点"></a>克隆已有节点</h2><p>使用  <code>createElement()</code> 方法创建 DOM 元素会带来性能上的损失。为了提高性能，在创建 DOM 元素时，我们应该首先考虑尽可能地利用已有元素来创建新元素。</p>
+<p>DOM 节点具有一个名为 <code>cloneNode()</code> 的方法，该方法具有一个可选参数，其接受一个布尔类型的值，用于决定是深克隆还是浅克隆。如果省略，默认值为 <code>false</code>，即浅克隆，仅仅克隆当前节点及其相关对象属性。如果值为 <code>true</code>，即深克隆，也就是当前节点及其相关对象属性和其所有后代节点均会被克隆。尽管参数可以省略，最佳实践是永远传入一个布尔值。</p>
+<p><strong>！！！注意：</strong> 如果被克隆的 DOM 元素设置了 <code>id</code> 属性，那么克隆的副本也会带有相同的 <code>id</code> 属性值，所以克隆具有 <code>id</code> 属性的元素后应该重写副本的 <code>id</code> 属性值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> div     = <span class="built_in">document</span>.querySelector(<span class="string">'#test'</span>);</div><div class="line"><span class="keyword">const</span> copyDiv = div.cloneNode(<span class="literal">false</span>);</div><div class="line">copyDiv.id = <span class="string">'copyDiv'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">const</span> list1 = <span class="built_in">document</span>.createElement(<span class="string">'ul'</span>);</div><div class="line"><span class="keyword">const</span> list2 = list1.cloneNode(<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<h2 id="innerHTML-VS-原生-DOM-方法"><a href="#innerHTML-VS-原生-DOM-方法" class="headerlink" title="innerHTML VS 原生 DOM 方法"></a>innerHTML VS 原生 DOM 方法</h2><ul>
+<li>基于 WebKit 内核的新浏览器中，原生 DOM 方法性能更好</li>
+<li>旧版本浏览器中，innerHTML 优势更明显</li>
+</ul>
+<p>如果在一个对性能有着苛刻要求的操作中更新一大段 HTML，推荐使用 innerHTML，因为他在绝大部分浏览器中都运行得更快。但对于大多数日常操作而言，二者并没有太大区别。</p>
+<h2 id="减少重绘和回流"><a href="#减少重绘和回流" class="headerlink" title="减少重绘和回流"></a>减少重绘和回流</h2><p>页面的重绘与回流使得实时页面性能开销巨大，当需要对 DOM 元素进行一系列操作时，我们可以通过以下方法来减少重绘和回流的次数：</p>
+<h3 id="通过改变元素的类名修改其样式"><a href="#通过改变元素的类名修改其样式" class="headerlink" title="通过改变元素的类名修改其样式"></a>通过改变元素的类名修改其样式</h3><p>我们应该尽量避免使用 DOM 元素的 style 属性来修改元素的样式，因为那样会额外增加重绘和回流的次数，降低性能。最佳实践是永远通过元素的类来制其获取的 CSS 样式，进而达到改变元素样式的目的。</p>
+<p>HTML5 新增了一种操纵元素 <code>class</code> 特性值的方式，现在所有的元素都具有了 <code>classList</code> 这一属性。并配套提供了 <code>add()</code>、<code>remove()</code>、<code>toggle()</code> 和 <code>contains()</code> 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.querySelector(<span class="string">'header'</span>);</div><div class="line"></div><div class="line">header.classList.toggle(<span class="string">'selected'</span>);</div></pre></td></tr></table></figure>
+<h3 id="隐藏元素-gt-应用修改-gt-重新显示"><a href="#隐藏元素-gt-应用修改-gt-重新显示" class="headerlink" title="隐藏元素-&gt;应用修改-&gt;重新显示"></a>隐藏元素-&gt;应用修改-&gt;重新显示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> p   = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line"><span class="keyword">const</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>);</div><div class="line"></div><div class="line">div.style.display = <span class="string">'none'</span>;</div><div class="line">p.text = <span class="string">'I am a paragraph'</span>;</div><div class="line"></div><div class="line">div.appendChild(p);</div><div class="line"></div><div class="line">div.style.display = <span class="string">'block'</span>;</div></pre></td></tr></table></figure>
+<h3 id="使用文档片段-DocumnetFragment"><a href="#使用文档片段-DocumnetFragment" class="headerlink" title="使用文档片段 DocumnetFragment"></a>使用文档片段 DocumnetFragment</h3><p>(Document Fragment)文档片段是一种轻量级的 DOM 文档，表示没有父节点的最小文档对象。它独立于实时渲染的页面文档而存在，所以它不像实时页面的 DOM 那样会占用额外资源，也称(offline DOM)离线文档。</p>
+<p>Document Fragment 继承了 Node 类型的所有属性和方法，我们可以像使用普通文档树中的 DOM 元素那样使用文档片段中的 DOM 元素。</p>
+<p>创建一个 DOM Fragment 的方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方法一：</span></div><div class="line"><span class="keyword">const</span> fragment = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line"></div><div class="line"><span class="comment">// 方法二：此 API 比较新，请查阅浏览器兼容性，不建议在生产环境使用</span></div><div class="line"><span class="keyword">const</span> fragment2 = <span class="keyword">new</span> DocumentFragment();</div></pre></td></tr></table></figure>
+<p>创建了 Document Fragment 之后，我们就可以像操纵实时页面的 DOM 结构树那样操作它了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.createElement(<span class="string">'header'</span>);</div><div class="line"><span class="keyword">const</span> nav    = <span class="built_in">document</span>.createElement(<span class="string">'nav'</span>);</div><div class="line"></div><div class="line">fragment.appendChild(header);</div><div class="line">fragment.appendChild(nav);</div></pre></td></tr></table></figure>
+<p>由于文档片段的离线特性，如果我们将实时页面文档中的节点添加到了文档片段中，那么就会从页面文档树中删除这个节点。同样地，添加到文档片断中的节点与页面文档也没什么关系。</p>
+<p>通过将文档片段做参数传给 <code>appendChild()</code> 或 <code>insertBefore()</code> 方法，我们可以将文档片段中的所有内容添加到页面文档树中。注意，添加到实时页面上的是整个离线文档片段中的所有子节点，文档片段本身永远也不会成为文档树中的一部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.appendChild(fragment);</div></pre></td></tr></table></figure>
+<p>如果需要同时修改许多 DOM 元素，这是最推荐的方法。</p>
+<h3 id="操作副本元素"><a href="#操作副本元素" class="headerlink" title="操作副本元素"></a>操作副本元素</h3><p>第三种解决方案是为需要修改的节点创建一个备份，然后对其副本进行 DOM 操作。一旦 DOM 操作完成，就可以用新的节点替代旧的节点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> old   = <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>);</div><div class="line"><span class="keyword">const</span> clone = oldNode.cloneNode(<span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">// do something</span></div><div class="line"></div><div class="line">old.parentNode.replaceChild(clone, old);</div></pre></td></tr></table></figure>
+<h2 id="提升-DOM-事件性能"><a href="#提升-DOM-事件性能" class="headerlink" title="提升 DOM 事件性能"></a>提升 DOM 事件性能</h2><h3 id="委托事件至祖先元素"><a href="#委托事件至祖先元素" class="headerlink" title="委托事件至祖先元素"></a>委托事件至祖先元素</h3><p>DOM 事件会从其首次被触发的元素开始冒泡，一直到文档结构的最顶端。对于那些由用户操作的多个同类子元素而言，使用事件委托技术可以帮助我们显著提升 DOM 性能。</p>
+<p>下面是一个简单的实现事件委托技术的函数，如果要把事件委托给某一元素处理，就将这个函数注册为该元素相应事件的监听器。其中，第二个参数为真正触发事件的元素的标签名，第三个参数为触发事件之后要执行的回调操作函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delegatesEvent</span>(<span class="params">event, aimTagName, callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> aimElement = event.target;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (aimElement !== <span class="literal">undefined</span> &amp;&amp; aimElement.tagName === aimTagName.toUpperCase()) &#123;</div><div class="line">        callback();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用事件框架化处理频密发出的事件"><a href="#使用事件框架化处理频密发出的事件" class="headerlink" title="使用事件框架化处理频密发出的事件"></a>使用事件框架化处理频密发出的事件</h3><p>某些事件可能会在很短的时间内被触发多次，例如，<code>mousemove</code>、<code>touchmove</code> 等事件。如果有很多事件在很短时间内接连不断地被触发，那么采用 <code>addEventListener()</code> 方式一一注册势必会陷入性能泥淖。</p>
+<p>对于这种类型的频密发出的事件，我们可以对代码进行调整，是事件处理函数只负责把当前事件相关的值保存至变量中。将计算密集型的代码迁移至单独的处理函数中，然后使用计时器按一定间隔执行该函数。这一原则被称为事件框架化。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> body   = <span class="built_in">document</span>.body;</div><div class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.querySelector(<span class="string">'header'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> scrollTopPosition  = <span class="number">0</span>;</div><div class="line"><span class="keyword">let</span> scrollLeftPosition = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'scroll'</span>, onScroll, <span class="literal">false</span>);</div><div class="line">requestAnimationFrame(writeScrollPosition);</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onScroll</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    scrollTopPosition  = body.scrollTop;</div><div class="line">    scrollLeftPosition = body.scrollLeft;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeScrollPosition</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    header.innerHTML = <span class="string">`<span class="subst">$&#123;scrollTopPosition&#125;</span>px, <span class="subst">$&#123;scrollLeftPosition&#125;</span>px`</span>;</div><div class="line">    requestAnimationFrame(writeScrollPosition);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>无论如何，都要避免把计算密集型的事件处理函数直接绑定到会在连续状态改下快速频密触发的事件，我们可以使用事件框架化技术作为替代从而提升事件处理的性能。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>《高性能JavaSript》，[美]Nicbolas C.Zakas 著，丁琛 译，电子工业出版社 2015</li>
+<li>《精通JavaSript开发》，[英]Den Odell 著，邝健威 厉海洋 译，人民邮电出版社 2015</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/性能优化/" rel="tag">#性能优化</a>
+          
+            <a href="/tags/DOM/" rel="tag">#DOM</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/12/JavaScript性能优化：（二）作用域管理和对象访问/" rel="next" title="JavaScript性能优化：（二）作用域管理和对象访问">
+                <i class="fa fa-chevron-left"></i> JavaScript性能优化：（二）作用域管理和对象访问
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/15/JavaScript性能优化：（四）程序流程控制/" rel="prev" title="JavaScript性能优化：（四）程序流程控制">
+                JavaScript性能优化：（四）程序流程控制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用新的选择器API"><span class="nav-number">1.</span> <span class="nav-text">使用新的选择器API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少对-DOM-的访问"><span class="nav-number">2.</span> <span class="nav-text">减少对 DOM 的访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用局部变量缓存-DOM-元素"><span class="nav-number">2.1.</span> <span class="nav-text">使用局部变量缓存 DOM 元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用共同的祖先元素"><span class="nav-number">2.2.</span> <span class="nav-text">引用共同的祖先元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用相邻元素"><span class="nav-number">2.3.</span> <span class="nav-text">利用相邻元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#克隆已有节点"><span class="nav-number">3.</span> <span class="nav-text">克隆已有节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innerHTML-VS-原生-DOM-方法"><span class="nav-number">4.</span> <span class="nav-text">innerHTML VS 原生 DOM 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少重绘和回流"><span class="nav-number">5.</span> <span class="nav-text">减少重绘和回流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过改变元素的类名修改其样式"><span class="nav-number">5.1.</span> <span class="nav-text">通过改变元素的类名修改其样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏元素-gt-应用修改-gt-重新显示"><span class="nav-number">5.2.</span> <span class="nav-text">隐藏元素->应用修改->重新显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用文档片段-DocumnetFragment"><span class="nav-number">5.3.</span> <span class="nav-text">使用文档片段 DocumnetFragment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作副本元素"><span class="nav-number">5.4.</span> <span class="nav-text">操作副本元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提升-DOM-事件性能"><span class="nav-number">6.</span> <span class="nav-text">提升 DOM 事件性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#委托事件至祖先元素"><span class="nav-number">6.1.</span> <span class="nav-text">委托事件至祖先元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用事件框架化处理频密发出的事件"><span class="nav-number">6.2.</span> <span class="nav-text">使用事件框架化处理频密发出的事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

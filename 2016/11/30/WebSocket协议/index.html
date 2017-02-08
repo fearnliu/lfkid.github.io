@@ -1,0 +1,851 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WebSocket,协议," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="WebSocket 是定义服务器和客户端如何通过 Web 通信的一种网络协议。组成互联网的协议组通常由 IETF（互联网工程任务组）发布。2011 年 12 月，IETF 发布 RFC，对 WebSocket 协议（RFC 6455）做出了精确地规定，其中，包含了实现 WebSocket 客户端和服务器端时必须遵循的原则。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket协议">
+<meta property="og:url" content="https://lfkid.github.io/2016/11/30/WebSocket协议/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="WebSocket 是定义服务器和客户端如何通过 Web 通信的一种网络协议。组成互联网的协议组通常由 IETF（互联网工程任务组）发布。2011 年 12 月，IETF 发布 RFC，对 WebSocket 协议（RFC 6455）做出了精确地规定，其中，包含了实现 WebSocket 客户端和服务器端时必须遵循的原则。">
+<meta property="og:image" content="https://lfkid.github.io/./websocket-frame.png">
+<meta property="og:updated_time" content="2017-02-08T15:34:31.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket协议">
+<meta name="twitter:description" content="WebSocket 是定义服务器和客户端如何通过 Web 通信的一种网络协议。组成互联网的协议组通常由 IETF（互联网工程任务组）发布。2011 年 12 月，IETF 发布 RFC，对 WebSocket 协议（RFC 6455）做出了精确地规定，其中，包含了实现 WebSocket 客户端和服务器端时必须遵循的原则。">
+<meta name="twitter:image" content="https://lfkid.github.io/./websocket-frame.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> WebSocket协议 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WebSocket协议
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-30T17:24:15+08:00" content="2016-11-30">
+              2016-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>WebSocket 是定义服务器和客户端如何通过 Web 通信的一种网络协议。组成互联网的协议组通常由 IETF（互联网工程任务组）发布。2011 年 12 月，IETF 发布 RFC，对 WebSocket 协议（RFC 6455）做出了精确地规定，其中，包含了实现 WebSocket 客户端和服务器端时必须遵循的原则。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>WebSocket 为 Web 应用程序保留了我们所喜欢的 HTTP 特性（URL、HTTP 安全性、更简单的基于数据模型的消息和内置的文本支持），同时提供了其他网络架构和通信模式。和 TCP 一样，WebSocket 是异步的，可以用作高级协议的传输层。</p>
+<p>WebSocket 为 Web 应用程序提供了 TCP 风格的网络能力。寻址仍然是单向的，服务器可以异步向客户端发送数据，但是只在 WebSocket 连接打开时才能做到。WebSocket 服务器也可作为 WebSocket 客户端。WebSocket 客户端不能接受不是由它建立的连接。</p>
+<p>WebSocket 的层次在 TCP/IP 之上，更在 HTTP 之上。</p>
+<p>下表比较了 TCP、HTTP、WebSocket 三者的主要特性：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:center">TCP</th>
+<th style="text-align:center">HTTP</th>
+<th style="text-align:center">WebSocket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">寻址</td>
+<td style="text-align:center">IP地址和端口</td>
+<td style="text-align:center">URL</td>
+<td style="text-align:center">URL</td>
+</tr>
+<tr>
+<td style="text-align:left">并发传输</td>
+<td style="text-align:center">全双工</td>
+<td style="text-align:center">半双工</td>
+<td style="text-align:center">全双工</td>
+</tr>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">字节流</td>
+<td style="text-align:center">MIME 消息</td>
+<td style="text-align:center">文本和二进制消息</td>
+</tr>
+<tr>
+<td style="text-align:left">消息定界</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:left">连接定向</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+</tr>
+</tbody>
+</table>
+<h2 id="WebSocket-连接握手"><a href="#WebSocket-连接握手" class="headerlink" title="WebSocket 连接握手"></a>WebSocket 连接握手</h2><p>每个 WebSocket 连接都起始于一个 HTTP 请求。该请求类似普通的 HTTP 请求，但是其请求报文包含了一个特殊的头部字段名 <code>Upgrade</code>。这个字段名表示表示客户端将要把连接升级到一个不同的协议，这个协议就是 WebSocket 协议。</p>
+<p>下面我们看一下具体的 HTTP 报文，使用 Chrome 或者 Firefox 打开 <a href="https://www.websocket.org/，在" target="_blank" rel="external">https://www.websocket.org/，在</a> Developer Tools 控制台输入以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'wss://echo.websocket.org/echo'</span>);</div></pre></td></tr></table></figure>
+<p>以下是上面代码发起 WebSocket 连接所产生的 HTTP 请求报文：（摘自 Firefox Developer Tools，只列出部分数据）</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">GET</span> <span class="string">/echo</span> HTTP/1.1</div><div class="line"><span class="attribute">Host</span>: echo.websocket.org</div><div class="line"><span class="attribute">Origin</span>: https://www.websocket.org</div><div class="line"><span class="attribute">Sec-WebSocket-Version</span>: 13</div><div class="line"><span class="attribute">Sec-WebSocket-Key</span>: N7ZEbE8f34TK6i59o+DEGA==</div><div class="line"><span class="attribute">Connection</span>: keep-alive, Upgrade</div><div class="line"><span class="attribute">Upgrade</span>: websocket</div></pre></td></tr></table></figure>
+<p>下面是服务器的响应报文：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">101 Web Socket Protocol Handshake</div><div class="line">Connection: Upgrade</div><div class="line">Date: Sat, 03 Dec 2016 03:30:38 GMT</div><div class="line">Sec-WebSocket-Appect: WfkfBi2Tlw5EBRPcaQ4ReZQdtsE=</div><div class="line">Server: Kaazing Gateway</div><div class="line">Upgrade: websocket</div></pre></td></tr></table></figure>
+<p>像这种要求升级为 WebSocket 连接的 HTTP 请求，一般称之为 WebSocket 初始握手。</p>
+<p>与普通 HTTP 连接相比，对于 WebSocket 初始握手而言，HTTP 请求报文中还必需以下首部字段名：</p>
+<ul>
+<li><code>Sec-WebSocket-Version</code></li>
+<li><code>Sec-WebSocket-Key</code></li>
+<li><code>Upgrade</code> ：</li>
+</ul>
+<p>响应报文中必需以下首部字段名：</p>
+<ul>
+<li><code>101 Web Socket Protocol Handshake</code>（服务器正常成功响应的情况下）</li>
+<li><code>Sec-WebSocket-Appect</code></li>
+<li><code>Upgrade</code></li>
+</ul>
+<p>在成功升级协议之后，连接的语法切换为用于 WebSocket 消息的数据帧格式。</p>
+<p><strong>！！！注意</strong> 只有服务器响应 <code>101 Web Socket Protocol Handshake</code>、<code>Upgarde: websocket</code> 和 <code>Sec-WebSocket-Accept</code>，WebSocket 初始握手才能成功，才能建立起 WebSocket 连接。  </p>
+<h2 id="计算响应键值"><a href="#计算响应键值" class="headerlink" title="计算响应键值"></a>计算响应键值</h2><p>为了成功地完成 WebSocket 握手，WebSocket 服务器必须响应一个由客户端计算的键值。这个响应说明服务器理解 WebSocket 协议。没有精确响应，就可能诱导 HTTP 服务器意外地升级一个连接。</p>
+<p><code>Sec-WebSocket-Accept</code> 响应头部字段名的值从客户端 <code>Sec-WebSocket-Key</code> 请求头部字段名继承而来，包含一个特殊的响应键值，必须与客户端的预期精确匹配。</p>
+<p>在服务器端，响应函数会从客户端发送的 <code>Sec-WebSocket-Key</code> 中取得键值，并在 <code>Sec-WebSocket-Accept</code> 中返回根据客户端预期计算出的匹配键值。</p>
+<h2 id="WebSocket-Sec-首部字段名"><a href="#WebSocket-Sec-首部字段名" class="headerlink" title="WebSocket Sec- 首部字段名"></a>WebSocket Sec- 首部字段名</h2><p>在 WebSocket 初始握手和响应键值的计算中，WebSocket 协议依靠 RFC-6455 中定义的 <code>Sec-</code> 首部字段名标志。下面列出了 RFC 6455 标准定义的 WebSocket Sec- 首部字段名，它们均是用于从客户端到服务器的 WebSocket 初始握手。其中有些是 HTTP 请求响应必需的，而有些是可选的。</p>
+<ul>
+<li><code>Sec-WebSocket-Version</code> ：表示版本兼容性。RFC 6455 的版本总是 13。(必需)</li>
+<li><code>Sec-WebSocket-Key</code> ：避免跨协议攻击。在 HTTP 请求中只能出现一次。(必需)</li>
+<li><code>Sec-WebSocket-Accept</code> ：确认服务器理解 WebScoket 协议。在 HTTP 响应中只能出现一次。(必需)</li>
+<li><code>Sec-WebSocket-Extensions</code> ：用于初始握手过程中从服务器到客户端的响应，帮助客户端和服务器商定一组连接期间使用的协议集扩展。可能在 HTTP 请求中出现多次，但是在 HTTP 响应中只出现一次。(可选)</li>
+<li><code>Sec-WebSocket-Protocol</code> ：用于初始握手过程从服务器到客户端的响应。这个首部字段名告诉客户端应用程序可以使用的协议。(可选)</li>
+</ul>
+<h2 id="消息格式"><a href="#消息格式" class="headerlink" title="消息格式"></a>消息格式</h2><p>Web Socket 连接所发送的消息，在网络上用二进制语法表示。这些二进制语法标记了消息的边界并包含了简介的类型信息。更准确地说，这些二进制标志字段标记了另一个单位——帧 之间的边界。帧是可以组成消息的部分数据。一个消息可以由多个帧构成，但通常来说，很少有一个消息使用超过一个帧。</p>
+<p>下图是 WebSocket 帧的特征示意图：</p>
+<p><img src="./websocket-frame.png" alt=""></p>
+<p>WebSocket 帧头的二进制代码主要负责：</p>
+<ul>
+<li>操作码</li>
+<li>长度</li>
+<li>解码文本</li>
+<li>掩码</li>
+<li>多帧消息</li>
+</ul>
+<h3 id="操作码"><a href="#操作码" class="headerlink" title="操作码"></a>操作码</h3><p>每条 WebSocket 消息都有一个指定消息载荷类型的操作码。操作码由帧头的第一个字节中最后 4bit 组成，值位数字类型。4bit 操作码共有 16 可能取值，WebSocket 协议只定义了 5 种。</p>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>消息载荷类型</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>文本</td>
+<td style="text-align:right">消息数据类型为字符串</td>
+</tr>
+<tr>
+<td>2</td>
+<td>二进制</td>
+<td style="text-align:right">消息数据类型为二进制的</td>
+</tr>
+<tr>
+<td>8</td>
+<td>关闭</td>
+<td style="text-align:right">客户端或服务端向对方发送了关闭握手</td>
+</tr>
+<tr>
+<td>9</td>
+<td>ping</td>
+<td style="text-align:right">客户端或服务端向对方发送 ping</td>
+</tr>
+<tr>
+<td>10(十六进制 0xA)</td>
+<td>pong</td>
+<td style="text-align:right">客户端或服务端向对方发送 pong</td>
+</tr>
+</tbody>
+</table>
+<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><p>WebSocket 协议使用可变位数来编码帧长度。</p>
+<ol>
+<li>&lt; 126 字节的消息，长度用帧头前两个字节之一表示</li>
+<li>126 ~ 216 字节的消息，使用额外的两个字节表示</li>
+<li>> 216 字节的消息，长度为 8 字节</li>
+</ol>
+<p>长度编码保存于帧头第二个字节的最后 7bit。该字段中 126 和 127 两个值被当作特殊的信号，表示需要后面的字节才能完成长度解码。</p>
+<h3 id="解码文本"><a href="#解码文本" class="headerlink" title="解码文本"></a>解码文本</h3><p>WebSocket 文本消息使用 UTF-8 编码，这是 WebSocket 文本消息允许的唯一编码。</p>
+<h3 id="掩码"><a href="#掩码" class="headerlink" title="掩码"></a>掩码</h3><p>从浏览器向服务器发送的 WebSocket 帧在实际内容之前还有一个 4字节的掩码，这是为了不常见的安全原因，以及改进与现有 HTTP 代理的兼容性。</p>
+<p>WebSocket 协议要求客户端所发送的帧必需掩码，帧头在第二个字节的第一位表示该帧是否使用了掩码。</p>
+<p>WebSocket 服务器接收的每个载荷在处理之前首先需要处理掩码，解除掩码之后，服务器将得到原始消息内容。二进制消息可以直接交付，文本消息将进行 UTF-8 解码并输出到字符串中。</p>
+<h3 id="多帧消息"><a href="#多帧消息" class="headerlink" title="多帧消息"></a>多帧消息</h3><p>帧格式中的 <code>fin</code> 标志位考虑了多帧消息或者部分可用消息的流化，这些消息可能不连续或者不完整。<code>fin</code> 标志位值为 0 表示当前帧不是消息的最后一帧，<code>fin</code> 标志位值为 1 表示当前帧是消息的最后一帧。</p>
+<h2 id="WebSocket-关闭握手"><a href="#WebSocket-关闭握手" class="headerlink" title="WebSocket 关闭握手"></a>WebSocket 关闭握手</h2><p>Web Socket 连接自身是可以在任何被关闭的，比如下层的 TCP 套接字突然关闭也会导致上层的 WebSocket 连接关闭。只有连接是由建立通信的双方在 WebSocket 层次上正常发起关闭的，那么才会以 WebSocket 关闭握手结束。</p>
+<p>当进行 WebSocket 关闭握手时，终止连接的一端可以发送一个数字状态代码，以及一个表示关闭套接字原因的字符串。状态代码和原因编码为具有关闭操作码（8bit）的一个帧的载荷。数字代码用一个 16 位无符号整数表示，原因编码则是一个 UTF-8 编码的短字符串。RFC 6455 定义了多种特殊的关闭代码。代码 1000~1015 规定用于 WebSocket 连接层。这些代码表示网络中或协议中的某些故障。</p>
+<p>下面列出了部分常用的 WebSocket 关闭握手代码：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:right">使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1000</td>
+<td style="text-align:center">正常关闭</td>
+<td style="text-align:right">会话成功完成时</td>
+</tr>
+<tr>
+<td style="text-align:left">1001</td>
+<td style="text-align:center">离开</td>
+<td style="text-align:right">应用程序离开且不期望后续连接尝试而关闭连接</td>
+</tr>
+<tr>
+<td style="text-align:left">1002</td>
+<td style="text-align:center">协议错误</td>
+<td style="text-align:right">协议错误而关闭连接</td>
+</tr>
+<tr>
+<td style="text-align:left">1003</td>
+<td style="text-align:center">不可接受的数据类型</td>
+<td style="text-align:right">应用程序接收到无法处理的意外类型消息</td>
+</tr>
+<tr>
+<td style="text-align:left">1007</td>
+<td style="text-align:center">无效数据</td>
+<td style="text-align:right">接收一个格式与消息类型不匹配的消息</td>
+</tr>
+<tr>
+<td style="text-align:left">1009</td>
+<td style="text-align:center">消息过大</td>
+<td style="text-align:right">接收消息太大，应用程序无法处理</td>
+</tr>
+<tr>
+<td style="text-align:left">1010</td>
+<td style="text-align:center">需要扩展</td>
+<td style="text-align:right">应用程序需要一个或多个服务器无法协商的特殊扩展时(客户端负责发送)</td>
+</tr>
+<tr>
+<td style="text-align:left">1011</td>
+<td style="text-align:center">意外情况</td>
+<td style="text-align:right">应用程序由于不可预见的原因，无法继续处理连接</td>
+</tr>
+<tr>
+<td style="text-align:left">1015</td>
+<td style="text-align:center">TLS失败(保留)</td>
+<td style="text-align:right">不要发送这个代码。它用于表示  TLS 在 WebSocket 握手之前失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="对其他协议的支持"><a href="#对其他协议的支持" class="headerlink" title="对其他协议的支持"></a>对其他协议的支持</h2><p>WebSocket 协议支持更高级的协议和协议商。在 WebSocket 客户端编程中，协议协商表现为 WebSocket 构造函数的第二个参数值。而在 HTTP 请求中，协议协商表示为可选 HTTP 首部字端 <code>Sec-WebSocket-Protocol</code> 的值。</p>
+<p>服务器会根据客户端的 HTTP 请求中 <code>Sec-WebSocket-Protocol</code> 提供的协议来进行协议协商，然后将其选定的协议名作为 <code>Sec-WebSocket-Protocol</code> 的值在 HTTP 响应头中发给客户端。</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><blockquote>
+<p>不能同时协商多个协议，但是可以同时协商多个扩展。</p>
+</blockquote>
+<p>HTTP 请求中可选的首部字段名 <code>Sec-WebSocket-Extensions</code> 用于扩展 WebSocket 协议，其值为所支持的扩展名称。</p>
+<p>扩展可以为帧添加新的操作码和数据字段。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebSocket/" rel="tag">#WebSocket</a>
+          
+            <a href="/tags/协议/" rel="tag">#协议</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/29/WebSocket客户端编程/" rel="next" title="WebSocket客户端编程">
+                <i class="fa fa-chevron-left"></i> WebSocket客户端编程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/03/同源策略/" rel="prev" title="同源策略">
+                同源策略 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-连接握手"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 连接握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算响应键值"><span class="nav-number">3.</span> <span class="nav-text">计算响应键值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-Sec-首部字段名"><span class="nav-number">4.</span> <span class="nav-text">WebSocket Sec- 首部字段名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息格式"><span class="nav-number">5.</span> <span class="nav-text">消息格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作码"><span class="nav-number">5.1.</span> <span class="nav-text">操作码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长度"><span class="nav-number">5.2.</span> <span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解码文本"><span class="nav-number">5.3.</span> <span class="nav-text">解码文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#掩码"><span class="nav-number">5.4.</span> <span class="nav-text">掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多帧消息"><span class="nav-number">5.5.</span> <span class="nav-text">多帧消息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-关闭握手"><span class="nav-number">6.</span> <span class="nav-text">WebSocket 关闭握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对其他协议的支持"><span class="nav-number">7.</span> <span class="nav-text">对其他协议的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">8.</span> <span class="nav-text">扩展</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

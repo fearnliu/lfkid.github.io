@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo,GitHub," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Hexo 支持一键部署到 GitHub 仓库，所以我们可以使用 Hexo 结合 GitHub Pages 来搭建在线个人博客。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo教程：（四）将本地Hexo站点部署到GitHubPages">
+<meta property="og:url" content="https://lfkid.github.io/2016/11/16/Hexo教程：（四）将本地Hexo站点部署到GitHubPages/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="Hexo 支持一键部署到 GitHub 仓库，所以我们可以使用 Hexo 结合 GitHub Pages 来搭建在线个人博客。">
+<meta property="og:image" content="https://lfkid.github.io/./snipaste20161118_102609.png">
+<meta property="og:image" content="https://lfkid.github.io/./snipaste20161118_104731.png">
+<meta property="og:updated_time" content="2017-02-08T15:45:35.699Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo教程：（四）将本地Hexo站点部署到GitHubPages">
+<meta name="twitter:description" content="Hexo 支持一键部署到 GitHub 仓库，所以我们可以使用 Hexo 结合 GitHub Pages 来搭建在线个人博客。">
+<meta name="twitter:image" content="https://lfkid.github.io/./snipaste20161118_102609.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Hexo教程：（四）将本地Hexo站点部署到GitHubPages | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hexo教程：（四）将本地Hexo站点部署到GitHubPages
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T20:29:10+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Program</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Hexo 支持一键部署到 GitHub 仓库，所以我们可以使用 Hexo 结合 GitHub Pages 来搭建在线个人博客。</p>
+<a id="more"></a>
+<h2 id="本地-Git-客户端"><a href="#本地-Git-客户端" class="headerlink" title="本地 Git 客户端"></a>本地 Git 客户端</h2><p>本地 Git 客户端配置，主要是为了能够在命令行模式下与远程的 GitHub 通信。</p>
+<h3 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h3><p>打开命令行，键入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"你的用户名"</span></div><div class="line">$ git config --global user.email <span class="string">"你的email"</span></div></pre></td></tr></table></figure>
+<p>其中，字符串中的内容替换为你自己的信息，这里为了清晰一致，建议使用 GitHub 账户相同的配置信息。</p>
+<h3 id="创建-SSH-Key"><a href="#创建-SSH-Key" class="headerlink" title="创建 SSH Key"></a>创建 SSH Key</h3><p>打开安装好的 Git Bash，键入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git gui</div></pre></td></tr></table></figure>
+<p>回车之后，会启动 Git GUI 软件。在 Git GUI 软件界面，依次点击 Help =&gt; Show SSH Key</p>
+<p><img src="./snipaste20161118_102609.png" alt=""></p>
+<p>在出现的 OpenSSH 界面，点击右上角的 <code>Generate Key</code> 以创建 SSH Key。注意，期间会让你输入密码两次，这个密码是本地 Git 与远程 Git 通信时要用到的，要牢牢记住。</p>
+<p>OpenSSH 创建好的 SSH Key，会被存储到为一个私钥文件和一个公钥文件；如果是 Windows 操作系统的话，则他们位于 <code>./c/Users/pcusername/.ssh</code> 路径下，名称分别是 <code>id_rsa</code> 和 <code>id_rsa.pub</code>。</p>
+<h2 id="远程-GitHub"><a href="#远程-GitHub" class="headerlink" title="远程 GitHub"></a>远程 GitHub</h2><h3 id="创建github-io仓库"><a href="#创建github-io仓库" class="headerlink" title="创建github.io仓库"></a>创建github.io仓库</h3><p>登入你自己的 GitHub 账户，创建一个新的仓库，仓库名为 <code>username.github.io</code>，其中 <code>username</code> 替换为你自己的 GitHub 用户名，就是你个人 GitHub 主页 URL 中的最后一部分。</p>
+<p>创建好仓库后，做一次初始提交，以便初始化这个仓库。</p>
+<h3 id="配置-SSH-Pub-Key"><a href="#配置-SSH-Pub-Key" class="headerlink" title="配置 SSH Pub Key"></a>配置 SSH Pub Key</h3><p>打开你的 GitHub 个人主页，点击右上角个人头像，选择 <code>Settings</code>，进入设置页面。</p>
+<p>在左侧选择 <code>SSH and GPG keys</code>，然后在右侧点击 <code>New SSH key</code>，将刚刚创建的 SSH Key 的公钥文件 <code>id_rsa.pub</code> 中的内容复制到 Key 文本框中。</p>
+<p><img src="./snipaste20161118_104731.png" alt=""></p>
+<h2 id="本地-Git-与远程-GitHub-通信"><a href="#本地-Git-与远程-GitHub-通信" class="headerlink" title="本地 Git 与远程 GitHub 通信"></a>本地 Git 与远程 GitHub 通信</h2><p>上面配置都搞定以后，我们来测试一下 Git 是否可以和我们远程的 Git 仓库通信。</p>
+<p>命令行键入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div><div class="line">Enter passphrase <span class="keyword">for</span> key <span class="string">'/c/Users/pcusername/.ssh/id_rsa'</span>:</div></pre></td></tr></table></figure>
+<p>当键入以上命令回车后，会出现让我们输入密码的提示，这个密码就是刚刚我们使用 Open SSH 创建 SSH Key 时所输入的密码。</p>
+<p><strong>注意！！！</strong> 输入密码时冒号之后什么也不会显示，所以你只管输入就行，正确无误后按下回车键即可。</p>
+<p>如果成功连接，会出现提示信息：</p>
+<blockquote>
+<p>Hi your-github-username! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>为了正常部署到远程 Git 仓库，我们还需要先安装一个 Hexo 插件 <code>hexo-deployer-git</code>。</p>
+<p>在站点文件夹根目录下打开命令行，键入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>由于是部署到远程的 Git 仓库，所以我们需要修改一些配置参数以使其符合针对 Git 的部署配置。</p>
+<p>使用文本编辑器打开站点文件夹根目录下的 <code>_config.yml</code> 文件，修改其 <code>deploy</code> 字段之后的内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> git</div><div class="line"><span class="attr">  repo:</span> git@github.com:你的GitHub用户名/你的GitHub用户名.github.io.git</div><div class="line"><span class="attr">  brandh:</span> master</div><div class="line"><span class="attr">  messge:</span></div></pre></td></tr></table></figure>
+<p>其中，各个参数意义如下：</p>
+<ul>
+<li><code>repo</code> ：要部署的远程 Git 仓库地址</li>
+<li><code>branch</code> ：仓库分支名称，程序会自动检测，如果你创建的仓库没有做过修改，那么该值应该就是<code>master</code></li>
+<li><code>message</code> ：自定义 Git 的本次 commit 信息（Hexo会按照一定默认生成）</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>如果我们已经生成好了本地静态站点，那么只需下面的命令，即可将其一键部署到服务器上。使用安装好的 Git Bash 终端，在站点根目录下键入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p><strong>!!!注意：</strong> 以上命令一定要在 Git Bash 终端中键入，因为我们使用的 SSH 协议推送本地仓库到远程分支，必需使用到 Git Bash 内置的 Open SSH 客户端。在此期间，会跳出 Open SSH 的界面，让我们输入密码，就是之前我们用来加密 SSH Key 的在命令行输入的那个密码。</p>
+<p>现在，打开 GitHub Pages 看一下效果吧。</p>
+<h3 id="完成后部署"><a href="#完成后部署" class="headerlink" title="完成后部署"></a>完成后部署</h3><p>我们可以让 Hexo 在生成完毕后自动部署网站到服务器，只需使用以下两个命令之一即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo generate --deploy</div><div class="line">$ hexo deploy --generate</div></pre></td></tr></table></figure>
+<p>上面这两个命令是等价的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+          
+            <a href="/tags/GitHub/" rel="tag">#GitHub</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/16/Hexo教程：（三）使用Hexo写博客/" rel="next" title="Hexo教程：（三）使用Hexo写博客">
+                <i class="fa fa-chevron-left"></i> Hexo教程：（三）使用Hexo写博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/29/WebSocket客户端编程/" rel="prev" title="WebSocket客户端编程">
+                WebSocket客户端编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地-Git-客户端"><span class="nav-number">1.</span> <span class="nav-text">本地 Git 客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git配置"><span class="nav-number">1.1.</span> <span class="nav-text">Git配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-SSH-Key"><span class="nav-number">1.2.</span> <span class="nav-text">创建 SSH Key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程-GitHub"><span class="nav-number">2.</span> <span class="nav-text">远程 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建github-io仓库"><span class="nav-number">2.1.</span> <span class="nav-text">创建github.io仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-SSH-Pub-Key"><span class="nav-number">2.2.</span> <span class="nav-text">配置 SSH Pub Key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地-Git-与远程-GitHub-通信"><span class="nav-number">3.</span> <span class="nav-text">本地 Git 与远程 GitHub 通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo"><span class="nav-number">4.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">4.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">4.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">5.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完成后部署"><span class="nav-number">5.1.</span> <span class="nav-text">完成后部署</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
