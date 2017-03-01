@@ -1,0 +1,680 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="响应式,视口," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="视口(viewport) 这一特性在非响应式 Web 设计编码中通常是用不到的，然而它却是我们设计响应式 Web 的关键。
+众所周知的媒体查询就是基于视口宽度的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="响应式Web之视口(viewport)">
+<meta property="og:url" content="https://lfkid.github.io/2017/02/28/响应式Web之视口-viewport/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="视口(viewport) 这一特性在非响应式 Web 设计编码中通常是用不到的，然而它却是我们设计响应式 Web 的关键。
+众所周知的媒体查询就是基于视口宽度的。">
+<meta property="og:updated_time" content="2017-03-01T05:22:07.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="响应式Web之视口(viewport)">
+<meta name="twitter:description" content="视口(viewport) 这一特性在非响应式 Web 设计编码中通常是用不到的，然而它却是我们设计响应式 Web 的关键。
+众所周知的媒体查询就是基于视口宽度的。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 响应式Web之视口(viewport) | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">中二病也要玩 front end</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                响应式Web之视口(viewport)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-28T21:55:04+08:00" content="2017-02-28">
+              2017-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/响应式Web/" itemprop="url" rel="index">
+                    <span itemprop="name">响应式Web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>视口(viewport) 这一特性在非响应式 Web 设计编码中通常是用不到的，然而它却是我们设计响应式 Web 的关键。</p>
+<p>众所周知的媒体查询就是基于视口宽度的。</p>
+<a id="more"></a>
+<h2 id="视口是什么"><a href="#视口是什么" class="headerlink" title="视口是什么"></a>视口是什么</h2><p>不同领域，<em>视口</em> 的含义自然有所不同。在前端领域中，由于主要是针对浏览器编程，视口自然是指计算机或设备屏幕上用户浏览网页的那块区域。</p>
+<p>对于桌面平台的设备而言，视口指的是整个当前浏览器窗口，去掉菜单栏、工具栏、滚动条及浏览器自身的其他部件，真正用来显示网页的那块区域。</p>
+<p>对于移动平台的手持设备而言，视口指的就是设备的屏幕显示区域。</p>
+<h2 id="那viewport呢"><a href="#那viewport呢" class="headerlink" title="那viewport呢"></a>那viewport呢</h2><p>对于没有真正接触过响应式 Web 的开发者而言，<code>viewprot</code> 一次可能稍显陌生。因为，在传统 Web 编程中，即非响应式 Web 中，我们通常不会用到 <code>viewprot</code>。</p>
+<p>事实上，<code>viewport</code> 同 <code>charset</code> 一样，仅仅是 <code>&lt;meta&gt;</code> 元素的一个元数据属性。</p>
+<p><code>charset</code> 主要用于设置页面字符集，而 <code>viewport</code> 则是用于配置浏览器如何在视口内渲染整个页面。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>值得注意的是，一般一个 <code>&lt;meta&gt;</code> 元素只接受一个元数据属性值，所以我们不能简单地将 <code>charset</code> 和 <code>viewport</code> 这种元数据属性一起放至在一个 <code>&lt;meta&gt;</code> 元素里。</p>
+<p>默认情况下，手机浏览器在渲染一个没有 <code>viewport</code> 属性的网页时，会先像桌面浏览器那样渲染页面，然后按照比例缩小它来以适配手机视口。如果页面有媒体查询是基于视口宽度的，那么它们不会生效，因为浏览器是按照桌面平台显示器尺寸来计算视口宽度的。</p>
+<h2 id="响应式Web开发"><a href="#响应式Web开发" class="headerlink" title="响应式Web开发"></a>响应式Web开发</h2><h3 id="宽度"><a href="#宽度" class="headerlink" title="宽度"></a>宽度</h3><p>当为<code>&lt;meta&gt;</code> 元素提供的是 <code>viewport</code> 元数据属性时，我们可以在 <code>content</code> 属性中设置 <code>width</code> 参数。</p>
+<p><code>width</code> 参数用于告诉浏览器如何以多大的宽度来渲染页面。</p>
+<p>响应式 Web 中，大部分情况下我们都希望以系统分辨率的宽度来渲染页面，以尽可能地避免缩放，以及正确地响应设备。问题是不同设备的系统分辨率是不一致的，即使在同一设备上，横竖两种手持设备方向也会让渲染方式不同。</p>
+<p>解决这个问题的方法是，将 <code>width</code> 的值设置为 <code>device-width</code>，</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meata</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这样一来，浏览器就会自动以设备自身的实际宽度来渲染页面。</p>
+<p>如果没有做上述指定，设备将使用它自己默认的视口设置来渲染页面。</p>
+<h3 id="初始缩放比"><a href="#初始缩放比" class="headerlink" title="初始缩放比"></a>初始缩放比</h3><p>当为<code>&lt;meta&gt;</code> 元素提供的是 <code>viewport</code> 元数据属性时，我们可以在 <code>content</code> 属性中设置 <code>initial-scale</code> 参数。</p>
+<p>参数 <code>initial-scale</code> 会告诉浏览器在屏幕上首次加载网页时如何缩放它。</p>
+<p>响应式 Web 编程中，通常我们会设置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这意味着页面将按照 <code>width</code> 参数设定的宽度值来渲染页面，不放大也不缩小实际页面。</p>
+<p>如果用的是大于或小于 1 的数值，则页面将缩放至对应的比例。直接后果就是，我们在视口内只能看见页面的一部分或者页面还没有占满整个屏幕。</p>
+<h2 id="viewport支持的其他content特性"><a href="#viewport支持的其他content特性" class="headerlink" title="viewport支持的其他content特性"></a>viewport支持的其他content特性</h2><p>除了最常用的 <code>width</code> 和 <code>initial-scale</code> 参数，<code>viewport</code> 还支持其它许多可配置的参数。但这些参数，一般来说，在响应式 Web 开发中，开发人员应该避免显式地使用。</p>
+<h3 id="高度"><a href="#高度" class="headerlink" title="高度"></a>高度</h3><p><code>height</code> 可以用于配置浏览器渲染页面的高度，但响应式 Web 中，我们应该极力避免手动配置这个值。</p>
+<h3 id="用户可缩放"><a href="#用户可缩放" class="headerlink" title="用户可缩放"></a>用户可缩放</h3><p>有时，在移动端浏览网页时，我们会发现某些网页是可以进行手动缩放的。这得益于 <code>viewport</code> 的另一个可配置参数 <code>user-scalable</code>，它提供了用户放大或缩小内容的能力。</p>
+<p><code>user-scalable</code> 参数默认值为 <code>yes</code>，即允许用户对页面进行缩放。</p>
+<p>对于大多数网站，我们应该避免修改这个参数的默认值，以让用户在需要时可以自行缩放页面。</p>
+<h3 id="最大缩放比"><a href="#最大缩放比" class="headerlink" title="最大缩放比"></a>最大缩放比</h3><p><code>maxium-scale</code> 用于设置页面最大缩放比，响应式 Web 中，我们应避免配置这个参数。</p>
+<h3 id="最小缩放比"><a href="#最小缩放比" class="headerlink" title="最小缩放比"></a>最小缩放比</h3><p><code>minium-scale</code> 用于设置页面最小缩放比，响应式 Web 中，我们应该避免配置这个参数。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>响应式 Web 开发，我们应该为页面配置一个 <code>name</code> 值为 <code>viewport</code> 的 <code>&lt;meta&gt;</code> 标签，一般来说，它应该被配置成如下这个样子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://developers.google.com/speed/docs/insights/ConfigureViewport" target="_blank" rel="external">Configure the viewport</a></li>
+<li><a href="https://css-tricks.com/snippets/html/responsive-meta-tag/" target="_blank" rel="external">Responsive Meat Tag</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/响应式/" rel="tag">#响应式</a>
+          
+            <a href="/tags/视口/" rel="tag">#视口</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/23/JavaScript性能优化：（七）Ajax/" rel="next" title="JavaScript性能优化：（七）Ajax">
+                <i class="fa fa-chevron-left"></i> JavaScript性能优化：（七）Ajax
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friends
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#视口是什么"><span class="nav-number">1.</span> <span class="nav-text">视口是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#那viewport呢"><span class="nav-number">2.</span> <span class="nav-text">那viewport呢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式Web开发"><span class="nav-number">3.</span> <span class="nav-text">响应式Web开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#宽度"><span class="nav-number">3.1.</span> <span class="nav-text">宽度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始缩放比"><span class="nav-number">3.2.</span> <span class="nav-text">初始缩放比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport支持的其他content特性"><span class="nav-number">4.</span> <span class="nav-text">viewport支持的其他content特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高度"><span class="nav-number">4.1.</span> <span class="nav-text">高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户可缩放"><span class="nav-number">4.2.</span> <span class="nav-text">用户可缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最大缩放比"><span class="nav-number">4.3.</span> <span class="nav-text">最大缩放比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小缩放比"><span class="nav-number">4.4.</span> <span class="nav-text">最小缩放比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
