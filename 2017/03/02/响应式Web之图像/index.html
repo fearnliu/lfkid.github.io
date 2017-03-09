@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="响应式,图像," />
+  <meta name="keywords" content="图像,响应式," />
 
 
 
@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://lfkid.github.io/2017/03/02/响应式Web之图像/index.html">
 <meta property="og:site_name" content="中二病也要玩 front end">
 <meta property="og:description" content="响应式设计中，图像一直是个难点。一方面，我们想尽可能地使用美丽的图像来展示内容；另一方面，考虑到移动设备的网络速率与处理能力，我们需要单独准备图片，并让其与已有的图片针对不同大小的视口（屏幕分辨率、设备像素比等）做出恰当地响应。有的时候，基于美术设计，我们还会手动裁剪出各种不成比例的图片。">
-<meta property="og:updated_time" content="2017-03-08T14:31:50.071Z">
+<meta property="og:updated_time" content="2017-03-09T09:19:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="响应式Web之图像">
 <meta name="twitter:description" content="响应式设计中，图像一直是个难点。一方面，我们想尽可能地使用美丽的图像来展示内容；另一方面，考虑到移动设备的网络速率与处理能力，我们需要单独准备图片，并让其与已有的图片针对不同大小的视口（屏幕分辨率、设备像素比等）做出恰当地响应。有的时候，基于美术设计，我们还会手动裁剪出各种不成比例的图片。">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-03-08T22:31:50+08:00">
-                2017-03-08
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T17:19:23+08:00">
+                2017-03-09
               </time>
             
           </span>
@@ -412,7 +412,7 @@
                     <span class="post-meta-item-text">字数统计</span>
                   
                     <span title="字数统计" }}">
-                      737
+                      2,777
                     </span>
               
 
@@ -428,7 +428,7 @@
                     <span class="post-meta-item-text">阅读时长</span>
                   
                     <span title="阅读时长" }}">
-                      3
+                      10
                     </span>
               
             </div>
@@ -453,8 +453,11 @@
 <blockquote>
 <p>在计算机屏幕上，像素是一个彩色（或灰度）的物理点（屏幕可以显示的最小的点）。</p>
 </blockquote>
-<p><em>注意：</em> 严格来说，我们应该称其为设备像素（Device Pixel）或物理像素（Physical Pixel），因为还有设备无关像素。</p>
+<p><em>注意：</em> 严格来说，我们应该称其为 <code>设备像素</code>（Device Pixel）或物理像素（Physical Pixel），因为还有设备无关像素。</p>
 <p>通常而言，屏幕像素的数量决定了其分辨率的大小。例如，1920x1080 分辨率的显示器是 1920像素宽乘以 1080像素高。</p>
+<blockquote>
+<p>分辨率，屏幕水平方向上的像素数乘以屏幕竖直方向上的像素数。</p>
+</blockquote>
 <p>所谓设备像素密度，跟我们常见的手机参数 PPI(Pixel Per Inch) 是一回事儿，其直译过来是“像素每英寸”，但考虑到它的含义，我们可以称呼它为像素密度（Pixel Density）。像素密度的计算方式，就是用屏幕对角线上的像素值除以屏幕对角线的长度（单位：英寸）。例如，iPhone5 的屏幕对角线的像素值为 1303，其对角线长度为 4 英寸，所以其像素密度为 1303/4=326PPI。</p>
 <blockquote>
 <p>设备像素密度(PPI)，即设备每英寸所含有的像素数量。</p>
@@ -468,7 +471,83 @@
 <h2 id="最简单的响应式图像"><a href="#最简单的响应式图像" class="headerlink" title="最简单的响应式图像"></a>最简单的响应式图像</h2><p>对于已有工程中图像的处理，我们所能想到的最简单的响应式开发方案就是对其宽度作自适应，而考虑到图像自身宽度可能大于容器的情况下，我们应该使用 <code>max-width</code> 属性：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.img</span> &#123;</div><div class="line">    <span class="attribute">max-width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">height</span>: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以上，可以称得上是最简单的响应图片处理方案了。</p>
-<h2 id="srcset属性和sizes属性"><a href="#srcset属性和sizes属性" class="headerlink" title="srcset属性和sizes属性"></a>srcset属性和sizes属性</h2>
+<h2 id="srcset属性详解"><a href="#srcset属性详解" class="headerlink" title="srcset属性详解"></a>srcset属性详解</h2><p><code>&lt;img&gt;</code> 标签具有名为 <code>srcset</code> 的属性，支持针对不同设备像素比/视口宽度设置不同的图片源。</p>
+<h3 id="响应设备像素比"><a href="#响应设备像素比" class="headerlink" title="响应设备像素比"></a>响应设备像素比</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"small.jpg"</span> <span class="attr">alt</span>=<span class="string">"image"</span> <span class="attr">srcset</span>=<span class="string">"large.jpg 2x, small.jpg 1x"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面代码中 <code>2x</code> 和 <code>1x</code> 中的后缀 <code>x</code> 表示设备像素比，所以 <code>2x</code> 的含义即是设备像素比大小为 2，<code>1x</code> 同理。</p>
+<p>如果浏览器支持 <code>srcset</code> 属性，那么它就会遵循 <code>srcset</code> 的设定从而以设备像素比为准则来选择如何加载图片。例如，对于上述代码，在设备像素比为 2 的情况下，浏览器会加载图像 <code>large.jpg</code>。</p>
+<p>注意，即使设置了 <code>srcset</code> 属性，我们还应该设置 <code>src</code> 属性，以保证代码在不支持 <code>srcset</code> 属性的浏览器上能够做到优雅降级。</p>
+<h3 id="响应视口宽度"><a href="#响应视口宽度" class="headerlink" title="响应视口宽度"></a>响应视口宽度</h3><p>视口宽度与设备像素比有很大不同，设备像素比描述的是精确值，而视口宽度描述的则是边界值，即视口宽度在某个宽度范围内适用某一张图片。</p>
+<p>所以这里有个问题，针对视口宽度的响应，<code>srcset</code> 中设定的值表示的是最小宽度还是最大宽度？？？</p>
+<p>考虑如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"small.jpg"</span> <span class="attr">alt</span>=<span class="string">"image"</span> <span class="attr">srcset</span>=<span class="string">"medium.jpg 600w, large.jpg 800w"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 或者 --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"large.jpg"</span> <span class="attr">lat</span>=<span class="string">"image"</span> <span class="attr">srcset</span>=<span class="string">"medium.jpg 800w, small.jpg 600w"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>同响应设备像素比类似，上述代码中 <code>800w</code> 和 <code>600w</code> 的后缀 <code>w</code> 表示视口宽度。</p>
+<p>上述代码，前者秉承移动优先的理念，默认加载 <code>small.jpg</code>，视口宽度大于 600px 时加载 <code>medium.jpg</code>，大于 800px 时则加载 <code>large.jpg</code>。<br>相反地，后者遵循的是桌面优先理念，默认加载 <code>large.jpg</code>，视口宽度小于 800px 时加载 <code>medium.jpg</code>，小于 600px 时则加载 <code>small.jpg</code>。</p>
+<p>就实际情况来看，大部分浏览器遵循的是移动优先，也就是说，只有视口宽度超过某一设定值时，才加载更大的图片。</p>
+<h3 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h3><p>实际运行时，浏览器永远对页面的渲染布局拥有最高指挥控制权，所以有时 <code>srcset</code> 对视口宽度的响应实际表现跟理论有出入：</p>
+<ol>
+<li>如果浏览器支持 <code>srcset</code> 属性，那么 <code>src</code> 属性中的图片永远不会加载</li>
+<li>当浏览器已经加载了某一张图片之后，再对浏览器窗口进行缩放，即使此时视口宽度匹配了 <code>srcset</code> 语法规则中的某条设定，浏览器也不会再加载图片了</li>
+<li>Chrome 会充分利用缓存，如果缓存中有上次访问留下的高清图片，那么即使此时是从窄屏进行访问，也回加载高清图片</li>
+</ol>
+<h2 id="神奇的sizes语法"><a href="#神奇的sizes语法" class="headerlink" title="神奇的sizes语法"></a>神奇的sizes语法</h2><p>除了 <code>srcset</code> 属性，<code>&lt;img&gt;</code> 标签还有一个更神奇的 <code>sizes</code> 属性，它的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">size=&quot;[meida query] [length], [media query] [length] ... [media query] [lenghth]&quot;</div></pre></td></tr></table></figure>
+<p><code>sizes</code> 属性值由一系列由逗号隔开的描述图片宽度的特征表达式组成，每一组包含两部分：</p>
+<ul>
+<li>[media query] 表示匹配的查询条件</li>
+<li>[length] 表示该查询条件下图片所占用的宽度</li>
+</ul>
+<p>其中，最后一个特征表达式可以只描述图片大小，表示在默认查询条件下的图片占用宽度。</p>
+<p>下面是示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">sizes</span>=<span class="string">"(max-width: 640px) 100vw, (max-width: 960px) 50vw, calc(100vw / 3)"</span></span></div></pre></td></tr></table></figure>
+<p>上述代码意味着：</p>
+<ol>
+<li>视口宽度小于 640px 时，图片宽度为视口宽度的 100%</li>
+<li>视口宽度大于 640px 且小于 960px 时，图片宽度为视口宽度的 50%</li>
+<li>视口宽度大于 960px 时，图片宽度为视口宽度的 1/3</li>
+</ol>
+<h3 id="sizes属性结合srcset属性"><a href="#sizes属性结合srcset属性" class="headerlink" title="sizes属性结合srcset属性"></a>sizes属性结合srcset属性</h3><p>我们可以将 <code>&lt;img&gt;</code> 标签的 <code>srcset</code> 属性和 <code>sizes</code> 属性结合起来使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">sizes</span>=<span class="string">"(max-width: 640px) 100vw, (max-width: 960px) 50vw, calc(100vw / 3)"</span> <span class="attr">srcset</span>=<span class="string">"large.jpg 1024w, medium.jpg 640w, small.jpg 320w"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里有一点需要注意，当 <code>sizes</code> 属性存在时，<code>srcset</code> 中每一张图片名称后面跟随的不再是设备条件，而是图片的宽度，且仍以 <code>w</code> 为后缀表示像素宽度。</p>
+<p>对于上述代码，浏览器首先会根据 <code>sizes</code> 语法规则设定的媒体查询条件判断出图片应该有的宽度，然后从 <code>srcset</code> 设定的图片源中加载最符合的。</p>
+<h2 id="元素让我们忘了"><a href="#元素让我们忘了" class="headerlink" title="元素让我们忘了"></a><picture>元素让我们忘了<img></picture></h2><p>尽管传统的 <code>&lt;img&gt;</code> 得益于 <code>srcset</code>、<code>sizes</code> 属性支持可以作为解决响应式图像的方案，但仍显得力不从心，有时候浏览器奇怪的表现也让我们无所奈何。</p>
+<p>HTML5 新引入的 <code>&lt;picture&gt;</code> 元素及 <code>&lt;source&gt;</code> 元素让我们看到了响应式图像解决方案的曙光。</p>
+<p><code>&lt;source&gt;</code> 元素支持媒体查询，也支持 <code>srcset</code> 属性，<code>srcset</code> 属性的使用方法与 <code>&lt;img&gt;</code> 标签中一致。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(max-width: 640px)"</span> <span class="attr">srcset</span>=<span class="string">"small.jpg 320w"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(max-width: 960px)"</span> <span class="attr">srcset</span>=<span class="string">"medium.jpg 640w"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"large.jpg 1024w"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"small.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><em>注意：</em> 只有 <code>&lt;img&gt;</code> 存在，<code>&lt;picture&gt;</code> 元素才能显现图片。毕竟，<code>&lt;source&gt;</code> 元素只是为 <code>&lt;picture&gt;</code> 提供图片数据源，并没有可视化的能力。</p>
+<p>依据 <code>&lt;source&gt;</code> 的媒体查询信息选择来源是非常精确的，与样式表中的媒体查询一致，不会像 <code>&lt;img&gt;</code> 的 <code>srcset</code> 和 <code>sizes</code> 属性那样由浏览器自信裁决。</p>
+<p>下面展示一个颇为复杂的示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(max-width: 640px)"</span> <span class="attr">srcset</span>=<span class="string">"small2.jpg 2x, small.jpg 1x"</span> <span class="attr">sizes</span>=<span class="string">"calc(100vw / 3)"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(max-width: 960px)"</span> <span class="attr">srcset</span>=<span class="string">"medium2.jpg 2x, medium.jpg 1x"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"large2.jpg 2x, large.jpg 1x"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"small.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> &gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>对于上述代码，浏览器的解析方案如下：</p>
+<ol>
+<li>执行 <code>&lt;source&gt;</code> 中设定的媒体查询，选择一个图片源</li>
+<li>一旦浏览器选择了某个 <code>&lt;source&gt;</code> 作为图片源之后，该 <code>&lt;source&gt;</code> 的 <code>sizes</code> 属性立即生效，作为它所在 <code>&lt;picture&gt;</code> 的宽度</li>
+<li><code>&lt;picture&gt;</code> 宽度确定之后，浏览器会根据当前设备情况、图片尺寸情况，从 <code>srcset</code> 中选择适合的图片</li>
+</ol>
+<h3 id="元素的弊端"><a href="#元素的弊端" class="headerlink" title="元素的弊端"></a><picture>元素的弊端</picture></h3><p>拥有 <code>srcset</code> 和 <code>sizes</code> 属性的 <code>&lt;img&gt;</code> 元素实际上是将图片的选择权全权交给了浏览器，而 <code>&lt;picture&gt;</code> 元素选择 <code>&lt;source&gt;</code> 则是要依赖人工设计的媒体查询的执行结果，根据设备被动选择。</p>
+<p>## </p>
+<h2 id="拯救世界的Client-Hints"><a href="#拯救世界的Client-Hints" class="headerlink" title="拯救世界的Client Hints"></a>拯救世界的Client Hints</h2><p>HTTP Client Hints 是一种比较新的技术，利用这项技术，HTTP 客户端（通常可以认为是浏览器）能够主动将一些特性告诉服务端，以便服务端更有针对性地输出内容。</p>
+<p>其实之前浏览器已经将很多自身特性放在 HTTP 请求中，例如下面这些头部字段：</p>
+<ul>
+<li><code>User-Agent</code>：提供浏览器类型及版本、操作系统及版本、浏览器内核等信息；</li>
+<li><code>Accept</code>：表明浏览器支持哪些 MIME type（例如 Chrome 通过 Accept 表明自己支持 image/webp 图片格式）；</li>
+<li><code>Accept-Encoding</code>：表明本浏览器支持哪些内容编码方式（例如：gzip、deflate、sdch）；</li>
+<li><code>Accept-Language</code>：表明本浏览器支持那些语言；</li>
+</ul>
+<p>通过以上这些头部字段，我们已经可以针对不同客户端输出不同内容。但是有一些浏览器特性，我们无法直接获取，如屏幕分辨率、设备像素比（devicePixelRatio）、用户带宽等。而在移动 Web 中，为了尽可能节省用户流量，需要输出尺寸最合适的图片资源。</p>
+<p>为了解决这种问题，HTPP Client Hints 技术为 HTTP 请求头规定了几个新的字段：</p>
+<ul>
+<li><code>DPR</code>：设备像素比</li>
+<li><code>Viewport-Width</code>：视口宽度</li>
+<li><code>Width</code>：图片的实际宽度</li>
+<li><code>Downlink</code>：客户端最大下载速率</li>
+<li><code>Save-data</code>：布尔值，表示是否应采取额外措施来减少有效负载</li>
+</ul>
+<p>为了使用这项最新的功能，以获得更好的响应式图像体验，我们可以通过配置 HTTP 请求头和 meta 标签两种方式开启：</p>
+<ol>
+<li><code>Accept-CH: DPR, Width, Viewport-Width</code></li>
+<li><code>&lt;meta http-equiv=&quot;Accept-CH&quot; content=&quot;DPR, Width, Viewport-Width&quot;&gt;</code></li>
+</ol>
+
       
     </div>
 
@@ -491,9 +570,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/响应式/" rel="tag"># 响应式</a>
-          
             <a href="/tags/图像/" rel="tag"># 图像</a>
+          
+            <a href="/tags/响应式/" rel="tag"># 响应式</a>
           
         </div>
       
@@ -597,7 +676,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -606,7 +685,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -615,7 +694,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -693,7 +772,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#像素-分辨率-设备像素密度-设备像素比"><span class="nav-number">1.</span> <span class="nav-text">像素/分辨率/设备像素密度/设备像素比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的响应式图像"><span class="nav-number">2.</span> <span class="nav-text">最简单的响应式图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#srcset属性和sizes属性"><span class="nav-number">3.</span> <span class="nav-text">srcset属性和sizes属性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#像素-分辨率-设备像素密度-设备像素比"><span class="nav-number">1.</span> <span class="nav-text">像素/分辨率/设备像素密度/设备像素比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的响应式图像"><span class="nav-number">2.</span> <span class="nav-text">最简单的响应式图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#srcset属性详解"><span class="nav-number">3.</span> <span class="nav-text">srcset属性详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应设备像素比"><span class="nav-number">3.1.</span> <span class="nav-text">响应设备像素比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应视口宽度"><span class="nav-number">3.2.</span> <span class="nav-text">响应视口宽度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#坑"><span class="nav-number">3.3.</span> <span class="nav-text">坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇的sizes语法"><span class="nav-number">4.</span> <span class="nav-text">神奇的sizes语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sizes属性结合srcset属性"><span class="nav-number">4.1.</span> <span class="nav-text">sizes属性结合srcset属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元素让我们忘了"><span class="nav-number">5.</span> <span class="nav-text">元素让我们忘了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素的弊端"><span class="nav-number">5.1.</span> <span class="nav-text">元素的弊端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拯救世界的Client-Hints"><span class="nav-number">6.</span> <span class="nav-text">拯救世界的Client Hints</span></a></li></ol></div>
             
 
           </div>

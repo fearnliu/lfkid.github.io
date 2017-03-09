@@ -1,0 +1,1074 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS3,网页文字," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="CSS 新引入了 @font-face，我们终于可以在 Web 世界里也随心所欲地使用字体了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3之美（四）：网页字体">
+<meta property="og:url" content="https://lfkid.github.io/2016/10/26/CSS3之美（四）：网页字体/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="CSS 新引入了 @font-face，我们终于可以在 Web 世界里也随心所欲地使用字体了。">
+<meta property="og:updated_time" content="2017-03-09T14:43:33.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3之美（四）：网页字体">
+<meta name="twitter:description" content="CSS 新引入了 @font-face，我们终于可以在 Web 世界里也随心所欲地使用字体了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/10/26/CSS3之美（四）：网页字体/"/>
+
+
+
+
+
+  <title> CSS3之美（四）：网页字体 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/10/26/CSS3之美（四）：网页字体/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS3之美（四）：网页字体
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T21:10:07+08:00">
+                2016-10-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T22:43:33+08:00">
+                2017-03-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/26/CSS3之美（四）：网页字体/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/26/CSS3之美（四）：网页字体/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1,846
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      7
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CSS 新引入了 <code>@font-face</code>，我们终于可以在 Web 世界里也随心所欲地使用字体了。</p>
+<a id="more"></a>
+<h2 id="font-face规则"><a href="#font-face规则" class="headerlink" title="@font-face规则"></a>@font-face规则</h2><p>CSS3 字体模块最令人兴奋的事儿就是我们可以在网页中使用自定义字体了，它的核心语法就是 <code>@font-face</code>。其基本语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: nmae;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'font-name'</span>), <span class="built_in">url</span>(<span class="string">'/path/filename.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面具体解释上面代码的含义：</p>
+<ul>
+<li><code>font-family</code>： 用于给自定义字体起个名字，当然，我们也可以使用多个用空格隔开的单词，只要把它们放入引号即可。</li>
+<li><code>src</code>： 即所引用字体的位置。该属性接受几个不同的值：<ul>
+<li><code>local()</code>： 所引用字体本来的名字，它主要是用于检查用户计算机上是否已经安装了同名字体；</li>
+<li><code>url</code>： 所引用字体的网络位置，用于当字体在本地不可用时；</li>
+<li><code>foramt</code>： 用于指定字体类型，毕竟不同的设备可能使用不同类型的字体文件。</li>
+</ul>
+</li>
+</ul>
+<p><em>注意：</em> <code>src</code> 属性的 <code>local()</code> 值后面有个逗号。</p>
+<h3 id="定义不同的风格"><a href="#定义不同的风格" class="headerlink" title="定义不同的风格"></a>定义不同的风格</h3><p><code>font-face</code> 语法是非常简单的，但它只定义了一种字体风格。如果我们要使用同一字体的不同风格，就需要单独地定义每种字体的风格。为此，我们可以使用两种方法来实现：</p>
+<ol>
+<li><p>重用相同的名称并把额外的描述符添加到 <code>font-face</code> 规则上：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'Museo Sans'</span>;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Museo Sans'</span>), <span class="built_in">url</span>(<span class="string">'MuseoSans.otf'</span>)  <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'Museo Sans'</span>;</div><div class="line">    <span class="attribute">font-style</span>: italic;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Museo Sans'</span>), <span class="built_in">url</span>(<span class="string">'MuseoSans_Italic.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>为每种字体样式提供独一无二的名称，并且在字体栈中单独去调用它们：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'Museo Sans'</span>;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Museo Sans'</span>), <span class="built_in">url</span>(<span class="string">'MuseoSans.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'Museo Sans Italic'</span>;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Museo Sans'</span>), <span class="built_in">url</span>(<span class="string">'MuseoSans_Italic.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面这两种方式，个人更为推荐第二种，清晰易懂，简洁明了。</p>
+<h3 id="真实字体风格VS人造字体风格"><a href="#真实字体风格VS人造字体风格" class="headerlink" title="真实字体风格VS人造字体风格"></a>真实字体风格VS人造字体风格</h3><p>真实字体风格即字体源文件就是那种风格的，而人造字体风格指的是通过修改 <code>font-style</code> 属性让正常字体变为想要的风格。下面是代码对比：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: normal font;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'normal font'</span>), <span class="built_in">url</span>(<span class="string">'normal font.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div><div class="line">* &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">"normal font"</span>;</div><div class="line">    <span class="attribute">font-style</span>: italic;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 以上为真实字体风格 */</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/* 以下为人造字体风格 */</span></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: italic font;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'italic font'</span>), <span class="built_in">url</span>(<span class="string">'italic font.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div><div class="line">* &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">"italic font"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述两种方式的差别还是有一定程度的：</p>
+<ul>
+<li>第一种方式源文件是普通字体，通过在使用时改变 <code>font-style</code> 属性值从而到达仿造的斜体效果</li>
+<li>而第二种方式源文件就是斜体风格的相应字体，使用时无需额外改变字体风格样式，是真实的斜体。</li>
+</ul>
+<h2 id="万无一失的-font-face语法"><a href="#万无一失的-font-face语法" class="headerlink" title="万无一失的@font-face语法"></a>万无一失的@font-face语法</h2><h3 id="使用本地字体"><a href="#使用本地字体" class="headerlink" title="使用本地字体"></a>使用本地字体</h3><p><code>src</code> 属性的 <code>local</code> 值用于检查用户是否已经把定义的字体安装在了计算机上，如果用户做了，那么就可以直接应用本地拷贝，而不用再下载字体文件了。唯一遗憾的是，<code>local</code> 不受 IE9 以下版本的所有浏览器支持。</p>
+<p>解决这个缺点的变通方案依赖于 IE8 及其以下版本只允许使用可嵌入开放型字体格式（Embeddable Open Type，EOT）。由于使用了 <code>EOT</code>，我们可以声明两次 <code>src</code> 属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: name;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'filenmae.eot'</span>);  <span class="comment">/* 兼容 IE8 及以下版本 */</span></div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'fontname'</span>), <span class="built_in">url</span>(<span class="string">'filename.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下一个缺点就是 Safari 浏览器使用不同的字体名称参数作为 <code>local()</code> 的值。字体通常有两个名称：一个完整的名称和一个 PostScript 名称。MAC 上的 Safari 需要使用 PostScript 名称，反之其他浏览器接受的是完整名称。解决这个问题是很简单的，只需指定两个 <code>local()</code> 值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: name;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'fontname'</span>), <span class="built_in">local</span>(<span class="string">'altfontname'</span>) <span class="built_in">url</span>(<span class="string">'filename.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于第一个 <code>local()</code>值，我们可以使用 PostScript 名称，而对于第二个 <code>local()</code> 值，可以使用其系列名称。</p>
+<p>然而，使用字体管理程序可能会导致出现第三个缺点。在某些情况下，字体管理软件会显示不正确的字符或者打开一个对话框，询问用户使用字体的许可。解决这一缺点的唯一方式就是添加一个”空“值给 <code>local</code>，强制下载所定义的字体。这个空值只要是个单独字体就行啦。</p>
+<p>所以，将这一节的所有解决方案综合在一起，我们会得到如下代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: name;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'filename.eot'</span>);</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'☺'</span>), <span class="built_in">url</span>(<span class="string">'filename.otf'</span>) <span class="built_in">format</span>(<span class="string">'opentype'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="字体格式"><a href="#字体格式" class="headerlink" title="字体格式"></a>字体格式</h3><p>IE8 及其以下版本只支持专用的 EOT 格式，而现代浏览器允许使用更加通用的 TrueType 和 OpenType 格式。但是许多商用的字体开发商并不允许他们的字体以这种方式使用，因为这样会使得很容易地获得字体的非法拷贝。处于这个原因，Mozilla 跟一些字体开发商进行了协商，从而创建了网页开放字体格式 WOFF。另外，还有一些浏览器也接受可伸缩矢量图形（SVG）字体格式。</p>
+<h3 id="最终的万无一失语法"><a href="#最终的万无一失语法" class="headerlink" title="最终的万无一失语法"></a>最终的万无一失语法</h3><p>为了让选择的字体在每个平台上的所有浏览器上都具有相同的显示，我们需要使用的代码看上去应该像这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: name;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'filename.eot'</span>);</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'☺'</span>),</div><div class="line">    <span class="built_in">url</span>(<span class="string">'filename.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),</div><div class="line">    <span class="built_in">url</span>(<span class="string">'filename.ttf'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>),</div><div class="line">    <span class="built_in">url</span>(<span class="string">'filename.svg'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面介绍另一种可靠的新方法，是由一个大神提出来的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: name;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'filename.eot?'</span>) <span class="built_in">format</span>(eot),</div><div class="line">    <span class="built_in">url</span>(<span class="string">'filename.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),</div><div class="line">    <span class="built_in">url</span>(<span class="string">'filename.otf'</span>) <span class="built_in">format</span>(<span class="string">'otf'</span>),</div><div class="line">    <span class="built_in">url</span>(<span class="string">'filename.svg'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="更多的字体属性"><a href="#更多的字体属性" class="headerlink" title="更多的字体属性"></a>更多的字体属性</h2><p>CSS3 网页字体模块并不仅仅重新引入了 <code>@font-face</code> 规则，它也重新定义唤醒了最先由 CSS2 提议的另外两个字体属性。</p>
+<h3 id="font-size-adjust"><a href="#font-size-adjust" class="headerlink" title="font-size-adjust"></a>font-size-adjust</h3><p>在 CSS 中使用字体栈的唯一缺点就是字体在尺寸上可能会发生变化。当首选字体不可用时，下一备用字体的高度不是我们所能预料的。为了解决这一问题，我们可以使用 <code>font-size-adjust</code> 属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">font-size-adjust</span>: number &#125;</div></pre></td></tr></table></figure>
+<p>语法规则中的 number 是指小写字母 x 占所用字体的高度比例。<code>font-size-adjust</code> 属性值接受一个小数值。</p>
+<h3 id="font-stretch"><a href="#font-stretch" class="headerlink" title="font-stretch"></a>font-stretch</h3><p>一些字体系列包含了紧缩和加宽的变体，而 <code>font-stretch</code> 属性被提出用于访问这些变体，其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">font-stretch</span>: keyword &#125;</div><div class="line"><span class="comment">/* 设置对象中的字体是否横向拉伸变形 */</span></div></pre></td></tr></table></figure>
+<p>其中，<code>font-stretch</code> 属性值可取的关键字 keyword 有以下：</p>
+<ul>
+<li><code>normal</code>： （默认值）正常文字宽度</li>
+<li><code>semi-condensed</code>： 比正常文字宽度窄1个基数</li>
+<li><code>condensed</code>： 比正常文字宽度窄2个基数</li>
+<li><code>extra-condensed</code>： 比正常文字宽度窄3个基数</li>
+<li><code>ultra-condensed</code>： 比正常文字宽度窄4个基数</li>
+<li><code>semi-expanded</code>： 比正常文字宽度宽1个基数</li>
+<li><code>expanded</code>： 比正常文字宽度宽2个基数</li>
+<li><code>extra-expanded</code>： 比正常文字宽度宽3个基数</li>
+<li><code>ultra-expanded</code>： 比正常文字宽度宽4个基数</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+            <a href="/tags/网页文字/" rel="tag"># 网页文字</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（三）：伪类和伪元素/" rel="next" title="CSS3之美（三）：伪类和伪元素">
+                <i class="fa fa-chevron-left"></i> CSS3之美（三）：伪类和伪元素
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（五）：文本阴影/" rel="prev" title="CSS3之美（五）：网页文本">
+                CSS3之美（五）：网页文本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#font-face规则"><span class="nav-number">1.</span> <span class="nav-text">@font-face规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义不同的风格"><span class="nav-number">1.1.</span> <span class="nav-text">定义不同的风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真实字体风格VS人造字体风格"><span class="nav-number">1.2.</span> <span class="nav-text">真实字体风格VS人造字体风格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万无一失的-font-face语法"><span class="nav-number">2.</span> <span class="nav-text">万无一失的@font-face语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用本地字体"><span class="nav-number">2.1.</span> <span class="nav-text">使用本地字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字体格式"><span class="nav-number">2.2.</span> <span class="nav-text">字体格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终的万无一失语法"><span class="nav-number">2.3.</span> <span class="nav-text">最终的万无一失语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多的字体属性"><span class="nav-number">3.</span> <span class="nav-text">更多的字体属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#font-size-adjust"><span class="nav-number">3.1.</span> <span class="nav-text">font-size-adjust</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-stretch"><span class="nav-number">3.2.</span> <span class="nav-text">font-stretch</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/10/26/CSS3之美（四）：网页字体/';
+
+      var disqus_title = "CSS3之美（四）：网页字体";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1152 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS3,图像,背景图片," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="CSS3 为背景图片引入了丰富的特性，这意味我们开发者对背景图片有了更多的掌控权。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3之美（七）：背景图片">
+<meta property="og:url" content="https://lfkid.github.io/2016/10/26/CSS3之美（七）：背景图片/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="CSS3 为背景图片引入了丰富的特性，这意味我们开发者对背景图片有了更多的掌控权。">
+<meta property="og:updated_time" content="2017-03-09T14:58:03.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3之美（七）：背景图片">
+<meta name="twitter:description" content="CSS3 为背景图片引入了丰富的特性，这意味我们开发者对背景图片有了更多的掌控权。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/10/26/CSS3之美（七）：背景图片/"/>
+
+
+
+
+
+  <title> CSS3之美（七）：背景图片 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/10/26/CSS3之美（七）：背景图片/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS3之美（七）：背景图片
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T21:14:32+08:00">
+                2016-10-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T22:58:03+08:00">
+                2017-03-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/26/CSS3之美（七）：背景图片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/26/CSS3之美（七）：背景图片/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2,945
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      12
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CSS3 为背景图片引入了丰富的特性，这意味我们开发者对背景图片有了更多的掌控权。</p>
+<a id="more"></a>
+<h2 id="多背景图片"><a href="#多背景图片" class="headerlink" title="多背景图片"></a>多背景图片</h2><p>CSS3 对现有的 <code>background-*</code> 属性进行了扩展，几乎所有的 <code>background-*</code> 属性现在都可以接受多个值，除了 <code>background-color</code> 属性。</p>
+<p>下面我们介绍使用 <code>background-image</code> 属性为元素添加多个背景层：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'sunny.png'</span>), <span class="built_in">url</span>(<span class="string">'child.png'</span>);</div><div class="line">	<span class="attribute">background-position</span>: <span class="number">95%</span> <span class="number">85%</span>, <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">	<span class="attribute">background-repeat</span>: no-repeat;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在示例代码中 <code>background-image</code> 使用了两张图片，但是在显示时，列表中的第一层图片（<code>sunny.png</code>）会成为最顶层，位于后面的图片将会按声明的顺序先后显示在它的下面。另外，<code>background-position</code> 属性值的顺序遵顼与 <code>background-image</code> 相同的顺序。</p>
+<p><em>注意：<code>background-repeat</code> 属性只有一个唯一的值，如果一个属性的值的数量比其背景图片的数量少，那么这些值就会被重复。在上面的示例中，<code>no-repeat</code> 将会被应用到所有的背景层图片上。</em></p>
+<p>我们可以对 <code>background</code> 简写属性使用多个值，和独立的属性一样，我们也只需要提供一个逗号隔开的列表。上面示例使用简写方式改写如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">background</span>:</div><div class="line">		<span class="built_in">url</span>(<span class="string">'sunny.png'</span>) no-repeat <span class="number">95%</span> <span class="number">85%</span>,</div><div class="line">		<span class="built_in">url</span>(<span class="string">'child.png'</span>) no-repeat <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果同时设置了背景图像 <code>background-image</code> 和 背景颜色 <code>background-color</code>，那么背景图像将覆盖在背景颜色之上。所以，如果我们需要背景颜色的话，那么在写属性代码时应该将其置于逗号隔开的列表的最后位置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">background</span>:</div><div class="line">		<span class="built_in">url</span>(<span class="string">'sunny.png'</span>) no-repeat <span class="number">95%</span> <span class="number">85%</span>,</div><div class="line">		<span class="built_in">url</span>(<span class="string">'child.png'</span>) no-repeat <span class="number">50%</span> <span class="number">50%</span>,</div><div class="line">		<span class="number">#000</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>不过，老版本的浏览器将会忽略以上语法，并引用层叠中的前一条规则。所以，我们应该在使用多值之前在元素上声明一个属性，作为一种优雅降级方案。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'sunny.png'</span>) no-repeat <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">	<span class="attribute">background</span>:</div><div class="line">		<span class="built_in">url</span>(<span class="string">'sunny.png'</span>) no-repeat <span class="number">95%</span> <span class="number">85%</span>,</div><div class="line">		<span class="built_in">url</span>(<span class="string">'child.png'</span>) no-repeat <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这种情况下，不支持的浏览器将会忽略使用多值的属性，然后使用在它之前的单值。不过，要注意在 IE 中，我们需要为这两者使用简写属性，因为如果我们使用 <code>background-*</code> 属性，它们就会优先于简写属性，不会有图片显示出来。</p>
+<h2 id="背景位置"><a href="#背景位置" class="headerlink" title="背景位置"></a>背景位置</h2><p>CSS3 并没有新增与背景位置有关的属性，不过倒是为两个已有属性了增加了新的属性值。</p>
+<h3 id="background-attachment"><a href="#background-attachment" class="headerlink" title="background-attachment"></a><code>background-attachment</code></h3><p>第一个与背景位置相关的属性是 <code>background-attachment</code>，用于设置背景图是跟随对象滚动还是固定的。其原本只有两个值 <code>fixed</code> 和 <code>scroll</code>，但CSS3 为其新增了一个值 <code>local</code>。</p>
+<ul>
+<li><code>fixed</code>： 表示背景图相对于窗口固定位置。</li>
+<li><code>scroll</code>： 表示背景图相对于元素固定，也就是说当元素内容滚动时背景图不会跟随着滚动，因为背景图总要跟着元素本身，但背景图会随元素的祖先或窗口一起滚动。</li>
+<li><code>local</code>： 意味着背景图相对于元素固定，但是当元素滚动时背景图也会随之滚动，因为背景图总是要跟着内容。</li>
+</ul>
+<h3 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a><code>background-position</code></h3><p>第二个属性是 <code>background-position</code>，用于设置背景图开始显示的位置。其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">background-position</span>: value; &#125;</div></pre></td></tr></table></figure>
+<p>该属性默认值为 <code>left top</code>，即背景图从左上角开始显示。</p>
+<p>它的属性值可以为数值、百分比值、关键字值。其中，数值和百分比值指定背景图填充的位置，可以为负值。属性值需要两个参数，第一个会被用于横坐标，第二个会被用于纵坐标，如果我们仅仅只设定了一个值，那么第二个会被默认设为 <code>center</code>。</p>
+<p>可用的关键字值有以下：</p>
+<ul>
+<li><code>left</code> &lt;==&gt; <code>left center</code></li>
+<li><code>right</code> &lt;==&gt; <code>right center</code></li>
+<li><code>top</code> &lt;==&gt; <code>top center</code></li>
+<li><code>bottom</code> &lt;==&gt; <code>bottom center</code></li>
+<li><code>center</code> &lt;==&gt; <code>center center</code></li>
+</ul>
+<p>以上关键字可以组合，所有合法的组合如下：</p>
+<ul>
+<li><code>left top</code> &lt;==&gt; <code>top left</code></li>
+<li><code>left center</code> &lt;==&gt; <code>center left</code></li>
+<li><code>left bottom</code> &lt;==&gt; <code>bottom left</code></li>
+<li><code>right top</code> &lt;==&gt; <code>top right</code></li>
+<li><code>right center</code> &lt;==&gt; <code>center right</code></li>
+<li><code>right bottom</code> &lt;==&gt; <code>bottom right</code></li>
+<li><code>top left</code></li>
+<li><code>top center</code> &lt;==&gt; <code>center top</code></li>
+<li><code>top right</code></li>
+<li><code>bottom left</code></li>
+<li><code>bottom center</code> &lt;==&gt; <code>center bottom</code></li>
+<li><code>bottom right</code></li>
+<li><code>center center</code></li>
+<li><code>center left</code></li>
+<li><code>center right</code></li>
+<li><code>center top</code></li>
+<li><code>center bottom</code></li>
+</ul>
+<p>示例，背景图在容器中居中显示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'test.png'</span>) no-repeat <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而在 CSS3 中，<code>background-position</code> 属性允许最多提供 4 个参数值，如果提供 3 或 4 个参数值，那么每个 length 或 percentage 偏移值前都必须跟着一个关键字（不包括 center），偏移量相对于关键字所表示的位置进行偏移。</p>
+<p>示例，假设背景图在容器中右下方，并且距离右边和底部各有 20px：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'test.png'</span>) no-repeat right <span class="number">20px</span> bottom <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="背景尺寸"><a href="#背景尺寸" class="headerlink" title="背景尺寸"></a>背景尺寸</h2><p>CSS3 新增了一个属性 <code>background-size</code>，通过使用它我们能控制背景图片的缩放。该属性的值可以是一对长度或者百分比值、一个单独的长度或者百分比值（不允许负值），或者关键字。</p>
+<p>该属性的默认值是 <code>atuo</code>，即以原图的宽高为准不变。</p>
+<p>如果使用一对值，其语法是</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">background-size</span>: width height; &#125;</div><div class="line"><span class="comment">/* width 图像宽度</span></div><div class="line"> * height 图像高度</div><div class="line"> */</div></pre></td></tr></table></figure>
+<p>如果使用单个值，则该值会被认为是宽度的大小，而高度则会使用默认值 <code>auto</code>。</p>
+<p>另外，还有两个可用的关键字如下：</p>
+<ul>
+<li><code>contain</code>： 背景图等比缩放，但是其宽高不会超过容器的长或宽，整个背景图始终会被包含在容器内。</li>
+<li><code>cover</code>： 背景图片等比缩放到容器的宽度或高度（向更大的那个值看齐），会完全覆盖容器，背景图像可能会超出其容器，即在容器中无法看到整个背景图的全貌</li>
+</ul>
+<h2 id="精确控制图片位置：显示截至位置和显示原点"><a href="#精确控制图片位置：显示截至位置和显示原点" class="headerlink" title="精确控制图片位置：显示截至位置和显示原点"></a>精确控制图片位置：显示截至位置和显示原点</h2><p>在 CSS2 中，背景图定义的位置是相对于其包含元素的 <code>padding</code> 的外边界的，所有溢出都会扩展到边框之下。CSS3 引入了两个新的属性，可以对其进行更精确的控制。</p>
+<h3 id="background-clip"><a href="#background-clip" class="headerlink" title="background-clip"></a><code>background-clip</code></h3><p>第一个属性是 <code>background-clip</code>，它设置盒模型的哪一部分成为背景显示的截至位置。其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">background-clip</span>: value; &#125;</div></pre></td></tr></table></figure>
+<p><code>background-clip</code> 属性的取值如下：</p>
+<ul>
+<li>默认值<ul>
+<li><code>border-box</code></li>
+</ul>
+</li>
+<li>可用的关键字值<ul>
+<li><code>border-box</code>：背景图显示到 <code>border</code> 外边界处为止</li>
+<li><code>padding-box</code>：背景图显示到 <code>padding</code> 外边界处为止</li>
+<li><code>content-box</code>：背景图显示到 <code>content</code> 外边界处为止</li>
+</ul>
+</li>
+</ul>
+<p>该属性当前在 Opera 中的得到了实现，在 Firefox4 和 IE9 应该也没有问题。较老的 Firefox 版本使用的是非标准的实现，使用值 <code>border</code> 和 <code>padding</code> 分别替代了 <code>border-box</code> 和 <code>padding-box</code>，在属性上使用了专用的 <code>-moz-</code> 前缀。</p>
+<p>Webkit 的情况较为复杂，它最早的实现使用了 <code>border</code> 和 <code>padding</code> 值，就像早期 Firefox 一样，并且也使用了 <code>content</code> 关键字代替了 <code>content-box</code>，而且在所有属性上都具有 <code>-webkit-</code> 前缀。较新的版本使用 <code>border-box</code> <code>padding-box</code> <code>content-box</code>，但仍然使用带前缀的属性。最新的 Webkit 版本，使用 <code>border-box</code> <code>padding-box</code> 的时候没有了前缀，但在使用 <code>content-box</code> 时仍需要前缀。鉴于以上情况，若要编写跨浏览器代码，或许像下面这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E1</span><span class="selector-attr">[class~='bord']</span> &#123;</div><div class="line">	<span class="attribute">-moz-background-clip</span>: border;</div><div class="line">	<span class="attribute">-webkit-background-clip</span>: border;</div><div class="line">	<span class="attribute">-webkit-background-clip</span>: border-box;</div><div class="line">	<span class="attribute">background-clip</span>: border-box;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">E2</span><span class="selector-attr">[class~='padd']</span> &#123;</div><div class="line">	<span class="attribute">-moz-background-clip</span>: padding;</div><div class="line">	<span class="attribute">-webkit-background-clip</span>: padding;</div><div class="line">	<span class="attribute">-webkit-background-clip</span>: padding-box;</div><div class="line">	<span class="attribute">background-clip</span>: padding-box;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">E3</span><span class="selector-attr">[calss~='cont']</span> &#123;</div><div class="line">	<span class="attribute">-webkit-background-clip</span>: content;</div><div class="line">	<span class="attribute">-webkit-background-clip</span>: content-box;</div><div class="line">	<span class="attribute">background-clip</span>: content-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="background-origin"><a href="#background-origin" class="headerlink" title="background-origin"></a><code>background-origin</code></h3><p>第二个属性是 <code>background-origin</code>，它可用来设置背景开始显示的原点。该属性的取值同 <code>background-clip</code> 属性可用的关键字值一样，具体可用取值如下：</p>
+<ul>
+<li><p>默认值</p>
+<ul>
+<li><code>padding-box</code></li>
+</ul>
+</li>
+<li><p>可用的关键字值</p>
+<ul>
+<li><code>content-box</code></li>
+<li><code>padding-box</code></li>
+<li><code>border-box</code></li>
+</ul>
+</li>
+</ul>
+<p>这个属性与之前 <code>background-clip</code> 属性的区别为：</p>
+<ul>
+<li><code>background-clip</code> 用于指定元素对象的背景图显示的截至位置</li>
+<li><code>background-origin</code> 是用于指定元素对象的背景图像计算 <code>background-position</code> 时的参考原点，也就是说，这个属性是与 <code>background-position</code> 属性一起配合使用。<code>background-position</code> 负责设定背景图从容器的哪一块位置开始，而 <code>background-origin</code> 则负责更精确地控制是从容器盒模型的哪一层边界开始。</li>
+</ul>
+<p>和 <code>background-clip</code> 一样，Opera 和最新的 Webkit 浏览器对 <code>background-origin</code> 的实现和规范一致，而 Firefox4 和 IE9 应该也是相同的。较老的 Firefox 和更老一些的 Webkit 版本并没有实现这个属性的标准版本，它们使用带有前缀的属性实现了三个像 <code>border</code> <code>padding</code> <code>content</code> 一样的可能值，而老一点的 Safari5 之前的 Webkit 版本要求使用正确的值，也是通过带前缀的属性实现。因此，跨浏览器代码看上去如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E1</span><span class="selector-attr">[class~='bord']</span> &#123;</div><div class="line">	<span class="attribute">-moz-background-origin</span>: border;</div><div class="line">	<span class="attribute">-webkit-background-origin</span>: border;</div><div class="line">	<span class="attribute">-webkit-background-origin</span>: border-box;</div><div class="line">	<span class="attribute">background-origin</span>: border-box;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">E2</span><span class="selector-attr">[class~='padd']</span> &#123;</div><div class="line">	<span class="attribute">-moz-background-origin</span>: padding;</div><div class="line">	<span class="attribute">-webkit-background-origin</span>: padding;</div><div class="line">	<span class="attribute">-webkit-background-origin</span>: padding-box;</div><div class="line">	<span class="attribute">background-origin</span>: padding-box;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="selector-tag">E3</span><span class="selector-attr">[class~='cont']</span> &#123;</div><div class="line">	<span class="attribute">-moz-background-origin</span>: content;</div><div class="line">	<span class="attribute">-webkit-background-origin</span>: content;</div><div class="line">	<span class="attribute">-webkit-background-origin</span>: content-box;</div><div class="line">	<span class="attribute">background-origin</span>: content-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="背景重复"><a href="#背景重复" class="headerlink" title="背景重复"></a>背景重复</h2><p><code>background-repeat</code> 属性可以控制背景图的重复方式，其取值如下：</p>
+<ul>
+<li><p>默认值</p>
+<ul>
+<li><code>repeat</code>： 水平和垂直方向都重复</li>
+</ul>
+</li>
+<li><p>可用的关键字取值</p>
+<ul>
+<li><code>no-repeat</code>：不重复</li>
+<li><code>repeat</code></li>
+<li><code>repeat-x</code>： 仅在水平方向重复</li>
+<li><code>repeat-y</code>： 仅在垂直方向重复</li>
+</ul>
+</li>
+</ul>
+<p>通过设置这些值中的某一个可以使背景图沿着元素的某一轴线（或者两条轴线）进行平铺，但无法实现更为精确的控制。CSS3 引入了两个新的属性值：</p>
+<ul>
+<li><code>space</code>： 背景图以相同的间距（除了第一次和最后一次）平铺且填充在整个容器或某个方向。不会对背景图进行裁剪和缩放，容器内重复的背景图之间可以看到有明显间距</li>
+<li><code>round</code>： 会缩放背景图，尽可能多地进行重复直到适应且填充整个容器。这个属性值将计算能够水平和垂直填充包含元素的图片的最大完整数量。</li>
+</ul>
+<h2 id="background-属性简写"><a href="#background-属性简写" class="headerlink" title="background-*属性简写"></a>background-*属性简写</h2><p><code>background-*</code> 独立属性纷杂繁多，简写时需要按照以下规则：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background: background-image background-position/background-size background-repeat background-attachment background-origin background-clip background-color;</div></pre></td></tr></table></figure>
+<p>下面以示例说明：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">background</span>:</div><div class="line">        <span class="built_in">url</span>(<span class="string">'test1.png'</span>) no-repeat scroll <span class="number">10px</span> <span class="number">20px</span>/<span class="number">50px</span> <span class="number">60px</span> content-box padding-box,</div><div class="line">        <span class="built_in">url</span>(<span class="string">'test2.png'</span>) no-repeat scroll <span class="number">10px</span> <span class="number">20px</span>/<span class="number">70px</span> <span class="number">90px</span> content-box paddign-box,</div><div class="line">        <span class="number">#aaa</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于 <code>background-color</code> 只能设置一次，且由于写在前面的背景会叠在之后的背景上，所以背景色通常都定义在最后一组上，避免背景色将背景图遮盖。</p>
+<p>上面示例代码等价于以下独立属性写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">background-image      </span>: <span class="built_in">url</span>(<span class="string">'test.png'</span>), <span class="built_in">url</span>(<span class="string">'test2.png'</span>);</div><div class="line">    <span class="attribute">background-repeat     </span>: no-repeat, no-repeat;</div><div class="line">    <span class="attribute">background-attachmnet </span>: scroll, scroll;</div><div class="line">    <span class="attribute">background-position   </span>: <span class="number">10px</span> <span class="number">20px</span>, <span class="number">10px</span> <span class="number">20px</span>;</div><div class="line">    <span class="attribute">background-size       </span>: <span class="number">50px</span> <span class="number">60px</span>, <span class="number">70px</span> <span class="number">90px</span>;</div><div class="line">    <span class="attribute">background-origin     </span>: content-box, content-box;</div><div class="line">    <span class="attribute">background-clip       </span>: padding-box, padding-box;</div><div class="line">    <span class="attribute">background-color      </span>: <span class="number">#aaa</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果定义了多个背景图片，而其他属性的参数值只有一个，那么这些参数值就会被应用到所有背景图上，根据此原则，可以对上面代码进行缩写：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">background-image      </span>: <span class="built_in">url</span>(<span class="string">'test2.png'</span>), <span class="built_in">url</span>(<span class="string">'test2.png'</span>);</div><div class="line">    <span class="attribute">background-repeat     </span>: no-repeat;</div><div class="line">    <span class="attribute">background-attachment </span>: scroll;</div><div class="line">    <span class="attribute">background-position   </span>: <span class="number">10px</span> <span class="number">20px</span>;</div><div class="line">    <span class="attribute">background-size       </span>: <span class="number">50px</span> <span class="number">60px</span>, <span class="number">70px</span> <span class="number">90px</span>;</div><div class="line">    <span class="attribute">background-origin     </span>: content-box;</div><div class="line">    <span class="attribute">background-clip       </span>: padding-box;</div><div class="line">    <span class="attribute">background-color      </span>: <span class="number">#aaa</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另外，如果定义了多个背景图片，而 <code>background-origin</code> 和 <code>background-clip</code> 设置了相同的值，还可以简写为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">background</span>:</div><div class="line">        <span class="built_in">url</span>(<span class="string">'test1.png'</span>) no-repeat scroll <span class="number">10px</span> <span class="number">20px</span>/<span class="number">50px</span> <span class="number">60px</span> padding-box,</div><div class="line">        <span class="built_in">url</span>(<span class="string">'test2.png'</span>) no-repeat scroll <span class="number">10px</span> <span class="number">20px</span>/<span class="number">70px</span> <span class="number">90px</span> padding-box,</div><div class="line">        <span class="number">#aaa</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+            <a href="/tags/图像/" rel="tag"># 图像</a>
+          
+            <a href="/tags/背景图片/" rel="tag"># 背景图片</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（六）：多列/" rel="next" title="CSS3之美（六）：多列">
+                <i class="fa fa-chevron-left"></i> CSS3之美（六）：多列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（八）：边框/" rel="prev" title="CSS3之美（八）：边框">
+                CSS3之美（八）：边框 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多背景图片"><span class="nav-number">1.</span> <span class="nav-text">多背景图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景位置"><span class="nav-number">2.</span> <span class="nav-text">背景位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#background-attachment"><span class="nav-number">2.1.</span> <span class="nav-text">background-attachment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-position"><span class="nav-number">2.2.</span> <span class="nav-text">background-position</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景尺寸"><span class="nav-number">3.</span> <span class="nav-text">背景尺寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精确控制图片位置：显示截至位置和显示原点"><span class="nav-number">4.</span> <span class="nav-text">精确控制图片位置：显示截至位置和显示原点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#background-clip"><span class="nav-number">4.1.</span> <span class="nav-text">background-clip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-origin"><span class="nav-number">4.2.</span> <span class="nav-text">background-origin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景重复"><span class="nav-number">5.</span> <span class="nav-text">背景重复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#background-属性简写"><span class="nav-number">6.</span> <span class="nav-text">background-*属性简写</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/10/26/CSS3之美（七）：背景图片/';
+
+      var disqus_title = "CSS3之美（七）：背景图片";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1096 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS3,媒体查询," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="长期以来，在CSS中有一种方法可以为不同的媒体类型提供不同的样式，这种方法就是使用 link 元素的 media 属性：
+1&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; media=&quot;screen&quot;&amp;gt;
+但是，如果屏幕尺寸有可能在 3.5 英寸到 32 英寸之间时，使用这种方式就没什么用了。对于这个问题，CSS3 通过媒体查询模块 Media Queri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3之美（一）：媒体查询">
+<meta property="og:url" content="https://lfkid.github.io/2016/10/16/CSS3之美（一）：媒体查询/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="长期以来，在CSS中有一种方法可以为不同的媒体类型提供不同的样式，这种方法就是使用 link 元素的 media 属性：
+1&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; media=&quot;screen&quot;&amp;gt;
+但是，如果屏幕尺寸有可能在 3.5 英寸到 32 英寸之间时，使用这种方式就没什么用了。对于这个问题，CSS3 通过媒体查询模块 Media Queri">
+<meta property="og:updated_time" content="2017-03-09T14:30:52.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3之美（一）：媒体查询">
+<meta name="twitter:description" content="长期以来，在CSS中有一种方法可以为不同的媒体类型提供不同的样式，这种方法就是使用 link 元素的 media 属性：
+1&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; media=&quot;screen&quot;&amp;gt;
+但是，如果屏幕尺寸有可能在 3.5 英寸到 32 英寸之间时，使用这种方式就没什么用了。对于这个问题，CSS3 通过媒体查询模块 Media Queri">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/10/16/CSS3之美（一）：媒体查询/"/>
+
+
+
+
+
+  <title> CSS3之美（一）：媒体查询 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/10/16/CSS3之美（一）：媒体查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS3之美（一）：媒体查询
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-16T22:25:47+08:00">
+                2016-10-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T22:30:52+08:00">
+                2017-03-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/16/CSS3之美（一）：媒体查询/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/16/CSS3之美（一）：媒体查询/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2,824
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      11
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>长期以来，在CSS中有一种方法可以为不同的媒体类型提供不同的样式，这种方法就是使用 <code>link</code> 元素的 <code>media</code> 属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>但是，如果屏幕尺寸有可能在 3.5 英寸到 32 英寸之间时，使用这种方式就没什么用了。对于这个问题，CSS3 通过<code>媒体查询模块</code> <a href="http://www.w3.org/TR/css3-mediaqueries/" target="_blank" rel="external">Media Queries Module</a> 提供了解决方案。</p>
+<p>媒体查询提供了一种查询语法去扩展媒体类型，这种查询语法可以更加具体地为用户的设备提供样式。它解决了许多问题，使用它的好处如下：</p>
+<ol>
+<li>媒体查询会基于设备的属性来检测设备，这样就不需要使用浏览器检测脚本了</li>
+<li>允许直接按照设备的功能去设定样式表</li>
+<li>对于小屏幕的设备，CSS规则会自调整以适应屏幕尺寸</li>
+</ol>
+<a id="more"></a>
+<h2 id="媒体查询的基础知识"><a href="#媒体查询的基础知识" class="headerlink" title="媒体查询的基础知识"></a>媒体查询的基础知识</h2><h3 id="引入CSS样式"><a href="#引入CSS样式" class="headerlink" title="引入CSS样式"></a>引入CSS样式</h3><p>为一个 HTML 元素应用 CSS 样式有三种方式。同样地，当然首先也是为相应的媒体查询条件引入 CSS 样式也有三种方式：</p>
+<ol>
+<li>使用 <code>link</code> 元素去调用一个外部样式表：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span> <span class="attr">media</span>=<span class="string">"logic media and (expression)"</span>&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>使用 <code>@import</code> 指令调用外部的样式表：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> url(<span class="string">'file'</span>) logic media and (expression);</div></pre></td></tr></table></figure>
+<ol>
+<li>在一个嵌入 <code>style</code> 属性的 HTML 元素中或在样式表本身利用扩展的 <code>@media</code> 规则使用媒体查询：<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> logic media and (expression) &#123; <span class="selector-tag">rules</span> &#125;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果针对媒体查询的CSS代码量大，推荐使用第1种方式，将其单独组织为一个样式表文件并通过特定语法引入到HTML文件中。如果针对媒体查询的CSS代码量较少，则推荐使用第3种方式，在主要样式表中使用特定语法写出即可。</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>下文以上文的第三种方式为例，详析一下媒体查询的基本语法：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> logic media and (expression) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure></p>
+<p><code>media</code> 属性主要用来声明样式要应用的媒体类型，就像 HTML 的 link 标签一样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"screen, projection"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p> 和当前语法一样，在使用 <code>media</code> 属性时我们可以使用逗号隔开的列表去选择多种媒体类型，不过我们最长用的媒体类型还是 <code>screen</code>，即用于计算机显示器。</p>
+<p><code>@media</code>的规则的第一个属性是<code>logic</code>，可选，值可以为<code>only</code>或<code>not</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only media and (expression) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line"><span class="comment">/* ----- or ----- */</span></div><div class="line">@<span class="keyword">media</span> not media and (expression) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>如果要对不支持该语法的浏览器隐藏规则，可以使用 <code>only</code> 值；对支持该语法的浏览器而言，<code>only</code> 可以被有效地忽略。</li>
+<li><code>not</code> 值有点儿补集的思想，即否定此次特定的媒体查询。如果浏览器不满足设置的参数，就可以使用 <code>not</code> 来应用这些样式。</li>
+</ul>
+<p><code>expression</code> 属性用于接受参数并根据这些参数选择 CSS 样式响应何种设备。我们可以使用 <code>and</code> 操作符去声明 <code>expression</code>，并用它设置媒体类型以外的参数。这些参数被称为媒体特征。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">480px</span>) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line"><span class="comment">/* CSS 规则将会被应用到浏览器窗口宽度大于等于 480px 的设备 */</span></div></pre></td></tr></table></figure>
+<h2 id="详解媒体特征"><a href="#详解媒体特征" class="headerlink" title="详解媒体特征"></a>详解媒体特征</h2><h3 id="媒体特征"><a href="#媒体特征" class="headerlink" title="媒体特征"></a>媒体特征</h3><p>前面说到 <code>expression</code> 属性是根据媒体特征参数选择响应何种设备的，那么什么是媒体特征呢？</p>
+<p>媒体特征就是与显示网页的设备有关的信息，它包括了设备的大小、分辨率等。这些信息被用于匹配一条 <code>expression</code>，若匹配成功则相应的样式规则就会被应用到相应设备上。</p>
+<p>在媒体查询中，需要为大多数的媒体特征表达式提供一个值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (feature: value) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<p>不过在某些情况下，该值也可以被忽略，只对媒体特征本身进行检测：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (feature) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<h3 id="width与height"><a href="#width与height" class="headerlink" title="width与height"></a>width与height</h3><p><code>width</code> 媒体特征描述了特定媒体类型的渲染视区的宽度，实际上，对于桌面的操作系统来说，通常就是浏览器的当前宽度（包括滚动条）。其基本语法需要一个长度值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (width: <span class="number">600px</span>) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<p>看，就是这样，很好理解吧。像读文章一样，上面代码的意思是在宽度为 600px 的浏览器上应用此样式。CSS 还为我们提供了 最小宽度 <code>min-width</code> 和 最大宽度 <code>max-width</code>，方便我们进行更精确地控制，小示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">480px</span>) and (min-width: <span class="number">600px</span>) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line"><span class="comment">/* 在浏览器窗口宽度不小于 480px 且不大于 600px 的设备上应用此样式 */</span></div></pre></td></tr></table></figure>
+<p><code>height</code> 也是同样的呀，只不过用得比较少了，毕竟大家在浏览器里都是垂直滚动嘛，很少有人是水平滚动吧。所以不废话了，小结一下吧：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (width: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (min-width: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (max-width: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (height: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (min-height: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (max-height: value) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="device-width与device-height"><a href="#device-width与device-height" class="headerlink" title="device-width与device-height"></a>device-width与device-height</h3><p>刚刚的 <code>width</code> 与 <code>height</code> 都是针对浏览器窗口的宽高而言的（包括滚动条），而现在要说的 <code>device-width</code> 与 <code>device-height</code> 则是针对设备本身的宽度和高度。<code>device-width</code> 和 <code>device-height</code> 同 <code>width</code> 和 <code>height</code> 的语法没什么大区别，所以也不废话了，小结一下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (device-width: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (min-device-width: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (max-device-width: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (device-height: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (min-device-height: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (max-divice-height: value) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> IOS（iPhone、iPad，等等）和 Android 设备会通过四个屏幕侧边中较短的一对去测量 <code>device-width</code>。也就是说，给定尺寸为 480x600 的设备，无论它是纵向显示还是横向显示，其 <code>device-width</code> 都会是 480px。</p>
+<h3 id="orientation"><a href="#orientation" class="headerlink" title="orientation"></a>orientation</h3><p>如果我们需要对水平方向（如网页浏览器）或者垂直方向（如电子书阅读器）两种网页浏览方式进行优化，则需要使用媒体特征 <code>orientation</code>。它的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (orientation: value) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<p>其中，value 只允许两个关键字值：</p>
+<ul>
+<li><code>landscape</code>： <code>landscape</code> 值会在浏览器宽度大于高度的时候被应用</li>
+<li><code>portrait</code>： 应用场景与 <code>landscape</code> 相反，会在浏览器宽度小于高度的时候被应用</li>
+</ul>
+<p>由于媒体特征 <code>orientation</code> 只有两个值，所以如果我们只使用了其中一个值，那么另外一个自然就是相反的。</p>
+<h3 id="aspect-ratio-device-aspect-ratio"><a href="#aspect-ratio-device-aspect-ratio" class="headerlink" title="aspect-ratio/device-aspect-ratio"></a>aspect-ratio/device-aspect-ratio</h3><p>媒体特征 <code>aspect-ratio</code> 用于检测浏览器的宽高比，而 <code>device-aspect-ratio</code> 特征则用于检测设备的宽高比。它们的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (aspect-ratio: horizontal/vertical) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (device-aspect-ratio: horizontal/vertical) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<p>其中，<code>horizontal</code> 表示宽度，而 <code>vertical</code> 表示高度，二者的值都是正整数，最终媒体特征的值代表查看浏览器（或设备）的屏幕宽度与高度对应的比值。例如：16:9、16:10。</p>
+<h3 id="DPR-设备像素比"><a href="#DPR-设备像素比" class="headerlink" title="DPR(设备像素比)"></a>DPR(设备像素比)</h3><p>一般而言，CSS像素单位（px）是指计算机屏幕上一个单独像素的大小——如果屏幕的分辨率是 1024px X 768px，我们把一个元素的宽度设置为 1024px 时，可以预期它在水平方向上将填满整个屏幕。不过，对于智能手机和移动设备来说情况并不总是这样。在它们的小屏幕上访问网站，通常需要放大显示，这样会导致屏幕像素大于 CSS 像素。例如，以 100% 的比例缩放页面，意味着 1 个 CSS 像素会以 4 个设备像素（2x2）的大小在屏幕上显示。对于可缩放的内容，比如文本和矢量图形，放大不会导致什么问题；但对于位图格式的图片，放大可能会导致严重失真。</p>
+<p>DPR(device pixel ratio)，设备像素比，即设备像素与 CSS 像素的比值。</p>
+<p>媒体特征 <code>device-pixel-ratio</code> 可以根据设备的像素比去判断设备，它在 Mobile Webkit 中的实现带有 <code>-webkit-</code> 前缀。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (-webkit-device-pixel-ratio: value) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<p>其中，value 是一个小数，表示设备的像素密度。当然了，和其他媒体特征一样，我们还是会有最小像素密度 <code>min-device-pixel-ratio</code> 和最大像素密度 <code>max-device-pixel-ratio</code> 的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> media and (-webkit-min-device-pixel-ratio: value) &#123; <span class="selector-tag">rules</span> &#125;</div><div class="line">@<span class="keyword">media</span> media and (-webkit-max-device-pixel-ratio: value) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<h2 id="多种媒体特征一起用"><a href="#多种媒体特征一起用" class="headerlink" title="多种媒体特征一起用"></a>多种媒体特征一起用</h2><p>还记得 <code>@media media</code> 后面的那个 <code>and</code> 么，我们可以使用 and 操作符添加表达式，从而把多个媒体特征查询链接在同一个媒体类型上：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> logic media and (expression) and (expression) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure></p>
+<p>这种语法在应用选定规则之前，先测试两个表达式是否匹配。</p>
+<p>我们也可以在多种媒体类型上设置不同的表达式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> logic media and (expression), media and (expression) &#123; <span class="selector-tag">rules</span> &#125;</div></pre></td></tr></table></figure>
+<h2 id="媒体查询的实际使用"><a href="#媒体查询的实际使用" class="headerlink" title="媒体查询的实际使用"></a>媒体查询的实际使用</h2><p>以上代码中反复出现的 <code>media</code> 表示媒体类型，这是 CSS2 的语法规范。不过我们最常用的还是 <code>screen</code> 即用于计算机显示器。</p>
+<p>下面是个小例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">400px</span>) &#123;</div><div class="line">	<span class="selector-tag">h1</span> &#123;</div><div class="line">        <span class="attribute">background</span>: block <span class="built_in">url</span>(<span class="string">'bc.jpg'</span>) no-repeat <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">        <span class="attribute">color</span>: white;</div><div class="line">        <span class="attribute">height</span>: <span class="number">190px</span>;</div><div class="line">        <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">padding</span>: <span class="number">20px</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的 CSS 规则只会被应用到浏览器窗口大于等于 400px 的设备。</p>
+<p>一般来说，我们可能倾向于先创建一个为较大的浏览器或设备而优化的样式，再使用媒体查询为较小的设备提供不同的样式。但是在现实中，我们却可能不会这样做，由于某些浏览器加载页面资源（比如样式表中包含的图片）的方法所致。</p>
+<p>一般媒体查询的早期使用者，先使用大的背景图片，之后在移动设备设置 <code>disaply: none</code>，将图片隐藏起来。不过，尽管这些背景图片不会显示，但仍然可能被下载并存放在缓存中。这种方式增加了页面的加载时间，也可能会消耗带宽流量——这对于没有无线连接的设备用户来说确实很糟糕。</p>
+<p>所以，创建页面的更好方法是先为移动用户制作一个基本的样式表，然后再为桌面用户制作一个带较大资源的样式表，最后使用像 <code>device-width</code> 这样的媒体特征进行查询来加载。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"mobile.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"desktop.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"screen"</span> <span class="attr">and</span> (<span class="attr">min-device-width:</span> <span class="attr">480px</span>)"&gt;</span></div></pre></td></tr></table></figure>
+<p>如上，采用这种方式把样式表分开后，对于屏幕宽度小于 480px 的设备，将不会加载 desktop.css 文件，那些大资源自然也不会在后台下载了。</p>
+<p>这种方式最大的例外就是 IE。IE9 以下的版本都不支持媒体查询，为了解决这个问题，我们需要 CSS Hack：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"mobile.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"descktop.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"screen and (min-device-width: 480px)"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--[if It IE 9]&gt;</span></div><div class="line">    &lt;link href="desktop.css" rel="stylesheet" media="screen"&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+            <a href="/tags/媒体查询/" rel="tag"># 媒体查询</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/03/详解CSS的矩阵变换函数matrix/" rel="next" title="详解CSS的矩阵变换函数matrix()">
+                <i class="fa fa-chevron-left"></i> 详解CSS的矩阵变换函数matrix()
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（三）：伪类和伪元素/" rel="prev" title="CSS3之美（三）：伪类和伪元素">
+                CSS3之美（三）：伪类和伪元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询的基础知识"><span class="nav-number">1.</span> <span class="nav-text">媒体查询的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入CSS样式"><span class="nav-number">1.1.</span> <span class="nav-text">引入CSS样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法"><span class="nav-number">1.2.</span> <span class="nav-text">基本语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详解媒体特征"><span class="nav-number">2.</span> <span class="nav-text">详解媒体特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体特征"><span class="nav-number">2.1.</span> <span class="nav-text">媒体特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#width与height"><span class="nav-number">2.2.</span> <span class="nav-text">width与height</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#device-width与device-height"><span class="nav-number">2.3.</span> <span class="nav-text">device-width与device-height</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orientation"><span class="nav-number">2.4.</span> <span class="nav-text">orientation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aspect-ratio-device-aspect-ratio"><span class="nav-number">2.5.</span> <span class="nav-text">aspect-ratio/device-aspect-ratio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DPR-设备像素比"><span class="nav-number">2.6.</span> <span class="nav-text">DPR(设备像素比)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多种媒体特征一起用"><span class="nav-number">3.</span> <span class="nav-text">多种媒体特征一起用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询的实际使用"><span class="nav-number">4.</span> <span class="nav-text">媒体查询的实际使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/10/16/CSS3之美（一）：媒体查询/';
+
+      var disqus_title = "CSS3之美（一）：媒体查询";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

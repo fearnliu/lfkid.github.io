@@ -1,0 +1,1113 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS3,颜色," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="CSS3 新引入的颜色度量单位、与可设置的透明度都令人兴奋。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3之美（九）：颜色与不透明度">
+<meta property="og:url" content="https://lfkid.github.io/2016/10/26/CSS3之美（九）：颜色与不透明度/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="CSS3 新引入的颜色度量单位、与可设置的透明度都令人兴奋。">
+<meta property="og:updated_time" content="2017-03-09T15:07:17.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3之美（九）：颜色与不透明度">
+<meta name="twitter:description" content="CSS3 新引入的颜色度量单位、与可设置的透明度都令人兴奋。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/10/26/CSS3之美（九）：颜色与不透明度/"/>
+
+
+
+
+
+  <title> CSS3之美（九）：颜色与不透明度 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/10/26/CSS3之美（九）：颜色与不透明度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS3之美（九）：颜色与不透明度
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T21:16:04+08:00">
+                2016-10-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T23:07:17+08:00">
+                2017-03-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/26/CSS3之美（九）：颜色与不透明度/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/26/CSS3之美（九）：颜色与不透明度/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      1,825
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      7
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CSS3 新引入的颜色度量单位、与可设置的透明度都令人兴奋。</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>W3C 标准化组织定义的标准 16中颜色名称分别是：</p>
+<ol>
+<li>aqua 水蓝</li>
+<li>black 黑</li>
+<li>blue 蓝</li>
+<li>fuchsia 紫红</li>
+<li>gray 灰</li>
+<li>green 绿</li>
+<li>lime 绿黄</li>
+<li>marron 酱紫</li>
+<li>navy 深蓝</li>
+<li>oblive 橄榄绿</li>
+<li>purple 紫</li>
+<li>red 红</li>
+<li>silver 银</li>
+<li>teal 青</li>
+<li>white 白</li>
+<li>yellow 黄</li>
+</ol>
+<p>CSS2 中的颜色是基于红（Red）、绿（Green）、蓝（Blue）模型的（RGB），不论使用十六进制表示法还是RGB颜色值，都需要把这三种颜色组合起来，才能为页面添加颜色。这种模型对于开发人员来说是痛苦的，因为设计师所需要的颜色各种各样，往往还需要控制深浅度和色调，所以开发人员不得不使用第三方软件去找到精确匹配的色调。</p>
+<p>CSS3颜色模块针对这个问题提供了解决方案。除此之外，还引入了更多的内容。</p>
+<h2 id="使用opacity属性设置透明度"><a href="#使用opacity属性设置透明度" class="headerlink" title="使用opacity属性设置透明度"></a>使用opacity属性设置透明度</h2><p>透明度，严格来讲，是估量一个对象对光线的阻力——某种东西更加不透明，表示它允许透过的光线就更少；某种东西的透明度更高，它允许通过的光线就更多。一个没有透明度的对象是完全不透光的，而一个没有不透明度的对象则是完全透明的。在 CSS 中，二者均使用 <code>opacity</code> 属性来度量。本质上，对于 <code>opacity</code>，我们设置的是背景在多大程度上可以透过指定的元素看到。</p>
+<p><code>opacity</code> 属性语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">opacity</span>: number; &#125;</div></pre></td></tr></table></figure>
+<p>number 是一个介于 0~1 之间的小数，其中 0 表示完全透明，1 表示完全不透明。</p>
+<p>这个属性有一点非常特殊：<code>opacity</code> 属性的值会被它的所有子元素继承，并且子元素所继承的 <code>opacity</code> 属性值的设置不能够被其他任何属性覆盖，另外子元素的 <code>opacity</code> 属性值只能向下覆写而不能向上覆写。也就是，我们永远不可能让子元素比它的父元素更加不透明。</p>
+<h2 id="Alpha通道"><a href="#Alpha通道" class="headerlink" title="Alpha通道"></a>Alpha通道</h2><p>和 <code>opacity</code> 属性相似，Alpha 通道（简称 Alpha）是对一种颜色透明度的度量。所以，尽管使用 Alpha 的颜色值可以像其他任何颜色值一样被子元素所继承，但元素的整体不透明度并不受影响。</p>
+<p>CSS3 引入 Alpha 作为 RGBA 颜色模型中的一个值。RGBA 中的 RGB 即是 CSS2 中的 RGB 模型，A 就是 CSS3 新引入的 Alpha。其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">color</span>: <span class="built_in">rgba</span>(red, green, blue, alpha); &#125;</div></pre></td></tr></table></figure>
+<p><code>alpha</code> 参数的值和 <code>opacity</code> 的参数值语法是一样的，是一个 0~1 之间的小数。</p>
+<p><code>rgba</code> 和 <code>opacity</code> 的区别在与，前者是一个颜色值，而后者是控制元素的透明度的；另外，前者只能精确地应用到它指定的元素上，而后者所应用的元素的所有子元素都会继承其特性。</p>
+<h3 id="RGBA优雅降级"><a href="#RGBA优雅降级" class="headerlink" title="RGBA优雅降级"></a>RGBA优雅降级</h3><p>不支持 RGBA 的浏览器会忽略其所声明的颜色值。为了优雅降级，我们应该制定两次颜色：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">color</span>: <span class="number">#F000</span>;</div><div class="line">	<span class="attribute">color</span>: <span class="built_in">rgba</span>(255, 0, 0, 0.75);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是这样做，一定要注意，确保优雅降级后不会影响到最终的设计效果。</p>
+<h2 id="HSL"><a href="#HSL" class="headerlink" title="HSL"></a>HSL</h2><p>HSL 中的三个字母分别代表 Hue（色度）、Saturation（饱和度）、Lightness（亮度）。</p>
+<p>要使用 HSL 定义一个颜色，首先必须在 0~359 的颜色环中为色调选择一个值。任何更高的值只是 0~359 的重复，例如红色的数值为 0，所以 360 和 720 也是红色。</p>
+<p>在颜色环中，作为最基本颜色的红、绿、蓝分别被分为 120’，所以纯红、纯绿和纯蓝的数值分别为 0、120、240。处于这些数值之外的值表示构成基本颜色外不同比例的色调。</p>
+<p>接着需要饱和度等级，它是 0~100 间的百分数值。该值用以确定色彩显示的褪色或鲜明程度。饱和度值以中灰色（0%）环中心点为起点，随着环向外延伸，色彩变得越发鲜明（饱和度最大值为100%）。</p>
+<p>最后就是色彩的亮度，亮度的取值也是从 0~100 的百分数值。值为 50% 时色彩最饱满、亮度最高，数值越低，颜色越暗直至黑色（0%）。数值越高，颜色越亮，直至白色（100%）。可以将这种颜色想象成在颜色重混合了黑色和白色。</p>
+<p>因此，为了选择一个完全饱和、具有标准亮度的黄色，可使用如下代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">color</span>: <span class="selector-tag">hsl</span>(60, 100%, 50%);</div></pre></td></tr></table></figure>
+<p>HSL 就好像是所有可能的 RGB 颜色被映射到三维之中。所有可能的颜色被安排在一个带有中心轴的圆柱体中，围绕该中心轴的角度就是色度（H），与该中心轴的距离就是饱和度（S），而沿着轴线距离就是明度（L）。</p>
+<p>色度代表主要颜色，从红色开始和结束（0或者360度），并包括了这中间所有的主要颜色。色度就是指向某个特定颜色的圆周的角度。</p>
+<p>饱和度就是该颜色的最强度或者力度：0%就是没有强度，会让颜色变得稍微有些灰色，而 100% 就是全部强度，是该颜色的最强版。</p>
+<p>明度就是颜色明暗程度，50%是真实色度，0%是黑色，而 100%是白色。</p>
+<p>HSL的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">color</span>: <span class="built_in">hsl</span>(hue, saturation, lightness); &#125;</div></pre></td></tr></table></figure>
+<p>hue 接受的值从 0 至 360，而 saturation 和 lightness 接受的值则是从 0% 至 100%。</p>
+<p>下表是四种颜色值写法常见的颜色等效值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">HSL</th>
+<th>RGB</th>
+<th>十六进制数</th>
+<th>关键字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0,0%,0%</td>
+<td>0,0,0</td>
+<td>#000000</td>
+<td>black</td>
+</tr>
+<tr>
+<td style="text-align:center">360,0%,100%</td>
+<td>255,255,255</td>
+<td>#FFFFFF</td>
+<td>white</td>
+</tr>
+<tr>
+<td style="text-align:center">0,100%,50%</td>
+<td>255,0,0</td>
+<td>#FF0000</td>
+<td>red</td>
+</tr>
+<tr>
+<td style="text-align:center">120,100%,25%</td>
+<td>0,128,0</td>
+<td>#008000</td>
+<td>green</td>
+</tr>
+<tr>
+<td style="text-align:center">240,100%,50%</td>
+<td>0,0,255</td>
+<td>#0000FF</td>
+<td>blue</td>
+</tr>
+</tbody>
+</table>
+<p>这一表格实际上没有表述全部实情，许多不同值的组合也可以创造出白色。</p>
+<h3 id="HSLA"><a href="#HSLA" class="headerlink" title="HSLA"></a>HSLA</h3><p>HSL 也可以利用 Alpha 通道实现扩展，与 RGBA 类似：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">color</span>: <span class="built_in">hsl</span>(hue, saturation, lightness, alpha); &#125;</div></pre></td></tr></table></figure>
+<h2 id="颜色变量currentColor"><a href="#颜色变量currentColor" class="headerlink" title="颜色变量currentColor"></a>颜色变量currentColor</h2><p>CSS3 新引入了一个颜色值关键字 <code>currentColor</code>。这个关键字的作用更像是一个变量，也就是说它的值是继承的。它可以应用在文档树中的不同位置。一个元素的 <code>currentColor</code> 值是它自己的 <code>color</code> 属性值，并且像 <code>color</code> 一样，<code>currentColor</code> 可以被继承。</p>
+<p>下面以实例说明：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">	<span class="attribute">color</span>: yellow;</div><div class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid currentColor;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码展示了 <code>currentColor</code> 的用法，它就像一个变量一样，保存着继承而来的 <code>color</code> 值，使用这个属性的好处是如果需要修改属性，不用再对每个子元素就行修改了，可以直接修改父元素的 <code>color</code> 值，前提是子元素的颜色设置都是通过 <code>currentColor</code> 实现的。</p>
+<h2 id="匹配操作系统外观"><a href="#匹配操作系统外观" class="headerlink" title="匹配操作系统外观"></a>匹配操作系统外观</h2><p>CSS3 中有一个属性 <code>appearance</code>，用于设置元素外观按照本地默认样式显示。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">appearance</span>: keyword; &#125;</div></pre></td></tr></table></figure>
+<p>其中，关键字值 keyword 的值来自于用户界面元素的一长串列表。在此不赘述。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+            <a href="/tags/颜色/" rel="tag"># 颜色</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（八）：边框/" rel="next" title="CSS3之美（八）：边框">
+                <i class="fa fa-chevron-left"></i> CSS3之美（八）：边框
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（十）：渐变/" rel="prev" title="CSS3之美（十）：渐变">
+                CSS3之美（十）：渐变 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用opacity属性设置透明度"><span class="nav-number">2.</span> <span class="nav-text">使用opacity属性设置透明度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alpha通道"><span class="nav-number">3.</span> <span class="nav-text">Alpha通道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RGBA优雅降级"><span class="nav-number">3.1.</span> <span class="nav-text">RGBA优雅降级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HSL"><span class="nav-number">4.</span> <span class="nav-text">HSL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HSLA"><span class="nav-number">4.1.</span> <span class="nav-text">HSLA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#颜色变量currentColor"><span class="nav-number">5.</span> <span class="nav-text">颜色变量currentColor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配操作系统外观"><span class="nav-number">6.</span> <span class="nav-text">匹配操作系统外观</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/10/26/CSS3之美（九）：颜色与不透明度/';
+
+      var disqus_title = "CSS3之美（九）：颜色与不透明度";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

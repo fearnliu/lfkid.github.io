@@ -1,0 +1,1093 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网页文字," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="网页文字效果多种多样，丰富多彩，本文记述了常见的特效实现方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网页文字与字体">
+<meta property="og:url" content="https://lfkid.github.io/2016/03/04/网页文字与字体/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="网页文字效果多种多样，丰富多彩，本文记述了常见的特效实现方式。">
+<meta property="og:updated_time" content="2017-03-09T14:23:38.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网页文字与字体">
+<meta name="twitter:description" content="网页文字效果多种多样，丰富多彩，本文记述了常见的特效实现方式。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/03/04/网页文字与字体/"/>
+
+
+
+
+
+  <title> 网页文字与字体 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/03/04/网页文字与字体/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                网页文字与字体
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-04T15:19:37+08:00">
+                2016-03-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T22:23:38+08:00">
+                2017-03-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/04/网页文字与字体/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/网页文字与字体/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2,297
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      9
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>网页文字效果多种多样，丰富多彩，本文记述了常见的特效实现方式。</p>
+<a id="more"></a>
+<h2 id="文本缩进和首字符下沉"><a href="#文本缩进和首字符下沉" class="headerlink" title="文本缩进和首字符下沉"></a>文本缩进和首字符下沉</h2><p>文本缩进利用 <code>text-indent</code> 来实现，该属性规定文本块中首行文本的缩进大小，其值可能有以下几种情况：</p>
+<ol>
+<li>确切数值：定义固定的缩进</li>
+<li>百分数：定义基于父元素宽度的百分比的缩进</li>
+</ol>
+<p>注意，数值可以为负，若为负值，首行将会向左缩进。</p>
+<p>首字符下沉的效果可通过 <code>:first-letter</code> 伪类选择器和向左浮动 <code>float: left;</code> 来实现。</p>
+<p>下面是 CSS 代码示例，期中 a 为一块文本的 id。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#a</span> &#123;</div><div class="line">    <span class="attribute">text-indent</span>: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">25px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#a</span><span class="selector-pseudo">:first-letter</span> &#123;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">    <span class="attribute">text-transform</span>: uppercase;  <span class="comment">/* 将首字母转换为大写 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上例中出现的属性 <code>text-transform</code> 用于控制文本的大小写。其值列表如下：</p>
+<ol>
+<li>none：默认，定义带有小写字母和大写字母的标准的文本</li>
+<li>capitalize：文本中的每个单词以大写字母开头</li>
+<li>uppercase：大写</li>
+<li>lowercase：小写</li>
+<li>inherit：规定应该从父元素继承 text-transform 属性的值</li>
+</ol>
+<h2 id="自定义文本被选中时的样式"><a href="#自定义文本被选中时的样式" class="headerlink" title="自定义文本被选中时的样式"></a>自定义文本被选中时的样式</h2><p>当鼠标选中网页上的文本时，默认的样式问蓝底白字，在 CSS3 中，这种样式是可以自定义的。CSS 3 中有 UI 元素状态伪类 <code>::selection</code>，该属性可以设置文本选中的效果。</p>
+<p>示范 CSS 代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-pseudo">::-moz-selection</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    <span class="attribute">background-color</span>: yellow;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-pseudo">::selection</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    <span class="attribute">background-color</span>: yellow;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意：Firefox 通过其私有属性 <code>::-moz-selection</code> 支持此属性。</p>
+<h2 id="文本对齐"><a href="#文本对齐" class="headerlink" title="文本对齐"></a>文本对齐</h2><p>文本（强调一下，注意是文本！！！）的对齐非常简单，使用 <code>text-align</code> 属性即可，该属性最常见的三个值为 <code>left</code>、<code>center</code>、<code>right</code> ，分别表示左、中间、右对齐。另外，CSS3 引进了值 <code>justify</code> 表示两端对齐，不过现在浏览器的支持情况并不好。</p>
+<p>有一点需要注意，如果要让文字居于一个块的中央部位，需使用以下代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>期中，属性 <code>line-height</code> 的值需要设置为与包容此文字的块的 <code>height</code> 值相同。</p>
+<h2 id="文字、字符间距"><a href="#文字、字符间距" class="headerlink" title="文字、字符间距"></a>文字、字符间距</h2><p>控制汉字、英文单词内部字符的间距使用 <code>letter-spacing</code> 属性，该属性值允许为负。</p>
+<p>控制英文单词之间的距离使用 <code>word-spacing</code> 属性。</p>
+<p>控制一段文字的行间距使用 <code>line-height</code> 属性，其值可以为纯数字（但是不能为负），此数字会与当前的字体尺寸相乘来设置行间距。</p>
+<p>属性 <code>white-space</code> 用于控制文字中的空格与回车。其可能的值与作用如下表：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre</td>
+<td>原文本格式化输出</td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>连续多个空格合并为一个，不换行直到遇到 br 标签</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>合并连续多个空格，保留换行</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>保留空格，保留换行</td>
+</tr>
+</tbody>
+</table>
+<p>注意：浏览器对 Tab 的处理方式与空格符相同</p>
+<hr>
+<p>##文本装饰与字体粗斜</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/* 文本装饰 */</div><div class="line">text-decoration: overline;  /* 下划线 */</div><div class="line">text-decoration: line-though;   /* 穿过线 */</div><div class="line">text-decoration: overline;  /* 上划线 */</div><div class="line"></div><div class="line">/* 字体正斜 */</div><div class="line">font-style: italic; /* 斜体 */</div><div class="line">font-style: oblique;    /* 倾斜样式的字体 */</div><div class="line"></div><div class="line">/* 字体粗细 */</div><div class="line">font-weight: bold;  /* 粗体 */</div><div class="line">font-weight: bolder;    /* 更粗的字体 */</div><div class="line">font-weight: lighter;   /* 更细的字体 */</div><div class="line">font-weight: 具体数值;  /* 定义由粗到细的字符 */</div></pre></td></tr></table></figure>
+<p>注意：<code>font-style</code> 属性值有两个，italic（斜体） 和 oblique（倾斜），二者的区别在于：italic（斜体）是一种简单的字体风格，对每个字母的结构有一些小改动，来反映变化的外观；而 oblique（倾斜）则是将正常竖直的文本按一定角度倾斜得到的。通常情况下，二者所表现出来的外观在浏览器中看上去完全一样。  </p>
+<h2 id="文字阴影"><a href="#文字阴影" class="headerlink" title="文字阴影"></a>文字阴影</h2><p>属性 <code>text-shadow</code> 是 CSS3 新增属性，利用它可以创造出文字阴影的效果。<br>该属性同时接受 4 个参数：依次是：阴影相对于原对象的水平偏移值（正数为向右，允许负值）、阴影相对于原对象的垂直偏移值（正数为向下，允许负值）、阴影的模糊程度（0时与原对象一样，数值越大越模糊）、阴影颜色。<br>例如：<code>text-shadow: 10px 8px 5px red</code> 表示阴影为红色，位于原对象右下方 (10, 8) 处，模糊程度为 5px。</p>
+<h2 id="文字毛玻璃效果"><a href="#文字毛玻璃效果" class="headerlink" title="文字毛玻璃效果"></a>文字毛玻璃效果</h2><p>使用文字阴影和字体透明颜色可以合成毛玻璃效果，其主要代码为<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">box-shadow</span>: 1<span class="selector-tag">px</span> 1<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> <span class="selector-id">#ccc</span>;</div><div class="line"><span class="selector-tag">color</span>: <span class="selector-tag">rgba</span>(0,0,0,0,);</div><div class="line"><span class="selector-tag">text-shadow</span>: 0 0 10<span class="selector-tag">px</span> <span class="selector-tag">black</span>;</div></pre></td></tr></table></figure></p>
+<p>上面代码中第1行为边框阴影，第3行为文字阴影，第2行通过透明度的设置使得文字变为不可见状态，只留下文本阴影的模糊效果。</p>
+<p>注意：使用完全透明的效果并不等同于使用白色，本示例若使用白色，可以清晰地看到白色字体，而不是模糊的效果。</p>
+<h2 id="文本溢出处理"><a href="#文本溢出处理" class="headerlink" title="文本溢出处理"></a>文本溢出处理</h2><p>网页设计经常发生文本内容超出容器范围的问题，在内容较多时采用分页效果，在内容较少时则采用一些普通的文本溢出处理。常用的文本溢出处理方式有：</p>
+<ul>
+<li>简单裁切</li>
+<li>简单隐藏</li>
+<li>隐藏并显示省略号</li>
+<li>使用滚动条</li>
+</ul>
+<p>与文本溢出处理相关的属性有 2 个，<code>overflow</code> 和 <code>text-overflow</code>。前者的处理主要是针对包含文本的容器而言，比如 div 啦；而后者的处理主要是针对文本本身而言。下面是代码示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 简单隐藏 */</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.hidden</span> &#123;</div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 使用滚动条 */</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.scroll</span> &#123;</div><div class="line">    <span class="attribute">overflow</span>: scroll;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 简单裁切 */</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.clip</span> &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid;</div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">    <span class="attribute">white-space</span>: nowrap;</div><div class="line">    <span class="attribute">text-overflow</span>: clip;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 超出部分显示省略号 */</span></div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.ellipsis</span> &#123;</div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">    <span class="attribute">white-space</span>: nowrap;</div><div class="line">    <span class="attribute">text-overflow</span>: ellipsis;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="金属质感文字"><a href="#金属质感文字" class="headerlink" title="金属质感文字"></a>金属质感文字</h2><p>文字的金属质感效果直接实现较为困难，本节效果的实现原理为在文本上方添加一个使用半透明和渐变效果的遮罩层。代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">    <span class="attribute">color</span>: white;</div><div class="line">    <span class="attribute">background</span>: black;</div><div class="line">    <span class="attribute">font-weight</span>: bold;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">30px</span>;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">span</span><span class="selector-class">.cover</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to bottom, black 0%, transparent 50%, black);</div><div class="line">    <span class="attribute">opacity</span>: <span class="number">0.5</span>;   <span class="comment">/* 设置透明度 */</span></div></pre></td></tr></table></figure>
+<p>上述代码在 p 标签中使用一个 span，该 span 的大小与父元素相同。为了实现金属质感，在第 2 行设置文字为黑底白字。span 上使用渐变，从顶部渐变到底部，从黑色渐变到透明再渐变到黑色（第8行渐变部分只使用了W3C标准）在第9行对span的整体透明度进行了设置，这不是必要的，但可以效果更好。</p>
+<p>注意：<code>span</code> 部分也可以使用半透明的背景图片实现，只是不如渐变灵活。</p>
+<h2 id="隐藏文本"><a href="#隐藏文本" class="headerlink" title="隐藏文本"></a>隐藏文本</h2><p>隐藏网页元素的方法有很多种，比如使用 <code>display: none;</code>，或是使用全透明（opacity）。有时并不希望文本丢失，而通常是把文字转移到屏幕的外面，换句话说，文字在屏幕之外，用户看不见，但它依然是存在的。下面是两种隐藏文本的方式：</p>
+<ul>
+<li>使用 <code>text-indent</code> 隐藏，图片替换文本、搜索引擎优化</li>
+<li>使用定位隐藏——利于屏幕讲述工具的阅读</li>
+</ul>
+<p>text-indent 属性本来是用于文本缩进的，当文本缩进使用负参数缩进到屏幕之外时，文本就变得不可见了。此方法可以用图片代替文本，之前很多网站使用 h1 标签，把文本用此方法隐藏，在 h1 上设置 logo 为背景并设置居中来做搜索引擎优化（目前用此方法做搜索引擎优化效果已经过时）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">    <span class="attribute">text-indent</span>: -<span class="number">9999px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto ;</div><div class="line">    <span class="attribute">width</span>: <span class="number">490px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;  </div><div class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"img/baidu.jpg"</span>) norepeat;  <span class="comment">/* 背景图 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用绝对定位使文本脱离文档流，然后把文本设置在屏幕的不可见区域即可。很多网页就使用此方法隐藏图标下的字体，但同时有利于“屏幕讲述者”阅读文本对视觉障碍者提供便利。其本质为绝对定位使得文字不可见。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.screen-reader-text</span> &#123;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">    <span class="attribute">top</span>: -<span class="number">9999px</span>;</div><div class="line">    <span class="attribute">left</span>: -<span class="number">9999px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="文字旋转"><a href="#文字旋转" class="headerlink" title="文字旋转"></a>文字旋转</h2><p>利用 CSS3 变形可以方便地实现文字旋转：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-webkit-transform</span><span class="selector-pseudo">:rotate(-90deg)</span>;</div><div class="line"><span class="selector-tag">-moz-transform</span>: <span class="selector-tag">rotate</span>(<span class="selector-tag">-90deg</span>);</div><div class="line"><span class="selector-tag">-o-transform</span>: <span class="selector-tag">rotate</span>(<span class="selector-tag">-90deg</span>);</div><div class="line"><span class="selector-tag">-ms-transform</span>: <span class="selector-tag">rotate</span>(<span class="selector-tag">-90deg</span>);</div><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">rotate</span>(<span class="selector-tag">-90deg</span>);</div></pre></td></tr></table></figure>
+<h2 id="现代字体栈"><a href="#现代字体栈" class="headerlink" title="现代字体栈"></a>现代字体栈</h2><p>CSS 字体栈是一系列的字体，它包含了能在不同操作系统和平台上展示的字体，以尽可能地使排版保持一致性。浏览器会在 font-family 规定的所有字体中从前往后依次查找，如果找不到当前字体就查找下一个字体。网页设计的一个大目标是向大范围用户提供漂亮的排版，而且要考虑字体对所有的用户都有效，所以创建字体栈的原则是使用多个操作系统或终端所共有的或者交叉范围大的一系列字体，需要大量备用字体。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网页文字/" rel="tag"># 网页文字</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/18/HTML图像/" rel="prev" title="HTML图像">
+                HTML图像 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文本缩进和首字符下沉"><span class="nav-number">1.</span> <span class="nav-text">文本缩进和首字符下沉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义文本被选中时的样式"><span class="nav-number">2.</span> <span class="nav-text">自定义文本被选中时的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本对齐"><span class="nav-number">3.</span> <span class="nav-text">文本对齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字、字符间距"><span class="nav-number">4.</span> <span class="nav-text">文字、字符间距</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字阴影"><span class="nav-number">5.</span> <span class="nav-text">文字阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字毛玻璃效果"><span class="nav-number">6.</span> <span class="nav-text">文字毛玻璃效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本溢出处理"><span class="nav-number">7.</span> <span class="nav-text">文本溢出处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#金属质感文字"><span class="nav-number">8.</span> <span class="nav-text">金属质感文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏文本"><span class="nav-number">9.</span> <span class="nav-text">隐藏文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字旋转"><span class="nav-number">10.</span> <span class="nav-text">文字旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现代字体栈"><span class="nav-number">11.</span> <span class="nav-text">现代字体栈</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/03/04/网页文字与字体/';
+
+      var disqus_title = "网页文字与字体";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1146 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS3,动画," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="除去 2D、3D变换，CSS3 中最让人兴奋的应该就是过渡与动画模块了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3之美（十一）：过渡与动画">
+<meta property="og:url" content="https://lfkid.github.io/2016/10/26/CSS3之美（十一）：过渡与动画/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="除去 2D、3D变换，CSS3 中最让人兴奋的应该就是过渡与动画模块了。">
+<meta property="og:updated_time" content="2017-03-09T16:07:13.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3之美（十一）：过渡与动画">
+<meta name="twitter:description" content="除去 2D、3D变换，CSS3 中最让人兴奋的应该就是过渡与动画模块了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/10/26/CSS3之美（十一）：过渡与动画/"/>
+
+
+
+
+
+  <title> CSS3之美（十一）：过渡与动画 | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/10/26/CSS3之美（十一）：过渡与动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS3之美（十一）：过渡与动画
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T21:17:38+08:00">
+                2016-10-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-10T00:07:13+08:00">
+                2017-03-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/26/CSS3之美（十一）：过渡与动画/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/26/CSS3之美（十一）：过渡与动画/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      2,758
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      10
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>除去 2D、3D变换，CSS3 中最让人兴奋的应该就是过渡与动画模块了。</p>
+<a id="more"></a>
+<h2 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h2><p>CSS2 没有中间状态：当一个属性的值发生改变时，这种改变是突然发生的。</p>
+<p>CSS3 引入了过渡模块，提供了改变这种方式的选项。在 CSS 中，过渡就是让一个属性的值从初值逐渐改变至终值。</p>
+<p>过渡是隐式的动画，意味着它们只有在 CSS 属性设置了新值的时候才会被触发。为了让过渡产生，必须满足 4个条件：一个初始条件、一个终止条件、过渡本身和触发器。</p>
+<p>这里所说的初始条件和终止条件就是指元素的属性发生了变化，有两个状态，一个是初始的属性值，一个是后来的属性值。如果为元素定义了过渡，那么当指定的元素属性发生变化时，过渡就会显现出效果，触发器指的也是指定元素属性与初始态相比发生变化了就能触发过渡。</p>
+<h3 id="哪个属性"><a href="#哪个属性" class="headerlink" title="哪个属性"></a>哪个属性</h3><p><code>transition-property</code> 属性指定了元素的哪一个属性（或者多个属性）会有动画效果。它的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">transition-property</span>: keyword; &#125;</div></pre></td></tr></table></figure>
+<p>keyword 默认值是 <code>all</code>，其可以接受的所有值：</p>
+<ul>
+<li><code>all</code></li>
+<li><code>none</code></li>
+<li>一个有效的 CSS 属性（并不是所有的 CSS 属性都会有过渡效果）</li>
+</ul>
+<h3 id="持续时间"><a href="#持续时间" class="headerlink" title="持续时间"></a>持续时间</h3><p><code>transition-duration</code> 属性定义了过渡从开始到完成的时间长度，其语法是：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">transition-duration</span>: time; &#125;</div></pre></td></tr></table></figure>
+<p>time 值是一个单位为 ms（毫秒）或者 s（秒）的数字。如果想要出现过渡效果，该属性是必须的，由于其默认值是 0，如果不指明的话就没有过渡效果。</p>
+<h3 id="控制过渡过程的速度变化"><a href="#控制过渡过程的速度变化" class="headerlink" title="控制过渡过程的速度变化"></a>控制过渡过程的速度变化</h3><p>要控制元素在两种状态之间过渡的方式，我们需要使用 <code>transition-timing-function</code> 属性。该属性能够控制过渡持续期间各个阶段的速度变化。该属性的取值有以下：</p>
+<ul>
+<li><code>ease</code>： 默认值，缓慢开始，然后加速，最后缓慢结束</li>
+<li><code>linear</code>： 从开始到结束都是同一速度</li>
+<li><code>ease-in</code>： 缓慢开始，然后加速直到结束</li>
+<li><code>ease-out</code>： 加速开始，缓慢结束</li>
+<li><code>ease-in-out</code>： 缓慢开始，中间加速，缓慢结束</li>
+<li><code>cubic-bezier(x1, y1, x2, y2)</code>： 贝塞尔曲线函数</li>
+</ul>
+<h4 id="立方贝塞尔曲线"><a href="#立方贝塞尔曲线" class="headerlink" title="立方贝塞尔曲线"></a>立方贝塞尔曲线</h4><p>控制过渡速度变化的属性允许我们使用一个三次贝塞尔曲线函数提供属性值。它的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">transition-timing-function</span>: <span class="built_in">cubic-bezier</span>(x1, y1, x2, y2); &#125;</div></pre></td></tr></table></figure>
+<p>一条三次贝塞尔曲线是利用四个点绘制出来的，在每条轴线上都是从 0 变化到 1.这四个点已知为 P0、P1、P2、P3，它们定义了线的曲率并使用 (x, y) 坐标进行绘制，其中第一个点 P0 总是在 (0, 0)，而最后一个点总是在 (1, 1)。另外两个点定义在函数中，分别是：(x1, y1) 和 (x2, y2)。</p>
+<p>线性动画的变化趋势是沿着一条从（0，0）到（1，1）的直线发展的，我们的示例动画会在设置的持续时间内，跟随曲线的发展变化向终点发展。</p>
+<table>
+<thead>
+<tr>
+<th>关键字值</th>
+<th>立方贝塞尔曲线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ease</td>
+<td>0.25, 0.1, 0.25, 1</td>
+</tr>
+<tr>
+<td>linear</td>
+<td>0, 0, 1, 1</td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td>0.42, 0, 1, 1</td>
+</tr>
+<tr>
+<td>ease-out</td>
+<td>0, 0, 0.58, 1</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>0.42, 0, 0.58, 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="过渡开始的时间"><a href="#过渡开始的时间" class="headerlink" title="过渡开始的时间"></a>过渡开始的时间</h3><p><code>transition-delaty</code> 属性设置了过渡开始的时间，其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">transition-delay</span>: time; &#125;</div></pre></td></tr></table></figure>
+<p>和 <code>transition-duration</code> 一样，time 值是一个单位为 ms 或者 s 的数字。其默认值是 0，意味着过渡会在触发器被触发的时候发生。任何正值都会让过渡在指定的时间长度过去之后才开始，即造成延迟的效果。</p>
+<p>我们可以在 <code>transition-delay</code> 上应用负值，会出现有趣的效果，过渡会立即开始，但是会提前跳过负值对应的时间量。过渡看上去就像是从定义的持续时间中间部分开始（持续时间减去延迟时间的绝对值）。</p>
+<h3 id="简写属性"><a href="#简写属性" class="headerlink" title="简写属性"></a>简写属性</h3><p>过渡的简写属性语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">transition</span>: transition-property transition-duration transition-timing-function transition-delay; &#125;</div></pre></td></tr></table></figure>
+<h3 id="多重过渡"><a href="#多重过渡" class="headerlink" title="多重过渡"></a>多重过渡</h3><p>我们可以为独立或简写的属性提供一列用逗号隔开的值，轻松地把多种过渡添加到一个元素身上。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123;</div><div class="line">    <span class="attribute">transition-property</span>: border-width, height, padding;</div><div class="line">    <span class="attribute">transition-duration</span>: <span class="number">4s</span>, <span class="number">500ms</span>, <span class="number">4s</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">transition</span>: border-width <span class="number">4s</span>, height <span class="number">500ms</span>, padding <span class="number">4s</span>; &#125;</div></pre></td></tr></table></figure>
+<p>值得注意的是，如果一个独立属性的值比另一个属性更少一些，那么值列表就会被破坏。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123;</div><div class="line">    <span class="attribute">transition-property</span>: border-width, height, padding;</div><div class="line">    <span class="attribute">transition-duration</span>: <span class="number">4s</span>, <span class="number">500ms</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码中，<code>transition-property</code> 属性有三个值，而 <code>transition-delay</code> 属性却仅仅有两个值，这意味着前者的第三个值（padding）会匹配后者的第一个值（4s）。</p>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>过渡虽好，但也有本质上的局限，它们只能够在属性值发生变化时才能应用。CSS3 动画模块超越了过渡模块，它能够使用一种更加灵活的语法，让元素从一种样式逐渐变化到另一种样式，并能够进行更加精细的控制。</p>
+<h3 id="keyframes-规则"><a href="#keyframes-规则" class="headerlink" title="@keyframes 规则"></a><code>@keyframes</code> 规则</h3><p>创建动画的第一个步骤是定义关键帧。关键帧定义了一个动画从开始到结束的不同时间点的表现。最简单的动画只有两个关键帧——一个在开头，另一个在结尾，更复杂的动画在开头和结尾之间具有多个关键帧。CSS 过渡本质上是一个只有两个关键帧的动画。</p>
+<p>在 CSS 中，我们使用 <code>@keyframes</code> 规则声明关键帧，其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> name &#123;</div><div class="line">    <span class="selector-tag">keyframe</span> &#123;</div><div class="line">        <span class="attribute">property</span>: value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码中，</p>
+<ul>
+<li><code>name</code> 表示动画的名称，会用与后面动画的调用</li>
+<li><code>keyframe</code> 设置了在动画持续期间关键字将要出现的位置，可以使用的值是百分比值或者是 <code>from</code> 或 <code>to</code> 的其中一个关键字（分别类似于 0% 和 100%）。我们至少需要指定两个关键帧，设置多个时保证每个关键帧在动画中有一个唯一的值就行。</li>
+</ul>
+<p>小示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> example &#123;</div><div class="line">    <span class="selector-tag">from</span> &#123; <span class="attribute">border-width</span>: <span class="number">20px</span>; &#125;</div><div class="line">    50% &#123; <span class="attribute">border-width</span>: <span class="number">10px</span>; &#125;</div><div class="line">    <span class="selector-tag">to</span> &#123; <span class="attribute">border-width</span>: <span class="number">1px</span>; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>动画开始，元素是 10px 边框；动画中途，元素边框为 10px；动画末尾，元素边框 1px。</p>
+<h3 id="animation-name-属性"><a href="#animation-name-属性" class="headerlink" title="animation-name 属性"></a><code>animation-name</code> 属性</h3><p>一旦使用了 <code>@keyframes</code> 规则定义了动画，下一个步骤就是添加对动画元素的控制。</p>
+<p><code>animation-name</code> 属性用于指定使用 <code>@keyframes</code> 规则定义的动画名称，以此来调用定义好的动画。</p>
+<h3 id="动画持续时间"><a href="#动画持续时间" class="headerlink" title="动画持续时间"></a>动画持续时间</h3><p><code>amimation-duration</code> 属性用于设定动画持续时间，它的语法规则与之前在过渡部分介绍的 <code>transition-duration</code> 属性一样，属性值是一个单位为 s 或者 ms 的数字，默认为 0，但是为 0 动画没有任何效果，负值同理。</p>
+<p><em>注意：如果要想有动画效果，<code>animation-duration</code> 属性必须有，而且其属性值必须为正数。</em></p>
+<h3 id="动画速度变化"><a href="#动画速度变化" class="headerlink" title="动画速度变化"></a>动画速度变化</h3><p><code>animation-timing-function</code> 属性，动画的这个属性与过渡的 <code>transition-timing-function</code> 属性的语法是相同的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">E &#123; animation-timing-<span class="function"><span class="keyword">function</span>: <span class="title">keyword</span> || <span class="title">cubic</span>-<span class="title">bezier</span>(<span class="params">x1, y1, x2, y2</span>); &#125;</span></div></pre></td></tr></table></figure></p>
+<p>该属性可用的关键字值有：</p>
+<ul>
+<li><code>ease</code></li>
+<li><code>linear</code></li>
+<li><code>ease-in</code></li>
+<li><code>ease-out</code></li>
+<li><code>ease-in-out</code></li>
+</ul>
+<h3 id="动画延迟"><a href="#动画延迟" class="headerlink" title="动画延迟"></a>动画延迟</h3><p><code>animation-delay</code> 属性用于设置动画开始之前的延迟时间，其语法与过渡的延迟时间 <code>transition-delay</code> 属性相同。</p>
+<p>属性值是一个单位为 ms 或者 s 的数值，0 意味着动画立即开始，没有延迟，负值可以使动画跳过指定时间。</p>
+<h3 id="动画重复"><a href="#动画重复" class="headerlink" title="动画重复"></a>动画重复</h3><p>CSS 过渡只能发生一次（或者说两次，如果把相反的过程也算上的话），但是动画不同，动画可以被重复任意次数。动画的重复次数由 <code>animation-iteration</code> 属性设置，其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">animation-iteration-count</span>: number || infinite; &#125;</div></pre></td></tr></table></figure>
+<p>该属性的属性值为一个正整数用于设定动画重复的次数，可能的取值如下：</p>
+<ul>
+<li><code>1</code>： 默认值，</li>
+<li><code>infinite</code>： 表示动画无限循环播放</li>
+<li>0 或负值： 会阻止动画播放</li>
+<li>正整数： 动画会按照播放指定数值的次数</li>
+</ul>
+<h3 id="动画播放方向"><a href="#动画播放方向" class="headerlink" title="动画播放方向"></a>动画播放方向</h3><p>动画的正常播放是从开始到结束，但它们也可以以相反的方向播放（像过渡那样）。我们可以设置动画是否一直以同一个方向播放，或者交替地向前或向后播放。为了实现这一效果，我们可以使用 <code>animation-direction</code> 属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">animation-direction</span>: keyword; &#125;</div></pre></td></tr></table></figure>
+<p>可使用的属性值关键字值有：</p>
+<ul>
+<li><code>normal</code>： 默认值，动画总是从头开始播放到完成</li>
+<li><code>reverse</code>： 动画会以相反方向播放</li>
+<li><code>alternate</code>： 动画在第奇数次播放时，总是使用 <code>normal</code> 值，即向前播放；动画在第偶数次播放时，总是使用<code>reverse</code> 值，即反方向播放</li>
+<li><code>alternate-reverse</code>： 该属性值的作用于 <code>alternate</code> 值相反，奇数的圈动画会向后转，偶数的圈动画向前转。</li>
+</ul>
+<h3 id="动画的播放状态"><a href="#动画的播放状态" class="headerlink" title="动画的播放状态"></a>动画的播放状态</h3><p><code>animation-play-state</code> 属性用于指出一个动画是否是活跃的，其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123; <span class="attribute">animation-play-state</span>: paused | running; &#125;</div></pre></td></tr></table></figure>
+<p>该属性有两个关键字值：</p>
+<ul>
+<li><code>paused</code>： 表示动画未在播放</li>
+<li><code>running</code>： 默认属性值，表示动画正在播放</li>
+</ul>
+<h3 id="动画未正在播放时元素的样式"><a href="#动画未正在播放时元素的样式" class="headerlink" title="动画未正在播放时元素的样式"></a>动画未正在播放时元素的样式</h3><p><code>animation-fill-mode</code> 属性用于设置动画没有正在播放时元素的表现，也就说，元素的动画播放前或播放完毕时，元素的表现。</p>
+<p>该属性接受以下的关键字值：</p>
+<ul>
+<li><code>none</code>： 默认属性值，没有任何样式</li>
+<li><code>forwards</code>： 动画开始前或结束后，元素将表现为动画结束时刻的样子</li>
+<li><code>backwards</code>： 动画开始前或结束后，元素将表现为动画开始时刻的样子</li>
+</ul>
+<h3 id="属性简写"><a href="#属性简写" class="headerlink" title="属性简写"></a>属性简写</h3><p>动画简写属性 <code>animation</code> 的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">E</span> &#123;</div><div class="line">    <span class="attribute">animation</span>:</div><div class="line">        animation-name</div><div class="line">        animation-duration</div><div class="line">        animation-timing-function</div><div class="line">        animation-delay</div><div class="line">        animation-iteration-count</div><div class="line">        animation-direction</div><div class="line">        animation-fill-mode</div><div class="line">        animation-play-state</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们一个例子来看一下 <code>animation</code> 简写属性与独立属性分开写的对应关系：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> haha &#123;</div><div class="line">    <span class="comment">/* 在此处声明动画特定帧的行为 */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.element</span> &#123;</div><div class="line">    <span class="attribute">animation-name</span>: haha;</div><div class="line">    <span class="attribute">animation-duration</span>: <span class="number">2s</span>;</div><div class="line">    <span class="attribute">animation-timing-function</span>: ease-out;</div><div class="line">    <span class="attribute">animation-delay</span>: <span class="number">0.5s</span>;</div><div class="line">    <span class="attribute">animation-iteration-count</span>: infinite;</div><div class="line">    <span class="attribute">animation-direction</span>: alternate;</div><div class="line">    <span class="attribute">animation-fill-mode</span>: none;</div><div class="line">    <span class="attribute">animation-play-state</span>: running;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 上面的独立属性等价于下面的简写属性 */</span></div><div class="line"><span class="selector-class">.element</span> &#123;</div><div class="line">    <span class="attribute">animation</span>:</div><div class="line">        haha</div><div class="line">        <span class="number">2s</span></div><div class="line">        ease-out</div><div class="line">        <span class="number">0.5</span></div><div class="line">        infinite</div><div class="line">        alternate</div><div class="line">        none</div><div class="line">        running;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="多重动画"><a href="#多重动画" class="headerlink" title="多重动画"></a>多重动画</h3><p>如需为一个元素添加多个动画，使用一个逗号隔开的动画简写属性值列表即可。</p>
+<h3 id="支持动画的元素属性"><a href="#支持动画的元素属性" class="headerlink" title="支持动画的元素属性"></a>支持动画的元素属性</h3><p>注意！！！并不是所有的元素属性都支持动画特性，MDN 为我们提供了一份清单 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties" target="_blank" rel="external">a list of CSS properties which can be animated</a>，这上面列出了所有支持 CSS 动画的元素属性。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+            <a href="/tags/动画/" rel="tag"># 动画</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（十）：渐变/" rel="next" title="CSS3之美（十）：渐变">
+                <i class="fa fa-chevron-left"></i> CSS3之美（十）：渐变
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/26/CSS3之美（十二）：2D变换/" rel="prev" title="CSS3之美（十二）：2D变换">
+                CSS3之美（十二）：2D变换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#过渡"><span class="nav-number">1.</span> <span class="nav-text">过渡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哪个属性"><span class="nav-number">1.1.</span> <span class="nav-text">哪个属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续时间"><span class="nav-number">1.2.</span> <span class="nav-text">持续时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制过渡过程的速度变化"><span class="nav-number">1.3.</span> <span class="nav-text">控制过渡过程的速度变化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#立方贝塞尔曲线"><span class="nav-number">1.3.1.</span> <span class="nav-text">立方贝塞尔曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过渡开始的时间"><span class="nav-number">1.4.</span> <span class="nav-text">过渡开始的时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简写属性"><span class="nav-number">1.5.</span> <span class="nav-text">简写属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重过渡"><span class="nav-number">1.6.</span> <span class="nav-text">多重过渡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">2.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keyframes-规则"><span class="nav-number">2.1.</span> <span class="nav-text">@keyframes 规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animation-name-属性"><span class="nav-number">2.2.</span> <span class="nav-text">animation-name 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画持续时间"><span class="nav-number">2.3.</span> <span class="nav-text">动画持续时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画速度变化"><span class="nav-number">2.4.</span> <span class="nav-text">动画速度变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画延迟"><span class="nav-number">2.5.</span> <span class="nav-text">动画延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画重复"><span class="nav-number">2.6.</span> <span class="nav-text">动画重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画播放方向"><span class="nav-number">2.7.</span> <span class="nav-text">动画播放方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画的播放状态"><span class="nav-number">2.8.</span> <span class="nav-text">动画的播放状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画未正在播放时元素的样式"><span class="nav-number">2.9.</span> <span class="nav-text">动画未正在播放时元素的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性简写"><span class="nav-number">2.10.</span> <span class="nav-text">属性简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重动画"><span class="nav-number">2.11.</span> <span class="nav-text">多重动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持动画的元素属性"><span class="nav-number">2.12.</span> <span class="nav-text">支持动画的元素属性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/10/26/CSS3之美（十一）：过渡与动画/';
+
+      var disqus_title = "CSS3之美（十一）：过渡与动画";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

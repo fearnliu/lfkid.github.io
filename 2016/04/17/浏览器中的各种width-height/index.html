@@ -1,0 +1,1225 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="长宽,浏览器," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="由于浏览器的兼容性问题，在求一个元素的长宽或者是其距离视口边缘的距离时，往往不知所措。本文总结了在浏览器中获取元素长宽时，所用到的各种浏览器兼容方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器中的各种width/height">
+<meta property="og:url" content="https://lfkid.github.io/2016/04/17/浏览器中的各种width-height/index.html">
+<meta property="og:site_name" content="中二病也要玩 front end">
+<meta property="og:description" content="由于浏览器的兼容性问题，在求一个元素的长宽或者是其距离视口边缘的距离时，往往不知所措。本文总结了在浏览器中获取元素长宽时，所用到的各种浏览器兼容方法。">
+<meta property="og:updated_time" content="2017-03-09T13:55:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器中的各种width/height">
+<meta name="twitter:description" content="由于浏览器的兼容性问题，在求一个元素的长宽或者是其距离视口边缘的距离时，往往不知所措。本文总结了在浏览器中获取元素长宽时，所用到的各种浏览器兼容方法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lfkid.github.io/2016/04/17/浏览器中的各种width-height/"/>
+
+
+
+
+
+  <title> 浏览器中的各种width/height | 中二病也要玩 front end </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">中二病也要玩 front end</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Growing with the Web</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lfkid.github.io/2016/04/17/浏览器中的各种width-height/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lfkid">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="中二病也要玩 front end">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                浏览器中的各种width/height
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-17T17:09:58+08:00">
+                2016-04-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-09T21:55:32+08:00">
+                2017-03-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/17/浏览器中的各种width-height/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/17/浏览器中的各种width-height/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">字数统计</span>
+                  
+                    <span title="字数统计" }}">
+                      3,242
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span class="post-meta-item-text">阅读时长</span>
+                  
+                    <span title="阅读时长" }}">
+                      12
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于浏览器的兼容性问题，在求一个元素的长宽或者是其距离视口边缘的距离时，往往不知所措。本文总结了在浏览器中获取元素长宽时，所用到的各种浏览器兼容方法。</p>
+<a id="more"></a>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><h3 id="screenLeft-screenTop"><a href="#screenLeft-screenTop" class="headerlink" title="screenLeft/screenTop"></a>screenLeft/screenTop</h3><p>用来确定和修改 window 对象的属性和方法有很多。IE、Safari、Opera 和 Chrome 都提供了以下属性：</p>
+<pre><code>screenLeft  ==&gt;  窗口相对于屏幕左左边的位置
+scrennTop  ==&gt;  窗口相对于屏幕上边的位置
+</code></pre><p>Firefos 则在以下属性中提供相同信息：</p>
+<pre><code>screenX  ==&gt;  窗口相对于屏幕左边的位置（Firefox）
+screenY ==&gt;  窗口相对于屏幕上边的位置（Firefox）
+</code></pre><p>Safari 和 Chrome 也同时支持 <code>screenX</code> 和 <code>screenY</code> 这两个属性。Opera 虽然也支持 <code>screenX</code> 和 <code>screenY</code>，但与 <code>screenLeft</code> 和 <code>screenTop</code> 属性不对应。因此，不建议在 Opera 中使用。</p>
+<table>
+<thead>
+<tr>
+<th>浏览器</th>
+<th>window.screenLeft</th>
+<th>window.screenTop</th>
+<th>window.screenX</th>
+<th>window.screenY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IE</td>
+<td>浏览器窗口相对于屏幕左边的位置</td>
+<td>浏览器窗口相对于屏幕上边的位置</td>
+<td>——</td>
+<td>——</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>浏览器窗口相对于屏幕左边的位置</td>
+<td>浏览器窗口相对于屏幕上边的位置</td>
+<td>!== screenLeft</td>
+<td>!== screenTop</td>
+</tr>
+<tr>
+<td>IE/Opera</td>
+<td>这个距离包括浏览器中实际页面上方的工具栏</td>
+<td>这个距离包括浏览器中实际页面左边的浏览器栏</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>浏览器窗口相对于屏幕左边的位置</td>
+<td>浏览器窗口相对于屏幕上边的位置</td>
+<td>浏览器窗口相对于屏幕左边的位置</td>
+<td>浏览器窗口相对于屏幕上边的位置</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>浏览器窗口相对于屏幕左边的位置</td>
+<td>浏览器窗口相对于屏幕上边的位置</td>
+<td>浏览器窗口相对于屏幕上边边的位置</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>——</td>
+<td>——</td>
+<td>浏览器窗口相对于屏幕左边的位置</td>
+<td>浏览器窗口相对于屏幕上边的位置</td>
+</tr>
+<tr>
+<td>Safari/Chrome/Firefox</td>
+<td>——</td>
+<td>——</td>
+<td>这个距离不包括浏览器工具栏</td>
+<td>这个距离不包括浏览器工具栏</td>
+</tr>
+</tbody>
+</table>
+<p>由上表，我们可以得出如下的跨浏览器代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> leftPos = (<span class="keyword">typeof</span> <span class="built_in">window</span>.screenLeft === <span class="string">'number'</span>) ? <span class="built_in">window</span>.screenLeft : <span class="built_in">window</span>.screenX,</div><div class="line">    topPos = (<span class="keyword">typeof</span> <span class="built_in">window</span>.screenTop === <span class="string">'number'</span>) ? <span class="built_in">window</span>.screenTop : <span class="built_in">window</span>.screenY;</div></pre></td></tr></table></figure>
+<p>除去上表关于各个浏览器对属性所表示的位置距离的内涵差异之外，更让人琢磨不透的是，Firefox、Safari 和 Chrome 始终返回页面中每个框架的 <code>top。screenY</code> 或 <code>screenTop</code> 中值。即使在页面中由于被设置了外边距而发生偏移的情况下，相对于 <code>window</code> 对象使用 <code>screenX</code> 和 <code>screenY</code> 每次也都会返回相同的值。而 IE 和 Opera 则会给出框架相对于屏幕边界的精确坐标值。</p>
+<p>最终结果，就是无法在跨浏览器情况下取得窗口左边和上边的精确坐标值。</p>
+<h3 id="innerWidth-amp-innerHeight-与-outerWidth-amp-outerHeight"><a href="#innerWidth-amp-innerHeight-与-outerWidth-amp-outerHeight" class="headerlink" title="innerWidth&amp;innerHeight 与 outerWidth&amp;outerHeight"></a>innerWidth&amp;innerHeight 与 outerWidth&amp;outerHeight</h3><p><code>window.innerWidth</code> 和 <code>window.innerHeight</code> 用于获取页面视图区域的宽度和高度。（不包括工具栏和滚动条）</p>
+<p><code>window.outerWidth</code> 和 <code>window.outerHeight</code> 用于获取浏览器窗口的宽度和高度。（包括工具栏和滚动条）</p>
+<p>浏览器对 <code>window</code> 的这 4 个属性的支持情况如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th><code>innerWidth</code></th>
+<th><code>innerHeight</code></th>
+<th><code>outerWidth</code></th>
+<th><code>outerHeight</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IE9</td>
+<td>9+</td>
+<td>9+</td>
+<td>9+</td>
+<td>9+</td>
+</tr>
+<tr>
+<td>Firefox/Chrome</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>9.0</td>
+<td>9.0</td>
+<td>9.0</td>
+<td>9.0</td>
+</tr>
+</tbody>
+</table>
+<p>注意，这 4 个属性的返回值均为一个以 <code>px</code> 为单位的 <code>number</code> 类型的数值。</p>
+<p>当然，如果要编写跨浏览器代码，仅仅靠以上 4 个属性是不够的，老版本浏览器不会支持它们，另外早期 IE 还有标准模式与混杂模式之分。这里以 <code>window.innerWidth</code> 属性为例，展示跨浏览器代码的编写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取浏览器可见视口的宽度</span></div><div class="line"><span class="comment">// 跨浏览器代码</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.innerWidth === <span class="string">'number'</span>) &#123;    <span class="comment">// 如果浏览器的此属性符合预期，就直接返回其值</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.innerWidth;</div><div class="line"></div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode === <span class="string">'CSS1Compat'</span>) &#123;  <span class="comment">// 页面处于标准模式</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.documentElement.clientWidth;</div><div class="line"></div><div class="line">&#125; elst &#123;    <span class="comment">// 页面处于混杂模式</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.body.clientWidth;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面仅是以 <code>window.innerWidth</code> 为例的获取可见视口宽度的跨浏览器代码，其他四个属性求值的跨浏览器代码类似。</p>
+<p>移动设备的可见视口与布局视口大小如图所示：</p>
+<table>
+<thead>
+<tr>
+<th>移动设备</th>
+<th>可见视口</th>
+<th>布局视口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>移动IE</td>
+<td><code>documeng.documentElement.clientWidth</code>/<code>document.documentElement.clientHeight</code></td>
+<td><code>document.body.clientWidth</code>/<code>document.body.clientHeight</code></td>
+</tr>
+<tr>
+<td>其他浏览器</td>
+<td><code>window.innerWidth</code>/<code>window.innerHeight</code></td>
+<td><code>document.documentElement.clientWidth</code>/<code>document.documentElement.clientHeight</code></td>
+</tr>
+</tbody>
+</table>
+<p>对于移动设备，<code>window.innerWidth</code> 和 <code>window.innerHeight</code> 保存着可见视口，也就是屏幕上可见页面区域的大小。移动 IE浏览器不支持这些属性，但通过 <code>document.documentElement.clientWidth</code> 和 <code>docuemnt.documentElement.clientHeight</code> 提供了相同的信息。随着页面的缩放，这些值也会相应发生变化。</p>
+<p>在其他移动浏览器中，<code>document.documentElement</code> 度量的是布局视口，即渲染后页面的实际大小（与可见视口不同，可见视口只是整个页面中的一小部分）。移动 IE 浏览器把布局视口的信息保存在 <code>document.body.clientWidth</code> 和 <code>document.body.clientHeight</code>中。这些值不会随着页面缩放变化。</p>
+<p>另外，使用 <code>resizeTo()</code> 和 <code>resizeBy()</code> 方法可以调整整个浏览器窗口的大小。这两个方法都接收两个参数，其中 <code>resizeTo()</code> 接收浏览器窗口的新宽度和新高度，而 <code>resizeBy()</code> 接收新窗口与原窗口的宽度和高度之差。</p>
+<h3 id="pageXOffset-amp-pageYOffset"><a href="#pageXOffset-amp-pageYOffset" class="headerlink" title="pageXOffset&amp;pageYOffset"></a>pageXOffset&amp;pageYOffset</h3><p><code>window.pageXoffset</code> 和 <code>window.pageYOffset</code> 用于获取当前文档相对于浏览器视口左上角已经被滚动过的水平、垂直距离。</p>
+<p>二者的返回值均为一个以 <code>px</code> 为单位的 <code>number</code> 类型的值。</p>
+<p><em>注意：</em> IE8 及更早版本不支持这两个属性。其余主流现代浏览器（Firefox/Chrome/Safari）均支持此属性。</p>
+<p>跨浏览器代码如下（这里仅以 <code>window.pageXOffset</code> 为例）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.pageXOffset === <span class="string">'number'</span>) &#123;   <span class="comment">// 所有浏览器，除了 IE9 及更早</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.pageXOffset;</div><div class="line"></div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode === <span class="string">'CSS1Compat'</span>) &#123;  <span class="comment">// 标准模式</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.documentElement.scrollLeft;</div><div class="line"></div><div class="line">&#125; <span class="keyword">else</span> &#123;    <span class="comment">// 混杂模式</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.body.scrollLeft;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="普通元素"><a href="#普通元素" class="headerlink" title="普通元素"></a>普通元素</h2><h3 id="可见大小"><a href="#可见大小" class="headerlink" title="可见大小"></a>可见大小</h3><p>元素的可见大小由其高度、宽度决定，包括所有内边距、滚动条和边框大小（注意：不包括外边距）。</p>
+<p>本部分所说的四个与偏移量相关的属性均是只读的。</p>
+<p><strong>offsetWidth/offsetHeight——元素在水平/垂直方向上占用的空间大小，以像素计算</strong></p>
+<pre><code>offsetWidth  ==&gt;  内容的宽度 + 左内边距 + 右内边距 + （可见的）垂直滚动条的宽度 + 左边框的宽度 + 右边框的宽度
+offsetHeight  ==&gt;  内容的高度 + 上内边距 + 下内边距 + （可见的）水平滚动条的高度 + 上边框的高度 + 下边框的高度
+</code></pre><p><strong>offsetLeft/offsetTop——元素的外边框至包含元素的内边距之间的像素距离</strong></p>
+<pre><code>offsetLeft  ==&gt;  元素的左外边框到包含元素的元素的左内边距之间的像素距离
+offsetTop  ==&gt;  元素的上外边框到包含元素的元素的上内边距之间的像素距离
+</code></pre><p><code>offsetLeft</code> 和 <code>offsetTop</code> 属性与包含元素有关，包含元素的引用保存在 <code>offsetParent</code> 属性中。<code>offsetParent</code> 不一定与 <code>parentNode</code> 的值相等。例如，<code>&lt;td&gt;</code> 元素的 <code>offsetParent</code> 是 作为其祖先元素的 <code>&lt;table&gt;</code> 元素，因为 <code>&lt;table&gt;</code> 是在 DOM 层次中距 <code>&lt;td&gt;</code> 元素最近的一个具有大小的元素。</p>
+<p>要想知道某个元素在页面上的偏移量，将这个元素的 <code>offsetWidth</code> 和 <code>offsetTop</code> 与 <code>offsetParent</code> 的相同属性相加，如此循环直至根元素，就可以得到一个基本准确的值。下面两个函数分别用于取得一个元素的左偏移和上偏移量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 计算元素的相对于整个页面的左偏移</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementLeft</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> actualLeft = element.offsetLeft,</div><div class="line">        current = element.offsetParent;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (current !== <span class="literal">null</span>) &#123;</div><div class="line">        actualLeft += current.offsetLeft;</div><div class="line">        current = current.offsetParent;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> actualLeft;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 计算元素相对于整个元素的上偏移</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementTop</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> actualTop = element.offsetTop,</div><div class="line">        current = element.offsetParent;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (current !== <span class="literal">null</span>) &#123;</div><div class="line">        actualTop += current.offsetTop;</div><div class="line">        current = current.offsetParent;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> actualTop;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="客户区大小"><a href="#客户区大小" class="headerlink" title="客户区大小"></a>客户区大小</h3><p>元素的客户区大小指的是元素内容及其内边距所占据的空间大小。有关客户区大小的属性有两个：<code>clientWidth</code> 和 <code>clientHeight</code>。这两个属性是只读的。</p>
+<pre><code>clientWidth  ==&gt;  内容宽度 + 左内边距宽度 + 右内边距宽度
+clientHeight  ==&gt;  内容宽度 + 上内边距高度 + 下内边距高度
+</code></pre><p>从字面上看，客户区大小就是元素内部的空间大小，因此滚动条所占用的空间不计算在内。</p>
+<p>下面是一段获取浏览器视口大小的跨浏览器代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getViewport</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.compactMoce === <span class="string">'BackCompact'</span>) &#123;  <span class="comment">// 非标准模式</span></div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">width</span>: <span class="built_in">document</span>.body.clientWidth;</div><div class="line">            height: <span class="built_in">document</span>.body.clientHeight;</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">width</span>: <span class="built_in">document</span>.documentElement.clientWidth;</div><div class="line">            height: <span class="built_in">document</span>.documentElement.clientHeight;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="滚动大小"><a href="#滚动大小" class="headerlink" title="滚动大小"></a>滚动大小</h3><p>滚动大小，指的是包含滚动内容的元素的大小。有些元素（例如<code>&lt;html&gt;</code>元素），即使没有执行任何代码也能自动地添加滚动条；但另外一些元素，则需要通过 CSS 的 <code>overflow</code> 属性进行设置才能滚动。以下是 4 个与滚动大小相关的属性：</p>
+<pre><code>scrollHeight  ==&gt;  在没有滚动条的情况下，元素内容的总高度
+scrollWidth  ==&gt;  在没有滚动条的情况下，元素内容的总高度
+
+scrollLeft  ==&gt;  被隐藏在内容区域左侧的像素数。设置这个属性可以改变元素的滚动位置
+scrollTop  ==&gt;  被隐藏在内容区域上方的像素数。设置这个属性可以改变元素的滚动位置
+</code></pre><p><code>scrollWidth</code> 和 <code>scrollHeight</code> 主要用于确定元素内容的实际大小。例如，通常认为 <code>&lt;html&gt;</code> 元素是在Web浏览器中的视口中滚动的元素（IE6及之前的版本运行在混杂模式下时是<code>&lt;&lt;body&gt;</code>元素）。因此，带有垂直滚动条的页面总高度就是 <code>documeng.documengElement.scrollHeight</code>。</p>
+<p>对于不包含滚动条的页面而言，<code>scrollWidth</code> 和 <code>scrollHeight</code> 与 <code>clientWidth</code> 和 <code>clientHeight</code> 之间的关系并不十分明确。在这种情况下，基于 <code>document.documentElement</code> 查看这些属性会在不同浏览器间发现一些不一致性问题，如下：</p>
+<table>
+<thead>
+<tr>
+<th>浏览器</th>
+<th><code>scrollWidth</code>/<code>scrollHeight</code></th>
+<th><code>clientWidth</code>/<code>clientHeight</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firefox</td>
+<td>同<code>clientWidth</code>/<code>clientHeight</code>，表示文档内容区域大小</td>
+<td>同<code>scrollWidth</code>/<code>scrollHeight</code>，表示文档内容区域大小</td>
+</tr>
+<tr>
+<td>Opera/Safari3.1+ /Chrome</td>
+<td>视口大小</td>
+<td>文档内容区域大小</td>
+</tr>
+<tr>
+<td>IE（标准模式）</td>
+<td>文档内容区域大小</td>
+<td>视口大小</td>
+</tr>
+</tbody>
+</table>
+<p>在确定文档的总高度时（包括基于视口的最小高度时），必须取得 <code>scrollWidth/clientWidth</code> 和 <code>scrollHeight/clientHeight</code> 中的最大值，才能保证在跨浏览器的环境下得到精确结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> docHeight = <span class="built_in">Math</span>.max(<span class="built_in">document</span>.documentElement.scrollHeight, <span class="built_in">document</span>.documentElement.clientHeight);</div><div class="line"></div><div class="line"><span class="keyword">var</span> docWidth = <span class="built_in">Math</span>.max(<span class="built_in">document</span>.documentElement.scrollWidth, <span class="built_in">document</span>.documentElement.clientWidth);</div></pre></td></tr></table></figure>
+<p>注意：对于运行在混杂模式下的 IE，需要使用 <code>document.body</code> 代替 <code>document.documentElement</code>。</p>
+<p>通过 <code>scrollLeft</code> 和 <code>scrollTop</code> 属性可以确定元素当前滚动的状态，也可以设置元素的滚动位置。在元素尚未滚动时，这两个属性的值都等于 0。如果元素被垂直滚动了，那么 <code>scrollTop</code> 的值会大于 0，且表示元素上方左侧不可见内容的像素高度。如果元素被水平滚动了，那么 <code>scrollLeft</code> 的值会大于 0，且表示元素左侧不可见内容的像素高度。这两个属性都是可以设置的，<br>因此将元素的 <code>scrollLeft</code> 和 <code>scrollTop</code> 设置为 0，就可以重置元素的滚动位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">scrollToTop</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (element.scrollTop !==<span class="number">0</span>) &#123;</div><div class="line">        element.scrollTop = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="确定元素大小"><a href="#确定元素大小" class="headerlink" title="确定元素大小"></a>确定元素大小</h3><p>IE 最先提出，而后被 W3C 标准采纳的一个方法 <code>getBoundingClientRect()</code>，可用来获取元素的位置信息。该方法的返回结果在每个浏览器中的具体输出不完全一样，但是都返回一个对象，这个对象有以下 6 个属性（各大浏览器均支持）：</p>
+<pre><code>width  ==&gt;  元素的可视宽度：width + padding-left + padding-right + border-left + border-right
+height  ==&gt;  元素的可视高度：height + padding-top + padding-bottom + border=top + border-bottom
+
+left  ==&gt;  元素 border 的左外边界到浏览器视口左边界的距离
+top  ==&gt;  元素 border 的上外边界到浏览器视口上边界的距离
+right  ==&gt;  元素 border 的右外边界到浏览器视口的左边界的距离
+bottom  ==&gt;  元素 border 的下外边界到浏览器视口的上边界的距离
+</code></pre><p>但是，关于此方法的实现，IE8 及早期版本略有不同。IE8 及早期版本认为文档的左上角左边是 <code>(2,2)</code>，而其他浏览器包括 IE9 还算正常，认为 <code>(0,0)</code> 是浏览器的左上角起点坐标。因此，跨浏览器代码需要在一开始检查一下位于 <code>(0,0)</code> 位置的元素的位置信息，在 IE8 及早期版本会返回 <code>(2,2）</code>，而在其他浏览器则会返回 <code>(0,0)</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBoundingClientRect</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.offset !== <span class="string">'number'</span>) &#123;</div><div class="line">        <span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop,</div><div class="line">            temp      = documen.createElement(<span class="string">'div'</span>);</div><div class="line"></div><div class="line">        temp.style.cssText = <span class="string">'position: absolute; left: 0; top: 0;'</span>;</div><div class="line">        <span class="built_in">document</span>.body.appendChild(temp);</div><div class="line"></div><div class="line">        <span class="comment">// 减去视口的 scrollTop，防止调用函数时，窗口滚动了</span></div><div class="line">        <span class="built_in">arguments</span>.callee.offset = -temp.getBoundingClientRect().top - scrollTop;</div><div class="line">        <span class="built_in">document</span>.body.removeChild(temp);</div><div class="line">        temp = <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> rect = element.getBoundingClientRect(),</div><div class="line">        offset = <span class="built_in">arguments</span>.callee.offset;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">left</span>: rect.left + offset,</div><div class="line">        <span class="attr">right</span>: rect.right + offset,</div><div class="line">        <span class="attr">top</span>: rect.top + offset,</div><div class="line">        <span class="attr">bottom</span>: rect.bottom + offset</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/长宽/" rel="tag"># 长宽</a>
+          
+            <a href="/tags/浏览器/" rel="tag"># 浏览器</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/18/HTML图像/" rel="next" title="HTML图像">
+                <i class="fa fa-chevron-left"></i> HTML图像
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/17/document-compatMode-CSS1Compat-BackCompat/" rel="prev" title="document.compatMode?CSS1Compat?BackCompat?">
+                document.compatMode?CSS1Compat?BackCompat? <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lfkid" />
+          <p class="site-author-name" itemprop="name">lfkid</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lfkid" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://clayandmore.github.io/" title="Claymore" target="_blank">Claymore</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#window对象"><span class="nav-number">1.</span> <span class="nav-text">window对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#screenLeft-screenTop"><span class="nav-number">1.1.</span> <span class="nav-text">screenLeft/screenTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#innerWidth-amp-innerHeight-与-outerWidth-amp-outerHeight"><span class="nav-number">1.2.</span> <span class="nav-text">innerWidth&innerHeight 与 outerWidth&outerHeight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pageXOffset-amp-pageYOffset"><span class="nav-number">1.3.</span> <span class="nav-text">pageXOffset&pageYOffset</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通元素"><span class="nav-number">2.</span> <span class="nav-text">普通元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可见大小"><span class="nav-number">2.1.</span> <span class="nav-text">可见大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户区大小"><span class="nav-number">2.2.</span> <span class="nav-text">客户区大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滚动大小"><span class="nav-number">2.3.</span> <span class="nav-text">滚动大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定元素大小"><span class="nav-number">2.4.</span> <span class="nav-text">确定元素大小</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-lfkid"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lfkid</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-lfkid-github-io';
+      var disqus_identifier = '2016/04/17/浏览器中的各种width-height/';
+
+      var disqus_title = "浏览器中的各种width/height";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
